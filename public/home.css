@@ -83,3 +83,7 @@
     padding: 15px;
     margin: 0 auto;
 }
+.nav-btns{
+    /*padding-left: 10px;*/
+    float: right;
+}
