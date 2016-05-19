@@ -91,4 +91,13 @@
     font-size: 60px;
     color: lightgray;
 }
-
+.profile{
+    margin-right: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+    border: solid lightgray;
+    border-radius: 13px;
+    padding: 3px;
+    color: white;
+    background-color: lightgray;
+}
