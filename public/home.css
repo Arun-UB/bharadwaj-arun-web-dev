@@ -1,8 +1,3 @@
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -81,4 +76,10 @@ body {
 .center-block {
     display: block;
     text-align: center;
+}
+
+.sign-in{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
