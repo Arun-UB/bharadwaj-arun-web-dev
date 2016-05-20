@@ -18,42 +18,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="css/home.css">
 
 </head>
 <body>
-
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Web Builder</a>
+        </div>
+    </div>
+</nav>
 <div class="container">
-    <div class="header clearfix">
-        <nav>
-            <a href="https://github.com/Arun-UB/bharadwaj-arun-web-dev"  class=" btn btn-default pull-right"><img src="icons/GitHub-Mark-32px.png"> View on Github</a>
-        </nav>
-        <h3 class="text-muted">CS5610</h3>
-
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <a href="project/index.html"> <img src="icons/internet.svg" style="height: 150px; width: 100%; display: block;">
-                <div class="center-block"><h3>Project</h3> </div>
-            </a>
+    <form class="sign-in">
+            <h3>Sign In</h3>
+        <div class="form-group">
+            <label class="sr-only" for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" required>
         </div>
-        <div class="col-sm-6 col-md-4">
-            <a href="assignment/index.html" class="links"><img src="icons/interface.svg" style="height: 150px; width: 100%; display: block;">
-                <div class="center-block"><h3>Assignments</h3></div>
-            </a>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
         </div>
-        <div class="col-sm-6 col-md-4">
-            <a href="test/index.html"><img src="icons/database.svg" style="height: 150px; width: 100%; display: block;">
-                <div class="center-block"><h3> Mongo Test</h3> </div>
-            </a>
-            </div>
-        </div>
-    </div>
 
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        <p class="center-block help-block">New User? <a href="sign-up.html" >Register</a> </p>
+    </form>
 
 </div> <!-- /container -->
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
