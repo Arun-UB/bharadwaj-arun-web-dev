@@ -17,7 +17,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Optional theme -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../css/home.css">
 
 </head>
@@ -27,13 +27,14 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Profile</a>
+            <a href="../user/profile.html" class="pull-right top-right">SIGN OUT</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="profile-container">
-        <span class="glyphicon glyphicon-user profile-img center-block"></span>
-        
+        <!--<span class="glyphicon glyphicon-user profile-img center-block"></span>-->
+        <i class="material-icons profile-img center-block">account_circle</i>
     </div>
     <form class="sign-in">
         <div class="form-group">
@@ -53,9 +54,8 @@
             <input type="lastname" class="form-control" id="lastname" placeholder="Stark" required>
         </div>
 
-
-        <button type="submit" class="btn btn-info btn-block">Websites</button>
-        <button type="submit" class="btn btn-danger btn-block">Sign Out</button>
+        <button type="submit" class="btn btn-success btn-block">Save</button>
+        <a href="../website/websites.html" class="btn btn-primary btn-block">Websites</a>
     </form>
 </div> <!-- /container -->
 

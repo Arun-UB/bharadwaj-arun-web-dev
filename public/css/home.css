@@ -88,16 +88,26 @@
     float: right;
 }
 .profile-img{
-    font-size: 60px;
+    font-size: 80px;
     color: lightgray;
 }
 .profile{
     margin-right: 15px;
     margin-top: 15px;
+    font-size: 25px;
+    color: gray;
+}
+
+.top-right {
+    margin-right: 15px;
+    margin-top: 15px;
     font-size: 15px;
-    border: solid lightgray;
-    border-radius: 13px;
-    padding: 3px;
-    color: white;
-    background-color: lightgray;
+    font-weight: bold;
+}
+
+.top-left{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 22px;
+    color: gray;
 }

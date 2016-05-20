@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4285f4">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4285f4">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>New Website</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../css/home.css">
+
 </head>
 <body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a href="websites.html"> <i class="material-icons pull-left top-left">close</i></a>
+            <a class="navbar-brand" href="#">New Website</a>
+            <a href="../user/profile.html" class="pull-right top-right">SAVE</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Description" required></textarea>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
 
 </body>
+</html>
 </html>
