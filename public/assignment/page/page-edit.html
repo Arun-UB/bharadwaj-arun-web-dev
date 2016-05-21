@@ -29,7 +29,9 @@
         <div class="navbar-header">
             <a href="page-list.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
             <a class="navbar-brand" href="#">Edit Page</a>
-            <a href="page-list.html" class="pull-right top-right">SAVE</a>
+            <a href="../user/profile.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
+            <!--<a href="../user/profile.html"><i class="material-icons profile pull-right">delete</i></span></a>-->
+
         </div>
     </div>
 </nav>
@@ -37,7 +39,7 @@
     <form>
         <div class="form-group">
             <label class="sr-only" for="name">Name</label>
-            <input type="text" class="form-control" id="name" value="Blog Post" required>
+            <input type="text" class="form-control" id="name" value="Blog Post" required autofocus>
         </div>
         <div class="form-group">
             <label class="sr-only" for="title">Title</label>
@@ -48,7 +50,11 @@
     </form>
 
 </div> <!-- /container -->
-
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a href="page-list.html" class="pull-right top-right">SAVE</a>
+    </div>
+</nav>
 </body>
 </html>
 </html>
