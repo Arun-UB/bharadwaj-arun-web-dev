@@ -105,7 +105,9 @@
     font-size: 15px;
     font-weight: bold;
 }
-
+a.top-right{
+    text-decoration:none;
+}
 .top-left{
     margin-left: 15px;
     margin-top: 15px;

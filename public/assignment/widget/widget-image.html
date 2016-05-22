@@ -19,7 +19,7 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -30,7 +30,7 @@
             <a href="widget-list.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
             <a class="navbar-brand" href="#">Image</a>
             <a href="../user/profile.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
-            <!--<a href="../user/profile.html"><i class="material-icons profile pull-right">delete</i></span></a>-->
+            <a href="widget-list.html"><i class="material-icons profile pull-right">delete</i></span></a>
 
         </div>
     </div>
@@ -51,7 +51,13 @@
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="text" class="form-control" id="width" value="100%" required>
+            <select id="width" class="form-control .clo-xs-2">
+                <!--<option value="" disabled selected>Select your option</option>-->
+                <option>25%</option>
+                <option>50%</option>
+                <option>75%</option>
+                <option selected>100%</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="btn btn-default" for="image">
@@ -60,7 +66,6 @@
             </label>
 
         </div>
-        <a href="widget-choose.html" class="btn btn-danger btn-block">Delete</a>
 
     </form>
 
