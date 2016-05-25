@@ -11,14 +11,12 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>New Website</title>
+    <title>Web Builder</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
     <!-- Optional theme -->
     <link rel="stylesheet" href="../css/style.css">
 
@@ -28,32 +26,33 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a href="website-list.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
-            <a class="navbar-brand" href="#">New Website</a>
-            <a href="../user/profile.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
+            <a class="navbar-brand" href="#">Web Builder</a>
         </div>
     </div>
 </nav>
 <div class="container">
-
-    <form>
+    <form class="sign-in">
+        <h3>Register</h3>
         <div class="form-group">
-            <label class="sr-only" for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" required autofocus>
+            <label class="sr-only" for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" required>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Description" required></textarea>
+            <label class="sr-only" for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="password2">Confirm Password</label>
+            <input type="password" class="form-control" id="password2" placeholder="Confirm Password" required>
         </div>
 
+        <a href="profile.view.client.html" class="btn btn-success btn-block">Register</button></a>
+        <a href="login.view.client.html" class="btn btn-default btn-block">Cancel</button></a>
+        <p class="center-block help-block">Have an account? <a href="login.view.client.html" >Sign In</a> </p>
     </form>
 
 </div> <!-- /container -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <a href="website-list.html" class="pull-right top-right">SAVE</a>
-    </div>
-</nav>
+
 </body>
 </html>
 </html>

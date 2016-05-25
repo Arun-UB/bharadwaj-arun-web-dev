@@ -11,13 +11,14 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Edit Website</title>
+    <title>New Website</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <!-- Optional theme -->
     <link rel="stylesheet" href="../css/style.css">
 
@@ -28,9 +29,8 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a href="website-list.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
-            <a class="navbar-brand" href="#">Edit Website</a>
-            <a href="../user/profile.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
-            <a href="website-list.html"> <i class="material-icons profile pull-right">delete</i></a>
+            <a class="navbar-brand" href="#">New Website</a>
+            <a href="../user/profile.view.client.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
         </div>
     </div>
 </nav>
@@ -38,22 +38,20 @@
 
     <form>
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" value="Google I/O" required autofocus>
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required autofocus>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" rows="3" id="description" placeholder="Description" required>Google I/O 2016 brings together developers for an immersive,three-day experience focused on exploring the next generation of technology, mobile and beyond.
-            </textarea>
+            <label class="sr-only" for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Description" required></textarea>
         </div>
-        <!--<a href="website-list.html" class="btn btn-danger btn-block">Delete</a>-->
+
     </form>
 
 </div> <!-- /container -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <a href="website-list.html" class="pull-right top-right">SAVE</a>
-
     </div>
 </nav>
 </body>

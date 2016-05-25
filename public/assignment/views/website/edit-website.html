@@ -11,14 +11,14 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Profile</title>
+    <title>Edit Website</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!--<link rel = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Optional theme -->
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -27,41 +27,33 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Profile</a>
-            <a href="login.html" class="pull-right top-right">SIGN OUT</a>
+            <a href="website-list.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="#">Edit Website</a>
+            <a href="../user/profile.view.client.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
+            <a href="website-list.html"> <i class="material-icons profile pull-right">delete</i></a>
         </div>
     </div>
 </nav>
 <div class="container">
-    <div class="profile-container">
-        <!--<span class="glyphicon glyphicon-user profile-img center-block"></span>-->
-        <i class="material-icons profile-img center-block">account_circle</i>
-    </div>
-    <form class="sign-in">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" value="IronMan" autofocus required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" value="tony@stark.com " required>
-        </div>
-        <div class="form-group">
-            <label for="firstname">First Name</label>
-            <input type="firstname" class="form-control" id="firstname" value="Tony" required>
-        </div>
-        <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <input type="lastname" class="form-control" id="lastname" value="Stark" required>
-        </div>
 
-        <!--<button type="submit" class="btn btn-success btn-block">Save</button>-->
-        <a href="../website/website-list.html" class="btn btn-primary btn-block">Websites</a>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" value="Google I/O" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="3" id="description" placeholder="Description" required>Google I/O 2016 brings together developers for an immersive,three-day experience focused on exploring the next generation of technology, mobile and beyond.
+            </textarea>
+        </div>
+        <!--<a href="website-list.html" class="btn btn-danger btn-block">Delete</a>-->
     </form>
+
 </div> <!-- /container -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <a href="profile.html" class="pull-right top-right">SAVE</a>
+        <a href="website-list.html" class="pull-right top-right">SAVE</a>
+
     </div>
 </nav>
 </body>
