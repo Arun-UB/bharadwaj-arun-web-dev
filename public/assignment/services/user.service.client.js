@@ -19,15 +19,12 @@
         return api;
 
         function findUserByCredentials(username,password) {
-            console.log(username,password);
             for(var u in users){
                 if(users[u].username === username && users[u].password === password){
                     return users[u];
                 }
-                else{
-                    return null;
-                }
             }
+            return null
         }
     }
     

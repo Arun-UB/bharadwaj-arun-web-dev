@@ -6,7 +6,7 @@
 
    
 
-    function LoginController(UserService) {
+    function LoginController(UserService,$location) {
         //View Model
         var vm =this;
 
@@ -14,14 +14,12 @@
 
         function login(username,password){
             var user = UserService.findUserByCredentials(username,password);
-            console.log(user);
                 if(user){
-                    console.log("Success");
-                    console.log(user);
+                    var id = user._id;
+                    $location.url("/profile/" + id);
                 }
                 else{
                     vm.errorMsg = "Wrong login credentials!";
-                    console.log("error");
                 }
         }
     }
