@@ -1,7 +1,7 @@
 (function (){
     "use strict";
     angular
-        .module("app.user")
+        .module("WebAppMaker")
         .controller("LoginController",LoginController);
 
    
@@ -14,13 +14,14 @@
 
         function login(username,password){
             var user = UserService.findUserByCredentials(username,password);
-                if(user){
-                    var id = user._id;
-                    $location.url("/profile/" + id);
-                }
-                else{
-                    vm.errorMsg = "Wrong login credentials!";
-                }
+            if(user){
+                var id = user._id;
+                vm.user = user;
+                $location.url("/profile/" + id);
+            }
+            else{
+                vm.errorMsg = "Wrong login credentials!";
+            }
         }
     }
 

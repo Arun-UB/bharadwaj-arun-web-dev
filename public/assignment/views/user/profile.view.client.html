@@ -1,58 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#4285f4">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#4285f4">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Profile</title>
-
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!--<link rel = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-
-</head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Profile</a>
-            <a href="login.view.client.html" class="pull-right top-right">SIGN OUT</a>
+            <a href="#/login" class="pull-right top-right">SIGN OUT</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="profile-container">
-        <!--<span class="glyphicon glyphicon-user profile-img center-block"></span>-->
+        .<div ng-if="model.msg" class="alert alert-success">
+        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        	{{model.msg}}
+        </div>
         <i class="material-icons profile-img center-block">account_circle</i>
     </div>
     <form class="sign-in">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" value="IronMan" autofocus required>
+            <input type="text" ng-model="model.user.username"class="form-control" id="username" value="IronMan" autofocus required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" value="tony@stark.com " required>
+            <input type="email" ng-model="model.user.email" class="form-control" id="email" value="tony@stark.com " required>
         </div>
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="firstname" class="form-control" id="firstname" value="Tony" required>
+            <input type="firstname" ng-model="model.user.firstName" class="form-control" id="firstname" value="Tony" required>
         </div>
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="lastname" class="form-control" id="lastname" value="Stark" required>
+            <input type="lastname" ng-model="model.user.lastName" class="form-control" id="lastname" value="Stark" required>
         </div>
 
         <!--<button type="submit" class="btn btn-success btn-block">Save</button>-->
@@ -61,9 +39,6 @@
 </div> <!-- /container -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <a href="profile.view.client.html" class="pull-right top-right">SAVE</a>
+        <a ng-click="model.updateUser(model.user)" class="pull-right top-right">SAVE</a>
     </div>
 </nav>
-</body>
-</html>
-</html>

@@ -16,8 +16,8 @@
             })
             .when("/profile/:id", {
                 templateUrl: "views/user/profile.view.client.html",
-                // controller: "ProfileController",
-                // controllerAs: "model"
+                controller: "ProfileController",
+                controllerAs: "model"
             });
     }
 })();
