@@ -27,7 +27,9 @@
             if(findUserByUsername(user.username)){
                     return false;
                 }
-            users.append(user);
+            delete user.confirmPassword;
+            user._id = users[users.length-1]["_id"]+1;
+            users.push(user);
             return true;
         }
 

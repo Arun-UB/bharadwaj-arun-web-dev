@@ -1,27 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#4285f4">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#4285f4">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Web Builder</title>
-
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="../css/style.css">
-
-</head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,28 +7,76 @@
     </div>
 </nav>
 <div class="container">
-    <form class="sign-in">
+
+
+    .<div ng-show="model.msg" class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{model.msg}}
+</div>
+    .<div ng-show="model.errorMsg" class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{model.errorMsg}}
+
+</div>
+    <form name="form" class="sign-in" ng-submit="model.register(model.user,form)"novalidate>
         <h3>Register</h3>
         <div class="form-group">
             <label class="sr-only" for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username" required>
+            <input ng-model="model.user.username"type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <div class="text-danger" ng-show="form.$submitted || form.username.$touched">
+                <p ng-show="form.username.$error.required">
+                    <span>Username is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label class="sr-only" for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <input ng-model="model.user.password" type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <div class="text-danger" ng-show="form.$submitted || form.password.$touched">
+                <p ng-show="form.password.$error.required">
+                    <span>Password is required</span>
+            </div>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="password2">Confirm Password</label>
-            <input type="password" class="form-control" id="password2" placeholder="Confirm Password" required>
+            <label class="sr-only" for="confirmPassword">Confirm Password</label>
+            <input ng-model="model.user.confirmPassword" type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+            <div class="text-danger" ng-show="form.$submitted || form.confirmPassword.$touched">
+                <p ng-show="form.confirmPassword.$error.required">
+                    <span>Confirm the password</span>
+            </div>
+
+
         </div>
 
-        <a href="profile.view.client.html" class="btn btn-success btn-block">Register</button></a>
-        <a href="login.view.client.html" class="btn btn-default btn-block">Cancel</button></a>
-        <p class="center-block help-block">Have an account? <a href="login.view.client.html" >Sign In</a> </p>
+
+        <button class="btn btn-success btn-block"
+                type="submit">
+            Register</button>
+        <a href="#/login" class="btn btn-default btn-block">Cancel</button></a>
+        <p class="center-block help-block">Have an account? <a href="#/login" >Sign In</a> </p>
     </form>
 
-</div> <!-- /container -->
+    <!--<form name="registrationForm" novalidate-->
+          <!--ng-submit="model.register(model.user,registrationForm.$valid)">-->
+        <!--<div class="form-group">-->
+            <!--<label>User Name</label>-->
+            <!--<input type="text" name="username" class="form-control" ng-model="model.user.username" required />-->
+            <!--<div ng-messages="registrationForm.username.$error" ng-messages-include="messages.html"></div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label>Password</label>-->
+            <!--<input type="password" name="password" class="form-control" ng-model="model.user.password" required />-->
+            <!--<div ng-messages="registrationForm.password.$error" ng-messages-include="messages.html"></div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label>Confirm Password</label>-->
+            <!--<input type="password" name="confirmPassword" class="form-control"-->
+                   <!--ng-model="model.user.confirmPassword"-->
+                   <!--required compare-to="model.user.password" />-->
+            <!--<div ng-messages="registrationForm.confirmPassword.$error" ng-messages-include="messages.html"></div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<button type="submit" class="btn btn-primary">Register!</button>-->
+        <!--</div>-->
+    <!--</form>-->
 
-</body>
-</html>
-</html>
+</div> <!-- /container -->
