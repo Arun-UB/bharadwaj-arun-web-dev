@@ -1,0 +1,31 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a href="#/user/{{model.userId}}/website"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="#">New Website</a>
+            <a href="#/profile/{{model.userId}}"><i class="material-icons profile pull-right">account_circle</i></span></a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" ng-model="name" class="form-control" id="name" placeholder="Name" required autofocus>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="description">Description</label>
+            <textarea class="form-control" ng-model="description" id="description" rows="3" placeholder="Description" required></textarea>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a href="" ng-click="model.createWebsite(name,description)" class="pull-right top-right">SAVE</a>
+    </div>
+</nav>

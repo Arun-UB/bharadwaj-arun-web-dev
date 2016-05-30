@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Websites</a>
+            <a href="#/profile/{{model.userId}}"><i class="material-icons profile pull-right">account_circle</i></span></a>
+            <a href="#/user/{{model.userId}}/website/new"> <i class="material-icons profile pull-right">add</i></a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <ul class="list-group" >
+    	<li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">{{website.name}}</a>
+                <a href="#/user/{{website.developerId}}/website/{{website._id}}">
+                <span class="glyphicon glyphicon-pencil pull-right"></span></a>
+        </li>
+
+    </ul>
+
+
+</div> <!-- /container -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <!--<a href="widget-list.html" class="pull-right top-right">SAVE</a>-->
+    </div>
+</nav>
