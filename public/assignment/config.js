@@ -40,6 +40,21 @@
                 templateUrl: "views/website/edit-website.view.client.html",
                 controller: "EditWebsiteController",
                 controllerAs: "model"
-            });
+            })
+            .when("/user/:userId/website/:websiteId/page", {
+                templateUrl: "views/page/page-list.view.client.html",
+                controller: "PageListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/website/:websiteId/page/new", {
+                templateUrl: "views/page/new-page.view.client.html",
+                controller: "NewPageController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid", {
+                templateUrl: "views/page/page-edit.view.client.html",
+                controller: "EditPageController",
+                controllerAs: "model"
+            })
     }
 })();

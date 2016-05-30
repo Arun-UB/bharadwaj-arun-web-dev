@@ -1,4 +1,5 @@
 (function(){
+    "use strict";
     angular
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
@@ -23,7 +24,7 @@
         return api;
 
         function updateWebsite(websiteId,website){
-            for(w in websites){
+            for(var w in websites){
                 if(websites[w]._id == websiteId){
                     websites[w].name = website.name;
                     websites[w].description = website.description;

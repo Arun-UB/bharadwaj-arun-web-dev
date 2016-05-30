@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="#">New Page</a>
+            <a href="#/profile/{{model.userId}}"><i class="material-icons profile pull-right">account_circle</i></span></a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input ng-model="page.name" type="text" class="form-control" id="name" placeholder="Page Name" required autofocus>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="title">Title</label>
+            <input ng-model="page.title" type="text" class="form-control" id="title" placeholder="Page Title" required>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a href="" ng-click="model.createPage(page)" class="pull-right top-right">SAVE</a>
+    </div>
+</nav>
