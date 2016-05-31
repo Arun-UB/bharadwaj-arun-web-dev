@@ -71,5 +71,10 @@
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
+                templateUrl: "views/widget/widget-edit.view.client.html",
+                controller: "EditWidgetController",
+                controllerAs: "model"
+            });
     }
 })();

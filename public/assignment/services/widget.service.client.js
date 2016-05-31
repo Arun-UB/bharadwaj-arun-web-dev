@@ -19,7 +19,10 @@
     function WidgetService() {
         var api = {
             findWidgetsForPageId: findWidgetsForPageId,
-            createWidget: createWidget
+            findWidgetById:findWidgetById,
+            updateWidget:updateWidget,
+            createWidget: createWidget,
+            deleteWidget:deleteWidget
         };
         return api;
 
@@ -38,6 +41,36 @@
             widget.pageId = pageId;
             widgets.push(widget);
             return true;
+        }
+        
+        function findWidgetById(widgetId) {
+            for(var w in widgets){
+                if(widgets[w]._id === widgetId){
+                    return widgets[w];
+                }
+            }
+            return null;
+        }
+        
+        function updateWidget(widgetId,widget) {
+            for(var w in widgets){
+                if(widgets[w]._id == widgetId){
+                    widgets[w].name = widget.name;
+                    widgets[w].description = widget.description;
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        function deleteWidget(widgetId){
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    widgets.splice(i, 1);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 })();

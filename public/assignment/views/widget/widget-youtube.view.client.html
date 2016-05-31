@@ -2,15 +2,15 @@
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input ng-model="$parent.model.widget.name" type="text" class="form-control" id="name"  value="Nyan Cat" required autofocus>
+            <input ng-model="$parent.model.widget.name" type="text" class="form-control" id="name"  value="{{$parent.model.widget.name}}" required autofocus>
         </div>
         <div class="form-group">
             <label for="htext">Text</label>
-            <input ng-model="$parent.model.widget.text" type="text" class="form-control" id="htext" value="The originl Nyan Cat video" required>
+            <input ng-model="$parent.model.widget.text" type="text" class="form-control" id="htext" value="{{$parent.model.widget.name}}" required>
         </div>
         <div class="form-group">
             <label for="url">URL</label>
-            <input ng-model="$parent.model.widget.url" type="text" class="form-control" id="url" value="https://www.youtube.com/watch?v=QH2-TGUlwu4" required>
+            <input ng-model="$parent.model.widget.url" type="text" class="form-control" id="url" value="{{$parent.model.widget.name}}" required>
         </div>
         <div class="form-group">
             <label for="width">Width</label>
