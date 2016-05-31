@@ -14,7 +14,7 @@
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" value="{{model.website.name}}" required autofocus>
+            <input ng-model="model.website.name"type="text" class="form-control" id="name" placeholder="Name" value="{{model.website.name}}" required autofocus>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -27,6 +27,7 @@
 </div> <!-- /container -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
+        <i class="material-icons top-left">share</i>
         <a href="" ng-click="model.updateWebsite()" class="pull-right top-right">SAVE</a>
 
     </div>

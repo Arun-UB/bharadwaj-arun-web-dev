@@ -30,7 +30,7 @@
             delete user.confirmPassword;
             user._id = users[users.length-1]["_id"]+1;
             users.push(user);
-            return true;
+            return user._id;
         }
 
         function findUserByCredentials(username,password) {
