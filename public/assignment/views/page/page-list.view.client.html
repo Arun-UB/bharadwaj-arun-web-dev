@@ -1,28 +1,33 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a href="#/user/{{model.userId}}/website/"> <i class="material-icons pull-left top-left">arrow_back</i></a>
-            <a class="navbar-brand" href="#">Pages</a>
-            <a href="#/profile/{{model.userId}}"><i class="material-icons profile pull-right">account_circle</i></span></a>
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"> <i class="material-icons profile pull-right">add</i></a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a href="#/user/{{model.userId}}/website/"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+                <a class="navbar-brand" href="#">Pages</a>
+                <a href="#/profile/{{model.userId}}"><i class="material-icons profile pull-right">account_circle</i></span></a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"> <i class="material-icons profile pull-right">add</i></a>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="container">
-    <ul class="list-group">
-        <li ng-repeat="page in model.pages"class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-                <span class="glyphicon glyphicon-pencil pull-right"></span></a>
-        </li>
-
-    </ul>
-
-
-</div> <!-- /container -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
+    </nav>
     <div class="container">
-        <!--<a href="widget-list.view.client.html" class="pull-right top-right">SAVE</a>-->
-    </div>
-</nav>
+        <ul class="list-group">
+            <li ng-repeat="page in model.pages"class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                    <span class="glyphicon glyphicon-pencil pull-right"></span></a>
+            </li>
+
+        </ul>
+
+        <div ng-hide="model.pages.length">
+            <div class="alert alert-info center-block">
+                <strong>You have no pages,add a new page to get started.</strong>
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <!--<a href="widget-list.view.client.html" class="pull-right top-right">SAVE</a>-->
+        </div>
+    </nav>

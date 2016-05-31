@@ -9,6 +9,11 @@
             </div>
         </div>
     </nav>
+    <div class="container" ng-hide="model.widgets.length">
+        <div class="alert alert-info center-block">
+            <strong>You have no widgets,add a new widget to get started.</strong>
+        </div>
+    </div>
     <div class="container widget-container">
 
         <div ng-repeat="widget in model.widgets" class="widget">
