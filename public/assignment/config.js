@@ -56,5 +56,20 @@
                 controller: "EditPageController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget", {
+                templateUrl: "views/widget/widget-list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
+                templateUrl: "views/widget/widget-chooser.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/new/:wType", {
+                templateUrl: "views/widget/widget-new.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
+            })
     }
 })();

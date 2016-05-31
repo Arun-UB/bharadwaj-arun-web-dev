@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a href="widget-list.view.client.html"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="#">{{model.wType.toLowerCase()}}</a>
+            <a href="../user/profile.view.client.html"><i class="material-icons profile pull-right">account_circle</i></span></a>
+            <a href="widget-list.view.client.html"><i class="material-icons profile pull-right">delete</i></span></a>
+
+        </div>
+    </div>
+</nav>
+<div ng-switch="model.wType" >
+    <div ng-switch-when="HEADER">
+        <ng-include src="'views/widget/widget-header.html'" onload="widget=model.widget">
+    </div>
+    <div ng-switch-when="IMAGE" >
+        <ng-include src="'views/widget/widget-image.html'">
+    </div>
+    <div ng-switch-when="YOUTUBE" >
+        <ng-include src="'views/widget/widget-youtube.html'">
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <a href="" ng-click="model.createWidget(model.widget) " class="pull-right top-right">SAVE</a>
+    </div>
+</nav>

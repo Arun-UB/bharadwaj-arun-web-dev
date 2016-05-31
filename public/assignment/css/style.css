@@ -133,3 +133,7 @@ body {
     padding-top: 70px;
     padding-bottom: 50px;
 }
+
+a.navbar-brand {
+    text-transform: capitalize;
+}
