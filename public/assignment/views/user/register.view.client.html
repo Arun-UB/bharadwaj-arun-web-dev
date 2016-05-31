@@ -22,7 +22,7 @@
         <h3>Register</h3>
         <div class="form-group">
             <label class="sr-only" for="username">Username</label>
-            <input ng-model="model.user.username"type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <input ng-model="model.user.username"type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus />
             <div class="text-danger" ng-show="form.$submitted || form.username.$touched">
                 <p ng-show="form.username.$error.required">
                     <span>Username is required</span>
