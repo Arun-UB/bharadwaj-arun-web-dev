@@ -46,12 +46,10 @@
         }
 
         function findUserByUsername(username){
-            users.forEach(function(u){
-                if(u.username === username){
-                   return u;
-                }
-            });
-            return null;
+            return $http.get("api/user", {params: {username: username}})
+                .then(function (response) {
+                    return response.data;
+                });
         }
         
         function updateUser(userId,user) {
@@ -64,13 +62,10 @@
 
 
         function deleteUser(userId) {
-            for(var i=0;i<users.length;i++){
-                if(users[i]._id === userId){
-                    user.splice(i,1);
-                    return true;
-                }
-            }
-            return false;
+            return $http.delete("/api/user/" + userId)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
     

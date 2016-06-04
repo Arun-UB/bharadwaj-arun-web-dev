@@ -32,7 +32,7 @@ module.exports = function(app) {
         for(var i in users) {
             if(users[i]._id === id) {
                 users.splice(i, 1);
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
         }
@@ -46,6 +46,7 @@ module.exports = function(app) {
             if(users[i]._id === id) {
                 users[i].firstName = newUser.firstName;
                 users[i].lastName = newUser.lastName;
+                users[i].email = newUser.email;
                 res.sendStatus(200);
                 return;
             }
@@ -90,6 +91,6 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.send({});
+        res.status(404).send("User with username: " + username + " not found");
     }
 };
