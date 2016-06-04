@@ -13,7 +13,12 @@
         vm.getSafeUrl = getSafeUrl;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPageId(vm.pageId);
+            WidgetService.findWidgetsForPageId(vm.pageId)
+                .then(function (widgets) {
+                    vm.widgets = widgets;
+                }, function () {
+                    vm.msg = {type: "error", text: "Unable to load widgets"};
+                });
         }
         init();
 

@@ -2,39 +2,48 @@
     "use strict";
     angular
         .module("WebAppMaker")
-        .controller("EditWidgetController",EditWidgetController);
+        .controller("EditWidgetController", EditWidgetController);
 
 
-    function EditWidgetController( $routeParams,$location, WidgetService) {
+    function EditWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pid;
         vm.wType = $routeParams.wType;
         var widgetId = $routeParams.wgid;
+
         function init() {
-            vm.widget = WidgetService.findWidgetById(widgetId);
+            WidgetService.findWidgetById(widgetId)
+                .then(function (widget) {
+                    vm.widget = widget;
+                }, function (err) {
+                    vm.msg = {type: "error", text: err.body};
+                });
         }
+
         init();
+
         vm.updateWidget = updateWidget;
-        vm.deleteWidget= deleteWidget;
+        vm.deleteWidget = deleteWidget;
 
         function updateWidget(widget) {
-            if(WidgetService.updateWidget(widgetId,widget)) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            } else {
-                vm.error = "Unable to create Page";
+            WidgetService.updateWidget(widgetId, widget)
+                .then(function () {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function (err) {
+                    vm.msg = {type: "error", text: err.body};
+                });
             }
-        }
 
         function deleteWidget() {
-            if(WidgetService.deleteWidget(widgetId)) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            } else {
-                vm.error = "Unable to delete Widget";
+            WidgetService.deleteWidget(widgetId)
+                .then(function () {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function (err) {
+                    vm.msg = {type: "error", text: err.body};
+                });
             }
         }
-
-    }
 })();
 

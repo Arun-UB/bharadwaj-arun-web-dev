@@ -16,13 +16,12 @@
 
         function createWidget(widget) {
             widget.widgetType = vm.wType;
-            var newWidget = WidgetService.createWidget(vm.pageId,widget);
-            if(newWidget) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-            } else {
-                vm.error = "Unable to create Page";
-            }
+            WidgetService.createWidget(vm.pageId, widget)
+                .then(function () {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function () {
+                    vm.msg = {type: "error", text: "Unable to create widget"};
+                });
         }
-
     }
 })();
