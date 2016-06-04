@@ -1,36 +1,32 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Profile</a>
-            <a href="#/login" class="pull-right top-right">SIGN OUT</a>
+            <a class="navbar-brand" href="">Profile</a>
+            <a href="#/login" class="top-right nav-link">SIGN OUT</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="profile-container">
-        .<div ng-show="model.msg" class="alert alert-success">
-        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        	{{model.msg}}
-        </div>
+        <msg data="model.msg"></msg>
         <i class="material-icons profile-img center-block">account_circle</i>
     </div>
     <form class="sign-in">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" ng-model="model.user.username"class="form-control" id="username" value="IronMan" autofocus required>
+            <input type="text" ng-model="model.user.username"class="form-control" id="username" placeholder="IronMan" autofocus required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" ng-model="model.user.email" class="form-control" id="email" value="tony@stark.com " required>
+            <input type="email" ng-model="model.user.email" class="form-control" id="email" placeholder="tony@stark.com " required>
         </div>
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="firstname" ng-model="model.user.firstName" class="form-control" id="firstname" value="Tony" required>
+            <input type="firstname" ng-model="model.user.firstName" class="form-control" id="firstname" placeholder="Tony" required>
         </div>
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="lastname" ng-model="model.user.lastName" class="form-control" id="lastname" value="Stark" required>
+            <input type="lastname" ng-model="model.user.lastName" class="form-control" id="lastname" placeholder="Stark" required>
         </div>
 
         <!--<button type="submit" class="btn btn-success btn-block">Save</button>-->

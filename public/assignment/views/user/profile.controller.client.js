@@ -1,40 +1,41 @@
-(function (){
-    "use strict";
-    angular
-        .module("WebAppMaker")
-        .controller("ProfileController",ProfileController);
+    (function (){
+        "use strict";
+        angular
+            .module("WebAppMaker")
+            .controller("ProfileController",ProfileController);
 
 
 
-    function ProfileController(UserService,$location,$routeParams) {
+        function ProfileController(UserService,$location,$routeParams) {
 
-        //View Model
-        var vm =this;
-        var id = $routeParams.id;
-        vm.errorMsg = null;
-        vm.msg = null;
-        vm.updateUser = updateUser;
+            //View Model
+            var vm =this;
+            var id = $routeParams.id;
+            vm.errorMsg = null;
+            vm.msg = null;
+            vm.updateUser = updateUser;
 
-        function init(){
-            var user = UserService.findUserById(id);
-            if(user){
-                vm.user = user;
+            function init(){
+                 UserService.findUserById(id)
+                     .then(function (user) {
+                            vm.user = user;
+
+                    },function (err) {
+                         vm.msg = {type:"error",text:"User not found"};
+                         console.log(err);
+                     });
             }
-            else{
-                vm.errorMsg = "User not found";
+            init();
+
+            function updateUser(user) {
+                UserService.updateUser(id,user)
+                    .then(function () {
+                        vm.msg = {type:"success",text:"Profile saved"};
+
+                    },function () {
+                        vm.msg = {type:"error",text:"Unable to save changes"};
+                });
             }
         }
-        init();
 
-        function updateUser(user) {
-            console.log(user);
-            if(UserService.updateUser(user._id,user)){
-                vm.msg = "Profile saved";
-            }
-            else{
-                vm.errorMsg = "Unable to save changes";
-            }
-        }
-    }
-
-})();
+    })();

@@ -1,0 +1,10 @@
+<div ng-show="data" ng-switch="data.type">
+    <div ng-switch-when="success" class="alert alert-success alert-dismissable">
+        <button type="button" class="close" ng-click="$parent.data = null" aria-hidden="true">&times;</button>
+        {{data.text}}
+    </div>
+    <div ng-switch-when="error" class="alert alert-danger">
+        <button type="button" class="close" ng-click="$parent.data = null" aria-hidden="true">&times;</button>
+        {{data.text}}
+    </div>
+</div>

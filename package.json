@@ -1,18 +1,19 @@
 {
-  "name": "web-dev",
+  "name": "web_app_maker",
   "version": "1.0.0",
-  "description": "Web Dev at Northeastern University",
+  "description": "Web App Maker",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "mongoose": "^4.4.15"
+    "mongoose": "^4.4.15",
+    "multer": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Arun Bharadwaj",
   "license": "ISC"
 }

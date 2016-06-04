@@ -92,18 +92,22 @@
     font-size: 80px;
     color: lightgray;
 }
-.profile{
-    margin-right: 15px;
-    margin-top: 15px;
-    font-size: 25px;
-    color: gray;
-}
+
 
 .top-right {
     margin-right: 15px;
     margin-top: 15px;
     font-size: 15px;
     font-weight: bold;
+    float: right;
+    right: 0;
+}
+.profile{
+    font-size: 25px;
+    color: gray;
+}
+.nav-link {
+    color: #6096c6!important;
 }
 a.top-right{
     text-decoration:none;
@@ -136,4 +140,10 @@ body {
 
 a.navbar-brand {
     text-transform: capitalize;
+}
+@media (min-width:768px) {
+    .top-right{
+        position: absolute;
+        float: right;
+    }
 }
