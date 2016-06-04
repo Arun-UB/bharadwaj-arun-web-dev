@@ -39,9 +39,9 @@ module.exports = function (app) {
                 res.json(widgets[i]);
                 return;
             }
-        }
+            }
         res.status(404).send("Widget not found");
-    }
+        }
 
     function uploadImage(req, res) {
 
@@ -60,9 +60,9 @@ module.exports = function (app) {
             if (widgets[i]._id === widgetId) {
                 widgets[i].url = "/uploads/" + filename;
             }
-        }
+            }
 
         res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/345");
+        }
     }
-}
 

@@ -12,24 +12,32 @@
         vm.updatePage = updatePage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-            console.log(vm.page);
+            PageService.findPageById(vm.pageId)
+                .then(function (page) {
+                    vm.page = page;
+                }, function (err) {
+                    vm.msg = {type: "error", text: err.body};
+                });
         }
         init();
 
         function updatePage() {
-            console.log(vm.page);
-            PageService.updatePage(vm.pageId,vm.page);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-
+            PageService.updatePage(vm.pageId, vm.page)
+                .then(function () {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function (err) {
+                        vm.msg = {type: "error", text: err.body};
+                    });
         }
         function deletePage(pageId) {
-            var result = PageService.deletePage(pageId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            } else {
-                vm.error = "Unable to delete Page";
-            }
+            var result = PageService.deletePage(pageId)
+                .then(function () {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function (err) {
+                        vm.msg = {type: "error", text: err.body};
+                    });
         }
     }
 })();
