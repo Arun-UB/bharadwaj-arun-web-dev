@@ -11,23 +11,34 @@
         vm.updateWebsite = updateWebsite;
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId,vm.userId);
+            WebsiteService.findWebsiteById(vm.websiteId, vm.userId)
+                .then(function (website) {
+                        vm.website = website;
+                    },
+                    function (err) {
+                        vm.msg = {type: "error", text: err.body};
+                    });
         }
         init();
 
         function updateWebsite() {
-            console.log(vm.website);
-            WebsiteService.updateWebsite(vm.websiteId,vm.website);
-            $location.url("/user/"+vm.userId+"/website");
-            
+            WebsiteService.updateWebsite(vm.websiteId, vm.userId, vm.website)
+                .then(function (website) {
+                        $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function (err) {
+                        vm.msg = {type: "error", text: err.body};
+                    });
         }
+
         function deleteWebsite(websiteId) {
-            var result = WebsiteService.deleteWebsite(websiteId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to delete website";
-            }
+            WebsiteService.deleteWebsite(websiteId, vm.userId)
+                .then(function () {
+                    $location.url("/user/" + vm.userId + "/website");
+
+                }, function (err) {
+                    vm.msg = {type: "error", text: err.body};
+                })
         }
     }
 })();

@@ -9,12 +9,12 @@
         vm.createWebsite = createWebsite;
         
         function createWebsite(name, description) {
-            var newWebsite = WebsiteService.createWebsite(vm.userId, name, description);
-            if(newWebsite) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to create website";
-            }
+            WebsiteService.createWebsite(vm.userId, name, description)
+                .then(function (website) {
+                    $location.url("/user/" + vm.userId + "/website");
+                }, function (err) {
+                    vm.msg = {type: "error", text: "Unable to create website"};
+                })
         }
     }
 })();

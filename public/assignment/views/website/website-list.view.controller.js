@@ -8,7 +8,13 @@
         vm.userId = $routeParams.userId;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesForUserId(vm.userId);
+            WebsiteService.findWebsitesForUserId(vm.userId)
+                .then(function (websites) {
+                        vm.websites = websites;
+                    },
+                    function (err) {
+                        vm.msg = {type: "error", text: "Unable to fetch websites"};
+                    });
         }
         init();
     }

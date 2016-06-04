@@ -1,5 +1,5 @@
 module.exports = function(app) {
-
+    "use strict";
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -24,7 +24,7 @@ module.exports = function(app) {
 
         newUser._id = (new Date()).getTime() + "";
         users.push(newUser);
-        res.json(newUser._id);
+        res.status(201).send(newUser._id);
     }
 
     function deleteUser(req, res) {
@@ -78,7 +78,7 @@ module.exports = function(app) {
     function findUserByCredentials(username, password, res) {
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
-                res.send({data:users[u]});
+                res.send(users[u]);
                 return;
             }
         }
