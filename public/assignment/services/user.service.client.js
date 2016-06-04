@@ -32,13 +32,10 @@
         }
 
         function findUserByCredentials(username,password) {
-            return
-                for(var u in users){
-                if(users[u].username === username && users[u].password === password){
-                    return users[u];
-                }
-            }
-            return null;
+            return $http.get("api/user", {params: {username: username, password: password}})
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         function findUserById(id) {

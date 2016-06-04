@@ -8,7 +8,7 @@ module.exports = function(app) {
     ];
 
     app.post("/api/user", createUser);
-    app.get("/api/user", getUsers);
+    app.get("/api/user", getUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -63,7 +63,7 @@ module.exports = function(app) {
         res.sendStatus(403);
     }
 
-    function getUsers(req, res) {
+    function getUser(req, res) {
         var username = req.query["username"];
         var password = req.query["password"];
         if(username && password) {
@@ -81,7 +81,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.send(403);
+        res.sendStatus(403);
     }
     function findUserByUsername(username, res) {
         for(var u in users) {

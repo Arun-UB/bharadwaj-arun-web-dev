@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Web Builder</a>
         </div>
@@ -8,11 +7,7 @@
     </div>
 </nav>
 <div class="container">
-.<div ng-if="model.errorMsg" class="alert alert-danger fade in">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-	 {{model.errorMsg}}
+    <msg data="model.msg"></msg>
 </div>
     <form class="sign-in">
         <h3>Sign In</h3>
