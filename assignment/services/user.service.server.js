@@ -15,7 +15,6 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var newUser = req.body;
-
         for(var i in users) {
             if(users[i].username === newUser.username) {
                 res.status(400).send("Username " + newUser.username + " is already in use");
@@ -25,7 +24,7 @@ module.exports = function(app) {
 
         newUser._id = (new Date()).getTime() + "";
         users.push(newUser);
-        res.json(newUser);
+        res.json(newUser._id);
     }
 
     function deleteUser(req, res) {

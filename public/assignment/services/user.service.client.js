@@ -18,13 +18,17 @@
         return api;
 
         function createUser(user) {
-            if(findUserByUsername(user.username)){
-                    return false;
-                }
+            // if(findUserByUsername(user.username)){
+            //         return false;
+            //     }
             delete user.confirmPassword;
-            user._id = users[users.length-1]["_id"]+1;
-            users.push(user);
-            return user._id;
+            // user._id = users[users.length-1]["_id"]+1;
+            // users.push(user);
+            // return user._id;
+            return $http.post("/api/user/", user)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findUserByCredentials(username,password) {
@@ -34,7 +38,7 @@
                     return users[u];
                 }
             }
-            return null
+            return null;
         }
 
         function findUserById(id) {

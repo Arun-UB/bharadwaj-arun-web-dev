@@ -32,30 +32,33 @@
 
             vm.register = register;
             function checkPwd(p1,p2){
-                if(p1 === p2)
-                    return true;
-                else
-                    return false;
+                return p1 === p2;
             }
             function clearMsgs() {
                 vm.msg = null;
                 vm.errorMsg = null;
             }
             function register(user,form){
-                console.log(user);
-                console.log(form);
-                clearMsgs();
-                if(form.$valid && !checkPwd(user.password,user.confirmPassword)) {
-                    vm.errorMsg = "Passwords doesn't match";
-                }
-                else if(form.$valid ){
-                var id = UserService.createUser(user);
-                    $location.url("/profile/" + id);
-
-                }
-                else{
-                    vm.errorMsg = "Error in creating the user";
-                }
+                // console.log(user);
+                // console.log(form);
+                // clearMsgs();
+                // if(form.$valid && !checkPwd(user.password,user.confirmPassword)) {
+                //     vm.errorMsg = "Passwords doesn't match";
+                // }
+                // else if(form.$valid ){
+                // var id = UserService.createUser(user);
+                //     $location.url("/profile/" + id);
+                //
+                // }
+                // else{
+                //     vm.errorMsg = "Error in creating the user";
+                // }
+                UserService.createUser(user)
+                    .then(function (id) {
+                        $location.url("/profile/" + id);
+                    }, function (err) {
+                        vm.msg = {type: "error", text: err.data}
+                    });
             }
         }
 

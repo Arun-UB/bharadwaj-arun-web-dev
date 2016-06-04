@@ -1,19 +1,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Web Builder</a>
         </div>
     </div>
 </nav>
 <div class="container">
+    <msg data="model.msg"></msg>
 
-</div>
-    <form name="form" class="sign-in" ng-submit="model.register(model.user,form)"novalidate>
+
+    <form name="form" class="sign-in" ng-submit="model.register(model.user,form)" novalidate>
         <h3>Register</h3>
         <div class="form-group">
             <label class="sr-only" for="username">Username</label>
-            <input ng-model="model.user.username"type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus />
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" name="username"
+                   placeholder="Username" required autofocus/>
             <div class="text-danger" ng-show="form.$submitted || form.username.$touched">
                 <p ng-show="form.username.$error.required">
                     <span>Username is required</span>
@@ -34,15 +35,12 @@
                 <p ng-show="form.confirmPassword.$error.required">
                     <span>Confirm the password</span>
             </div>
-
-
         </div>
-
 
         <button class="btn btn-success btn-block"
                 type="submit">
             Register</button>
-        <a href="#/login" class="btn btn-default btn-block">Cancel</button></a>
+        <a href="#/login" class="btn btn-default btn-block">Cancel</a>
         <p class="center-block help-block">Have an account? <a href="#/login" >Sign In</a> </p>
     </form>
 
