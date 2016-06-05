@@ -133,6 +133,9 @@ a.top-right{
     margin-top: -30px;
 }
 
+.widget-tool > .glyphicon-align-justify {
+    cursor: move;
+}
 body {
     padding-top: 70px;
     padding-bottom: 50px;
