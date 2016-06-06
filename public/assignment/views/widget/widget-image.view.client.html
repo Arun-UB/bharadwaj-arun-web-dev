@@ -1,5 +1,5 @@
 <div class="container">
-    <form>
+    <div>
         <div class="form-group">
             <label for="name">Name</label>
             <input ng-model="$parent.model.widget.name" type="text" class="form-control" id="name"  value="{{$parent.model.widget.name}}" required autofocus />
@@ -26,11 +26,18 @@
             <label class="btn btn-default btn-block" for="image">
                <!-- <i class="material-icons">add_a_photo</i>-->
                 <span class="center-block">Add Image</span>
-                <input type="file" class="hidden" id="image">
+                <input type="file" on-file-change="$parent.model.onFileChange" class="hidden" id="image">
             </label>
 
         </div>
+        <!--<form action="/api/uploads" method="post" enctype="multipart/form-data">-->
+        <!--<input  name="myFile"   type="file" class="form-control"/>-->
+        <!--<input  name="userId"    value="{{$parent.model.userId}}" style="display: none"/>-->
+        <!--<input  name="websiteId"    value="{{$parent.model.websiteId}}" style="display: none"/>-->
+        <!--<input  name="widgetId"  value="{{$parent.model.widget._id}}"   style="display: none"/>-->
+        <!--<button type="submit"   class="btn btn-block btn-primary">Upload Image</button>-->
+        <!--</form>-->
 
-    </form>
+    </div>
 
 </div> <!-- /container -->

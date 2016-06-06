@@ -11,7 +11,9 @@
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             createWidget: createWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            uploadImage: uploadImage
+
         };
 
         return api;
@@ -48,6 +50,13 @@
             return $http.delete("/api/widget/" + widgetId)
                 .then(function (response) {
                     return response.data;
+                });
+        }
+
+        function uploadImage(file) {
+            return $http.post("/api/upload", file)
+                .then(function (response) {
+                    return response.data
                 });
         }
     }
