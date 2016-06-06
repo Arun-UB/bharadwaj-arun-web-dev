@@ -28,7 +28,8 @@
                 <span class="center-block">Add Image</span>
                 <input type="file" on-file-change="$parent.model.onFileChange" class="hidden" id="image">
             </label>
-
+            <a href="#/user/{{$parent.model.userId}}/website/{{$parent.model.websiteId}}/page/{{$parent.model.pageId}}/widget/{{$parent.model.widgetId||-1}}/flickr"
+               class="btn btn-primary btn-block">Search Flickr</a>
         </div>
         <!--<form action="/api/uploads" method="post" enctype="multipart/form-data">-->
         <!--<input  name="myFile"   type="file" class="form-control"/>-->
