@@ -23,11 +23,12 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="btn btn-default btn-block" for="image">
-               <!-- <i class="material-icons">add_a_photo</i>-->
-                <span class="center-block">Add Image</span>
-                <input type="file" on-file-change="$parent.model.onFileChange" class="hidden" id="image">
-            </label>
+            <!--<label class="btn btn-default btn-block" for="image">-->
+               <!--&lt;!&ndash; <i class="material-icons">add_a_photo</i>&ndash;&gt;-->
+                <!--<span class="center-block">Add Image</span>-->
+                <!--<input type="file" on-file-change="$parent.model.onFileChange" class="hidden" id="image">-->
+            <!--</label>-->
+            <input  name="myFile"  on-file-change="$parent.model.onFileChange" type="file" class="form-control"/>
             <a href="#/user/{{$parent.model.userId}}/website/{{$parent.model.websiteId}}/page/{{$parent.model.pageId}}/widget/{{$parent.model.widgetId||-1}}/flickr"
                class="btn btn-primary btn-block">Search Flickr</a>
         </div>

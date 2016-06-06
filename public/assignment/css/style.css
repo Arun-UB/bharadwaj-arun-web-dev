@@ -130,7 +130,8 @@ a.top-right{
 }
 
 .widget-container {
-    /*margin-top: -0px;*/
+    /*margin-top: -25px;*/
+    margin-bottom: 10px;
 }
 
 .widget-tool > .glyphicon-align-justify {
@@ -146,7 +147,13 @@ a.navbar-brand {
 }
 @media (min-width:768px) {
     .top-right{
+        position: relative;
+        float: right;
+    }
+    .top-right-wrapper {
+        display: inline-block;
         position: absolute;
         float: right;
+        margin-left: auto;
     }
 }
