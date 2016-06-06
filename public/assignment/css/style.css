@@ -130,7 +130,7 @@ a.top-right{
 }
 
 .widget-container {
-    margin-top: -30px;
+    /*margin-top: -0px;*/
 }
 
 .widget-tool > .glyphicon-align-justify {
