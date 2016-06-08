@@ -1,8 +1,8 @@
     (function (){
-        "use strict";
+        'use strict';
         angular
-            .module("WebAppMaker")
-            .controller("ProfileController",ProfileController);
+            .module('WebAppMaker')
+            .controller('ProfileController', ProfileController);
 
 
 
@@ -21,7 +21,7 @@
                             vm.user = user;
 
                     },function (err) {
-                         vm.msg = {type:"error",text:"User not found"};
+                         vm.msg = {type: 'error', text: 'User not found'};
                          console.log(err);
                      });
             }
@@ -30,10 +30,10 @@
             function updateUser(user) {
                 UserService.updateUser(id,user)
                     .then(function () {
-                        vm.msg = {type:"success",text:"Profile saved"};
+                        vm.msg = {type: 'success', text: 'Profile saved'};
 
                     },function () {
-                        vm.msg = {type:"error",text:"Unable to save changes"};
+                        vm.msg = {type: 'error', text: 'Unable to save changes'};
                 });
             }
         }

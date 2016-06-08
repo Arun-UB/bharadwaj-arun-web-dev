@@ -1,8 +1,8 @@
 (function (){
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .controller("LoginController",LoginController);
+        .module('WebAppMaker')
+        .controller('LoginController', LoginController);
 
    
 
@@ -16,10 +16,10 @@
                 .then(function (user) {
                         var id = user._id;
                         vm.user = user;
-                        $location.url("/profile/" + id);
+                        $location.url('/profile/' + id);
                     },
                     function (err) {
-                        vm.msg = {type: "error", text: "Username and password doesn't match."};
+                        vm.msg = {type: 'error', text: 'Username and password does not match.'};
                     });
         }
     }

@@ -1,7 +1,7 @@
 (function(){
     angular
-        .module("WebAppMaker")
-        .controller("NewPageController", NewPageController);
+        .module('WebAppMaker')
+        .controller('NewPageController', NewPageController);
 
     function NewPageController($location, $routeParams, PageService) {
         var vm = this;
@@ -12,9 +12,9 @@
         function createPage(page) {
             var newPage = PageService.createPage(vm.websiteId, page);
             if(newPage) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
             } else {
-                vm.error = "Unable to create Page";
+                vm.error = 'Unable to create Page';
             }
         }
     }

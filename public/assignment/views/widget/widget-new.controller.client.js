@@ -1,8 +1,8 @@
 (function () {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .controller("NewWidgetController",NewWidgetController);
+        .module('WebAppMaker')
+        .controller('NewWidgetController', NewWidgetController);
 
 
     function NewWidgetController($scope, $rootScope, $routeParams, $location, WidgetService) {
@@ -18,7 +18,7 @@
         vm.onFileChange = onFileChange;
 
         function init() {
-            if (vm.wType === "IMAGE") {
+            if (vm.wType === 'IMAGE') {
                 vm.widget.url = $rootScope.flickrURL;
             }
         }
@@ -28,9 +28,9 @@
             widget.widgetType = vm.wType;
             WidgetService.createWidget(vm.pageId, widget)
                 .then(function () {
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
                 }, function () {
-                    vm.msg = {type: "error", text: "Unable to create widget"};
+                    vm.msg = {type: 'error', text: 'Unable to create widget'};
                 });
         }
 

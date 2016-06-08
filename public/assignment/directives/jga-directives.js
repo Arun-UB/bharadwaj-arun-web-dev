@@ -1,21 +1,21 @@
 (function ($) {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .directive("draggable", draggable);
+        .module('WebAppMaker')
+        .directive('draggable', draggable);
 
     function draggable() {
         return {
-            restrict: "A",
+            restrict: 'A',
             link: function (scope, elem, attr) {
                 console.log(elem);
                 console.log(attr);
                 $(elem).sortable(
                     {
-                        axis: "y",
+                        axis: 'y',
                         containment: elem,
-                        handle: ".glyphicon-align-justify",
-                        cursor: "move",
+                        handle: '.glyphicon-align-justify',
+                        cursor: 'move',
                         // delay: 100, // To prevent unwanted drags while clicking
                         opacity: 0.5
                     });

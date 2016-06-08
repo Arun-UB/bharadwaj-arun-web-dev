@@ -1,7 +1,7 @@
 (function(){
     angular
-        .module("WebAppMaker")
-        .controller("EditPageController", EditPageController);
+        .module('WebAppMaker')
+        .controller('EditPageController', EditPageController);
 
     function EditPageController($location, $routeParams, PageService) {
         var vm = this;
@@ -16,7 +16,7 @@
                 .then(function (page) {
                     vm.page = page;
                 }, function (err) {
-                    vm.msg = {type: "error", text: err.body};
+                    vm.msg = {type: 'error', text: err.body};
                 });
         }
         init();
@@ -24,19 +24,19 @@
         function updatePage() {
             PageService.updatePage(vm.pageId, vm.page)
                 .then(function () {
-                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
                     },
                     function (err) {
-                        vm.msg = {type: "error", text: err.body};
+                        vm.msg = {type: 'error', text: err.body};
                     });
         }
         function deletePage(pageId) {
             var result = PageService.deletePage(pageId)
                 .then(function () {
-                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
                     },
                     function (err) {
-                        vm.msg = {type: "error", text: err.body};
+                        vm.msg = {type: 'error', text: err.body};
                     });
         }
     }

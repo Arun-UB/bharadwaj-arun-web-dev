@@ -1,7 +1,7 @@
 (function(){
     angular
-        .module("WebAppMaker")
-        .controller("WebsiteListController", WebsiteListController);
+        .module('WebAppMaker')
+        .controller('WebsiteListController', WebsiteListController);
     
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
@@ -13,7 +13,7 @@
                         vm.websites = websites;
                     },
                     function (err) {
-                        vm.msg = {type: "error", text: "Unable to fetch websites"};
+                        vm.msg = {type: 'error', text: 'Unable to fetch websites'};
                     });
         }
         init();

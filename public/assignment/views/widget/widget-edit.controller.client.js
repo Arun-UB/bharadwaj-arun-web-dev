@@ -1,8 +1,8 @@
 (function () {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .controller("EditWidgetController", EditWidgetController);
+        .module('WebAppMaker')
+        .controller('EditWidgetController', EditWidgetController);
 
 
     function EditWidgetController($scope, $routeParams, $location, WidgetService) {
@@ -18,7 +18,7 @@
                 .then(function (widget) {
                     vm.widget = widget;
                 }, function (err) {
-                    vm.msg = {type: "error", text: err.body};
+                    vm.msg = {type: 'error', text: err.body};
                 });
         }
 
@@ -31,18 +31,18 @@
         function updateWidget(widget) {
             WidgetService.updateWidget(vm.widgetId, widget)
                 .then(function () {
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
                 }, function (err) {
-                    vm.msg = {type: "error", text: err.body};
+                    vm.msg = {type: 'error', text: err.body};
                 });
             }
 
         function deleteWidget() {
             WidgetService.deleteWidget(vm.widgetId)
                 .then(function () {
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
                 }, function (err) {
-                    vm.msg = {type: "error", text: err.body};
+                    vm.msg = {type: 'error', text: err.body};
                 });
             }
 

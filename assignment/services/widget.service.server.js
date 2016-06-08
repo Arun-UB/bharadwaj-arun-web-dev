@@ -1,38 +1,38 @@
-"use strict";
+'use strict';
 module.exports = function (app) {
-    var shortid = require("shortid");
-    var fs = require("fs");
-    var path = require("path");
-    var atob = require("atob");
+    var shortid = require('shortid');
+    var fs = require('fs');
+    var path = require('path');
+    var atob = require('atob');
 
     var widgets = [
-        {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": "2", "text": "GIZMODO"},
-        {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
+        {'_id': '123', 'widgetType': 'HEADER', 'pageId': '321', 'size': '2', 'text': 'GIZMODO'},
+        {'_id': '234', 'widgetType': 'HEADER', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
         {
-            "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "http://lorempixel.com/400/200/"
+            '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
+            'url': 'http://lorempixel.com/400/200/'
         },
-        {"_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-        {"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
+        {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
+        {'_id': '567', 'widgetType': 'HEADER', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
         {
-            "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://youtu.be/AM2Ivdi9c4E"
+            '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
+            'url': 'https://youtu.be/AM2Ivdi9c4E'
         },
-        {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+        {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
     ];
 
 
-    app.post("/api/page/:pageId/widget", createWidget);
-    app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-    app.get("/api/widget/:widgetId", findWidgetById);
-    app.post("/api/upload", uploadImage);
-    app.put("/api/widget/:widgetId", updateWidget);
-    app.delete("/api/widget/:widgetId", deleteWidget);
+    app.post('/api/page/:pageId/widget', createWidget);
+    app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
+    app.get('/api/widget/:widgetId', findWidgetById);
+    app.post('/api/upload', uploadImage);
+    app.put('/api/widget/:widgetId', updateWidget);
+    app.delete('/api/widget/:widgetId', deleteWidget);
 
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        widget._id = (new Date()).getTime() + "";
+        widget._id = (new Date()).getTime() + '';
         widget.pageId = pageId;
         widgets.push(widget);
         return res.sendStatus(201);
@@ -56,7 +56,7 @@ module.exports = function (app) {
                 return res.send(widgets[i]);
             }
             }
-        res.status(404).send("Widget not found");
+        res.status(404).send('Widget not found');
     }
 
     function decodeBase64Image(dataString) {
@@ -77,12 +77,12 @@ module.exports = function (app) {
         var file = req.body;
         var imageBuffer = decodeBase64Image(file.content);
         var fName = shortid.generate() + path.extname(file.name);
-        var fPath = path.resolve(__dirname, "../../public/assignment/uploads") + path.sep + fName;
+        var fPath = path.resolve(__dirname, '../../public/assignment/uploads') + path.sep + fName;
         fs.writeFile(fPath, imageBuffer.data, function (err) {
             if (err) {
                 return res.status(500).send(err);
             }
-            return res.send(req.headers.origin + "/uploads/" + fName);
+            return res.send(req.headers.origin + '/uploads/' + fName);
         });
     }
     function updateWidget(req, res) {
@@ -94,7 +94,7 @@ module.exports = function (app) {
                 return res.sendStatus(200);
             }
         }
-        res.status(404).send("Widget not found");
+        res.status(404).send('Widget not found');
     }
 
     function deleteWidget(req, res) {
@@ -105,7 +105,7 @@ module.exports = function (app) {
                 return res.sendStatus(204);
             }
         }
-        res.status(404).send("Widget not found");
+        res.status(404).send('Widget not found');
         }
     }
 

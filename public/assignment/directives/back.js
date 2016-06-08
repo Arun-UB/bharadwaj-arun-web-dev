@@ -1,7 +1,7 @@
 (function () {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
+        .module('WebAppMaker')
         .directive('back', back);
 
     function back($window) {

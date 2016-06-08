@@ -1,28 +1,28 @@
 module.exports = function(app) {
-    "use strict";
+    'use strict';
     var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "tony", password: "tony", firstName: "Tony", lastName: "Stark"}
+        {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder'},
+        {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley'},
+        {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia'},
+        {_id: '456', username: 'tony', password: 'tony', firstName: 'Tony', lastName: 'Stark'}
     ];
 
-    app.post("/api/user", createUser);
-    app.get("/api/user", getUser);
-    app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.post('/api/user', createUser);
+    app.get('/api/user', getUser);
+    app.get('/api/user/:userId', findUserById);
+    app.put('/api/user/:userId', updateUser);
+    app.delete('/api/user/:userId', deleteUser);
 
     function createUser(req, res) {
         var newUser = req.body;
         for(var i in users) {
             if(users[i].username === newUser.username) {
-                res.status(400).send("Username " + newUser.username + " is already in use");
+                res.status(400).send('Username ' + newUser.username + ' is already in use');
                 return;
             }
         }
 
-        newUser._id = (new Date()).getTime() + "";
+        newUser._id = (new Date()).getTime() + '';
         users.push(newUser);
         res.status(201).send(newUser._id);
     }
@@ -36,7 +36,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.status(404).send("Unable to remove user with ID: " + id);
+        res.status(404).send('Unable to remove user with ID: ' + id);
     }
 
     function updateUser(req, res) {
@@ -51,7 +51,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.status(400).send("User with ID: "+ id +" not found");
+        res.status(400).send('User with ID: ' + id + ' not found');
     }
 
     function findUserById(req, res) {
@@ -65,8 +65,8 @@ module.exports = function(app) {
     }
 
     function getUser(req, res) {
-        var username = req.query["username"];
-        var password = req.query["password"];
+        var username = req.query['username'];
+        var password = req.query['password'];
         if(username && password) {
             findUserByCredentials(username, password, res);
         } else if(username) {
@@ -91,6 +91,6 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.status(404).send("User with username: " + username + " not found");
+        res.status(404).send('User with username: ' + username + ' not found');
     }
 };

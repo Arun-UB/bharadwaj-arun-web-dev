@@ -1,16 +1,16 @@
 (function () {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .directive('profile',profile);
-    
-    function profile() {
+        .module('WebAppMaker')
+        .directive('msg2', msg);
+
+    function msg() {
         return{
             scope:{
-                "id":"=id"
+                'data': '=',
             },
-            templateUrl:"../templates/profile.html"
+            restrict: 'E',
+            templateUrl: '../templates/message.html'
         }
     }
-
 })();

@@ -145,15 +145,20 @@ body {
 a.navbar-brand {
     text-transform: capitalize;
 }
-@media (min-width:768px) {
-    .top-right{
-        position: relative;
-        float: right;
-    }
-    .top-right-wrapper {
-        display: inline-block;
-        position: absolute;
-        float: right;
-        margin-left: auto;
-    }
+
+/*@media (min-width:768px) {*/
+/*.top-right{*/
+/*position: relative;*/
+/*float: right;*/
+/*}*/
+/*.top-right-wrapper {*/
+/*display: inline-block;*/
+/*position: absolute;*/
+/*float: right;*/
+/*margin-left: auto;*/
+/*}*/
+/*}*/
+
+.navbar-header {
+    width: 100%;
 }

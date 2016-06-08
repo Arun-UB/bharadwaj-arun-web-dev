@@ -1,16 +1,16 @@
     (function (){
-        "use strict";
+        'use strict';
         angular
-            .module("WebAppMaker")
-            // .directive("compareTo",compareTo)
-            .controller("RegisterController",RegisterController);
+            .module('WebAppMaker')
+            // .directive('compareTo',compareTo)
+            .controller('RegisterController', RegisterController);
 
         //
         // function compareTo() {
         //     return {
-        //         require: "ngModel",
+        //         require: 'ngModel',
         //         scope: {
-        //             otherModelValue: "=compareTo"
+        //             otherModelValue: '=compareTo'
         //         },
         //         link: function(scope, element, attributes, ngModel) {
         //
@@ -18,7 +18,7 @@
         //                 return modelValue == scope.otherModelValue;
         //             };
         //
-        //             scope.$watch("otherModelValue", function() {
+        //             scope.$watch('otherModelValue', function() {
         //                 ngModel.$validate();
         //             });
         //         }
@@ -43,21 +43,21 @@
                 // console.log(form);
                 // clearMsgs();
                 // if(form.$valid && !checkPwd(user.password,user.confirmPassword)) {
-                //     vm.errorMsg = "Passwords doesn't match";
+                //     vm.errorMsg = 'Passwords doesn't match';
                 // }
                 // else if(form.$valid ){
                 // var id = UserService.createUser(user);
-                //     $location.url("/profile/" + id);
+                //     $location.url('/profile/' + id);
                 //
                 // }
                 // else{
-                //     vm.errorMsg = "Error in creating the user";
+                //     vm.errorMsg = 'Error in creating the user';
                 // }
                 UserService.createUser(user)
                     .then(function (id) {
-                        $location.url("/profile/" + id);
+                        $location.url('/profile/' + id);
                     }, function (err) {
-                        vm.msg = {type: "error", text: err.data}
+                        vm.msg = {type: 'error', text: err.data}
                     });
             }
         }

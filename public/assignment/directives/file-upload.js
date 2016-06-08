@@ -1,8 +1,8 @@
 (function () {
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .directive("onFileChange", onFileChange);
+        .module('WebAppMaker')
+        .directive('onFileChange', onFileChange);
 
     function onFileChange() {
         return {

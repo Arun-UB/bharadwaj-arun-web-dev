@@ -1,8 +1,8 @@
 (function(){
-    "use strict";
+    'use strict';
     angular
-        .module("WebAppMaker")
-        .controller("WidgetListController", WidgetListController);
+        .module('WebAppMaker')
+        .controller('WidgetListController', WidgetListController);
 
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
@@ -17,7 +17,7 @@
                 .then(function (widgets) {
                     vm.widgets = widgets;
                 }, function () {
-                    vm.msg = {type: "error", text: "Unable to load widgets"};
+                    vm.msg = {type: 'error', text: 'Unable to load widgets'};
                 });
         }
         init();
@@ -27,9 +27,9 @@
         }
 
         function getSafeUrl(widget) {
-            var urlParts = widget.url.split("/");
+            var urlParts = widget.url.split('/');
             var id = urlParts[urlParts.length - 1];
-            var url = "https://www.youtube.com/embed/" + id;
+            var url = 'https://www.youtube.com/embed/' + id;
             return $sce.trustAsResourceUrl(url);
 
         }
