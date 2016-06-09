@@ -1,19 +1,20 @@
 'use strict';
-module.exports = function (app) {
+module.exports = function (app, models) {
     var shortid = require('shortid');
     var fs = require('fs');
     var path = require('path');
     var atob = require('atob');
 
+    var WidgetModel = models.widgetModel;
     var widgets = [
-        {'_id': '123', 'widgetType': 'HEADER', 'pageId': '321', 'size': '2', 'text': 'GIZMODO'},
-        {'_id': '234', 'widgetType': 'HEADER', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
+        {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': '2', 'text': 'GIZMODO'},
+        {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
         {
             '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
             'url': 'http://lorempixel.com/400/200/'
         },
         {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
-        {'_id': '567', 'widgetType': 'HEADER', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
+        {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': '4', 'text': 'Lorem ipsum'},
         {
             '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
             'url': 'https://youtu.be/AM2Ivdi9c4E'
@@ -32,31 +33,36 @@ module.exports = function (app) {
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        widget._id = (new Date()).getTime() + '';
-        widget.pageId = pageId;
-        widgets.push(widget);
-        return res.sendStatus(201);
+        WidgetModel
+            .createWidget(pageId, widget)
+            .then(function (widget) {
+                return res.status(201).send(widget);
+            }, function () {
+                return res.sendStatus(400);
+            });
     }
 
     function findAllWidgetsForPage(req, res) {
-        var result = [];
         var pageId = req.params.pageId;
-        for (var w in widgets) {
-            if (widgets[w].pageId === pageId) {
-                result.push(widgets[w]);
-            }
-        }
-        res.send(result);
+        WidgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                return res.json(widgets);
+            }, function () {
+                return res.status(404);
+            });
     }
 
     function findWidgetById(req, res) {
         var widgetId = req.params.widgetId;
-        for (var i in widgets) {
-            if (widgets[i]._id === widgetId) {
-                return res.send(widgets[i]);
-            }
-            }
-        res.status(404).send('Widget not found');
+        WidgetModel
+            .findWidgetById(widgetId)
+            .then(function (widget) {
+                returnn
+                res.json(widget);
+            }, function () {
+                return res.status(404).send('Widget not found');
+            });
     }
 
     function decodeBase64Image(dataString) {
@@ -82,30 +88,31 @@ module.exports = function (app) {
             if (err) {
                 return res.status(500).send(err);
             }
-            return res.send(req.headers.origin + '/uploads/' + fName);
+            return res.send(req.HEADINGs.origin + '/uploads/' + fName);
         });
     }
+
     function updateWidget(req, res) {
         var widgetId = req.params.widgetId;
         var widget = req.body;
-        for (var w in widgets) {
-            if (widgets[w]._id == widgetId) {
-                widgets[w] = widget;
-                return res.sendStatus(200);
-            }
-        }
-        res.status(404).send('Widget not found');
+        WidgetModel
+            .updateWidget(widgetId, widget)
+            .then(function (widget) {
+                return res.json(widget);
+            }, function () {
+                return res.status(404).send('Widget not found');
+            });
     }
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        for (var i in widgets) {
-            if (widgets[i]._id === widgetId) {
-                widgets.splice(i, 1);
+        WidgetModel
+            .deleteWidget(widgetId)
+            .then(function (widget) {
                 return res.sendStatus(204);
-            }
-        }
-        res.status(404).send('Widget not found');
-        }
+            }, function () {
+                return res.status(404).send('Widget not found');
+            });
     }
 
+};
