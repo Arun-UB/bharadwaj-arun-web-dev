@@ -1,9 +1,11 @@
 module.exports = function(app) {
 
-    require('./services/user.service.server.js')(app);
-    require('./services/website.service.server')(app);
-    require('./services/widget.service.server.js')(app);
-    require('./services/page.service.server')(app);
+    var models = require("./models/models.server.js")();
+
+    require('./services/user.service.server.js')(app, models);
+    require('./services/website.service.server')(app, models);
+    require('./services/widget.service.server.js')(app, models);
+    require('./services/page.service.server')(app, models);
 
 
 };
