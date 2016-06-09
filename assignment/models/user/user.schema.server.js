@@ -18,12 +18,14 @@ module.exports = function () {
         },
         firstName: String,
         lastName: String,
-        dob: Date,
+        email: String,
+        phone: String,
+        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
         dateCreated: {
             type: Date,
             default: Date.now
         }
-    }, {collection: 'user'});
+    }, {collection: 'assignment.user'});
 
     return UserSchema;
 };
