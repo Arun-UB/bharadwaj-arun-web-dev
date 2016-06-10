@@ -11,21 +11,21 @@
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pid;
-        vm.wType = $routeParams.wType;
+        vm.type = $routeParams.type;
         vm.widgetId = null;
 
         vm.createWidget = createWidget;
         vm.onFileChange = onFileChange;
 
         function init() {
-            if (vm.wType === 'IMAGE') {
+            if (vm.type === 'IMAGE') {
                 vm.widget.url = $rootScope.flickrURL;
             }
         }
 
         init();
         function createWidget(widget) {
-            widget.widgetType = vm.wType;
+            widget.type = vm.type;
             WidgetService.createWidget(vm.pageId, widget)
                 .then(function () {
                     $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');

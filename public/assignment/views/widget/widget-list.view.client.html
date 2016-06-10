@@ -23,7 +23,7 @@
                 </a>
                 <span class="glyphicon glyphicon-align-justify"></span>
             </div>
-            <div ng-switch="widget.widgetType">
+            <div ng-switch="widget.type">
                 <div ng-switch-when="HEADING" ng-switch="widget.size">
                     <h1 ng-switch-when="1">{{widget.text}}</h1>
                     <h2 ng-switch-when="2">{{widget.text}}</h2>
@@ -33,13 +33,14 @@
                     <h6 ng-switch-when="6">{{widget.text}}</h6>
                 </div>
                 <div ng-switch-when="IMAGE">
-                    <img width="{{widget.width}}" ng-src="{{widget.url}}"/>
+                    <img width="{{widget.width}}%" ng-src="{{widget.url}}"/>
                 </div>
                 <div ng-switch-when="HTML">
                     <div ng-bind-html="model.getSafeHtml(widget)"></div>
                 </div>
                 <div ng-switch-when="YOUTUBE">
-                    <iframe width="{{widget.width}}" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="{{widget.width}}%" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0"
+                            allowfullscreen></iframe>
                 </div>
                 <div ng-switch-default>
                     Unable to render widget

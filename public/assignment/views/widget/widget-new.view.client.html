@@ -3,15 +3,15 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/"> <i class="material-icons pull-left top-left">arrow_back</i></a>
-            <a class="navbar-brand" href="">{{model.wType.toLowerCase()}}</a>
+            <a class="navbar-brand" href="">{{model.type.toLowerCase()}}</a>
             <a href="#/profile/{{model.userId}}"><i class="material-icons profile top-right">account_circle</i></span></a>
 
         </div>
     </div>
 </nav>
-<div ng-switch="model.wType" >
+<div ng-switch="model.type">
     <div ng-switch-when="HEADING">
-        <ng-include src="'views/widget/widget-header.view.client.html'" onload="widget=model.widget">
+        <ng-include src="'views/widget/widget-header.view.client.html'" onload=" widget = model.widget">
     </div>
     <div ng-switch-when="IMAGE" >
         <ng-include src="'views/widget/widget-image.view.client.html'">

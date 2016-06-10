@@ -10,7 +10,7 @@
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pid;
-        vm.wType = $routeParams.wType;
+        vm.type = $routeParams.type;
         vm.widgetId = $routeParams.wgid;
 
         function init() {

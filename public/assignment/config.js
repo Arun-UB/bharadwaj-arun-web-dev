@@ -66,7 +66,7 @@
                 controller: 'NewWidgetController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pid/widget/new/:wType', {
+            .when('/user/:userId/website/:websiteId/page/:pid/widget/new/:type', {
                 templateUrl: 'views/widget/widget-new.view.client.html',
                 controller: 'NewWidgetController',
                 controllerAs: 'model'

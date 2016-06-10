@@ -8,8 +8,6 @@
         return {
             restrict: 'A',
             link: function (scope, elem, attr) {
-                console.log(elem);
-                console.log(attr);
                 $(elem).sortable(
                     {
                         axis: 'y',
