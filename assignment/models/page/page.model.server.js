@@ -32,7 +32,7 @@ module.exports = function () {
                     name: page.name,
                     description: page.description
                 }
-            })
+            });
     }
 
     function deletePage(id) {

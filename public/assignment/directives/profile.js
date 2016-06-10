@@ -2,15 +2,15 @@
     'use strict';
     angular
         .module('WebAppMaker')
-        .directive('msg2', msg);
+        .directive('profile', msg);
 
     function msg() {
         return{
             scope:{
-                'data': '=',
+                'id': '=',
             },
             restrict: 'E',
-            templateUrl: '../templates/message.html'
-        }
+            templateUrl: '../templates/profile.html'
+        };
     }
 })();

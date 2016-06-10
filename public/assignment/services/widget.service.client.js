@@ -56,7 +56,7 @@
         function uploadImage(file) {
             return $http.post('/api/upload', file)
                 .then(function (response) {
-                    return response.data
+                    return response.data;
                 });
         }
     }

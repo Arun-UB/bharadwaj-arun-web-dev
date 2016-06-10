@@ -57,7 +57,7 @@
                     .then(function (id) {
                         $location.url('/profile/' + id);
                     }, function (err) {
-                        vm.msg = {type: 'error', text: err.data}
+                        vm.msg = {type: 'error', text: err.data};
                     });
             }
         }

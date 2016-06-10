@@ -11,6 +11,6 @@
                 var onChangeHandler = scope.$eval(attrs.onFileChange);
                 element.bind('change', onChangeHandler);
             }
-        }
+        };
     }
 })();

@@ -16,7 +16,7 @@ module.exports = function (app, models) {
                 return res.status(201).send(page);
             }, function (error) {
                 return res.status(400);
-            })
+            });
     }
 
     function findAllPagesForWebsite(req, res) {

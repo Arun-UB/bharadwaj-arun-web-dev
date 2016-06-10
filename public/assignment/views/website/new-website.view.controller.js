@@ -14,7 +14,7 @@
                     $location.url('/user/' + vm.userId + '/website');
                 }, function (err) {
                     vm.msg = {type: 'error', text: 'Unable to create website'};
-                })
+                });
         }
     }
 })();

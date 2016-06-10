@@ -35,7 +35,7 @@
             return $http.get('api/user', {params: {username: username, password: password}})
                 .then(function (response) {
                     return response.data;
-                })
+                });
         }
 
         function findUserById(id) {

@@ -11,6 +11,6 @@
             },
             restrict: 'E',
             templateUrl: '../templates/message.html'
-        }
+        };
     }
 })();

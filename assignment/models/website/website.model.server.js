@@ -1,6 +1,6 @@
 module.exports = function () {
     'use strict';
-    var mongoose = require('mongoose')
+    var mongoose = require('mongoose');
     var WebsiteSchema = require('./website.schema.server')();
     var Website = mongoose.model('Website', WebsiteSchema);
 
@@ -35,7 +35,7 @@ module.exports = function () {
                     name: website.name,
                     description: website.description
                 }
-            })
+            });
     }
 
     function deleteWebsite(id) {

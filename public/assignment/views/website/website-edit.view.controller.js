@@ -38,7 +38,7 @@
 
                 }, function (err) {
                     vm.msg = {type: 'error', text: err.body};
-                })
+                });
         }
     }
 })();

@@ -58,8 +58,7 @@ module.exports = function (app, models) {
         WidgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
-                returnn
-                res.json(widget);
+                return res.json(widget);
             }, function () {
                 return res.status(404).send('Widget not found');
             });

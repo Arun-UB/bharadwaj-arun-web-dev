@@ -45,7 +45,7 @@
                     'type': file.type,
                     'content': file.content
                 };
-            }
+            };
             var reader = new FileReader();
             reader.onload = function (e) {
                 $scope.$apply(function () {

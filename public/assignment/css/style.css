@@ -102,6 +102,10 @@
     float: right;
     right: 0;
 }
+
+.top-right-wrapper {
+    margin-right: -30px;
+}
 .profile{
     font-size: 25px;
     color: gray;
@@ -162,3 +166,4 @@ a.navbar-brand {
 .navbar-header {
     width: 100%;
 }
+
