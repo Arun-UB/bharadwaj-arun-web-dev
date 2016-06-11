@@ -5,7 +5,7 @@ module.exports = function () {
         _page: {type: mongoose.Schema.Types.ObjectId, ref: 'Page'},
         type: {
             type: String,
-            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'],
+            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT', 'INPUT'],
 
         },
         name: String,
@@ -22,7 +22,7 @@ module.exports = function () {
         deletable: Boolean,
         formatted: Boolean,
         dateCreated: {type: Date, default: Date.now}
-    });
+    }, {collection: 'assignment.widget'});
 
     return WidgetSchema;
 };

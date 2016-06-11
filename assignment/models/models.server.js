@@ -1,7 +1,7 @@
 module.exports = function () {
     'use strict';
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/assignment');
+    mongoose.connect('mongodb://admin:GW8XWk6vbhEZ@localhost/webdev');
 
     var models = {
         userModel: require('./user/user.model.server')(),

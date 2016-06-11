@@ -130,7 +130,12 @@ a.top-right{
     padding-left: 5px;
     padding-bottom: 5px;
     border-bottom-left-radius: 8px;
-    opacity: 0.7;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.widget-tool:hover {
+    opacity: 1;
 }
 
 .widget-container {

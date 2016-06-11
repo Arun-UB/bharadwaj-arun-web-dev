@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href="/bower_components/textAngular/dist/textAngular.css">
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/style.css">
-
-
-
 
     <title>Assignment Home Page</title>
 </head>
@@ -40,17 +40,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
+
+<script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
+
 <script src="app.js"></script>
 <script src="config.js"></script>
+
 <script src="services/user.service.client.js"></script>
 <script src="services/website.service.client.js"></script>
 <script src="services/page.service.client.js"></script>
 <script src="services/widget.service.client.js"></script>
 <script src="services/flickr.service.client.js"></script>
 
-<!--User-->
-<!--<script src="views/user/user.module.js"></script>-->
-<!--<script src="views/user/user.route.js"></script>-->
+
 <script src="views/user/login.controller.client.js"></script>
 <script src="views/user/profile.controller.client.js"></script>
 <script src="views/user/register.controller.client.js"></script>
@@ -64,6 +68,7 @@
 <script src="views/widget/widget-new.controller.client.js"></script>
 <script src="views/widget/widget-edit.controller.client.js"></script>
 <script src="views/widget/widget-flickr-search.controller.js"></script>
+<script src="views/widget/widget.constants.js"></script>
 
 <script src="directives/profile.js"></script>
 <script src="directives/messages.js"></script>

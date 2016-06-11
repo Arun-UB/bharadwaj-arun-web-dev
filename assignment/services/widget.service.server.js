@@ -37,7 +37,8 @@ module.exports = function (app, models) {
             .createWidget(pageId, widget)
             .then(function (widget) {
                 return res.status(201).send(widget);
-            }, function () {
+            }, function (error) {
+                console.log(error);
                 return res.sendStatus(400);
             });
     }
@@ -94,11 +95,13 @@ module.exports = function (app, models) {
     function updateWidget(req, res) {
         var widgetId = req.params.widgetId;
         var widget = req.body;
+        delete widget._id;
         WidgetModel
             .updateWidget(widgetId, widget)
             .then(function (widget) {
                 return res.json(widget);
-            }, function () {
+            }, function (error) {
+                console.log(error);
                 return res.status(404).send('Widget not found');
             });
     }

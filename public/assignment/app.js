@@ -1,6 +1,5 @@
 (function(){
     'use strict';
     angular
-        .module('WebAppMaker', [
-            'ngRoute']);
+        .module('WebAppMaker', ['ngRoute', 'textAngular']);
 })();

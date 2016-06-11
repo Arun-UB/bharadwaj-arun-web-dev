@@ -11,6 +11,7 @@
         vm.pageId = $routeParams.pid;
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
+        vm.updateOrder = updateOrder;
 
         function init() {
             WidgetService.findWidgetsForPageId(vm.pageId)
@@ -33,5 +34,10 @@
             return $sce.trustAsResourceUrl(url);
 
         }
+
+        function updateOrder(start, end) {
+            console.log(start, end);
+        }
+        
     }
 })();
