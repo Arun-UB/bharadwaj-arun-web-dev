@@ -6,6 +6,9 @@ module.exports = function (app, models) {
     app.get('/api/page/:pageId', findPageById);
     app.put('/api/page/:pageId', updatePage);
     app.delete('/api/page/:pageId', deletePage);
+    app.put('/api/page/:pageId/updateWidgets', updateWidgets);
+    app.get('/api/page/:pageId/widgetOrder', getWidgetOrder);
+    app.put('/api/page/:pageId/widgetOrder', updateWidgetOrder);
 
     function createPage(req, res) {
         var websiteId = req.params.websiteId;
@@ -63,4 +66,40 @@ module.exports = function (app, models) {
                 return res.status(404).send('Page not found');
             });
     }
+
+    function updateWidgets(req, res) {
+        var id = req.params.pageId;
+        var widgetId = req.body.widgetId;
+        PageModel
+            .updateWidgets(id, widgetId)
+            .then(function () {
+                return res.sendStatus(200);
+            }, function (error) {
+                return res.status(400).send('Unable to update widgets');
+            });
+    }
+
+    function getWidgetOrder(req, res) {
+        var id = req.params.pageId;
+        PageModel
+            .getWidgetOrder(id)
+            .then(function (page) {
+                return res.json(page);
+            }, function () {
+                return res.status(400).send('Unable to fetch order');
+            });
+    }
+
+    function updateWidgetOrder(req, res) {
+        var id = req.params.pageId;
+        var widgetOrder = req.body;
+        PageModel
+            .updateWidgetOrder(id, widgetOrder)
+            .then(function (widgetOrder) {
+                return res.json(widgetOrder);
+            }, function () {
+                return res.status(400).send('Unable to update order');
+            });
+    }
+
 };

@@ -17,9 +17,9 @@
         <strong>You have no widgets,add a new widget to get started.</strong>
     </div>
 </div>
-<div class="container widget-container" draggable sortable callback="model.updateOrder(start,end)">
+<div class="container widget-container" draggable sortable callback="model.updateOrder(order)">
 
-    <div ng-repeat="widget in model.widgets" class="widget">
+    <div ng-repeat="widget in model.widgets" id="{{widget._id}}" class="widget">
         <div class="widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -42,7 +42,7 @@
             <div ng-switch-when="HTML">
                 <div ng-bind-html="model.getSafeHtml(widget)"></div>
             </div>
-            <div ng-switch-when="YOUTUBE">
+            <div ng-switch-when="YOUTUBE" class="youtubeWidget">
                 <iframe width="{{widget.width}}%" ng-src="{{model.getSafeUrl(widget)}}" frameborder="0"
                         allowfullscreen></iframe>
             </div>

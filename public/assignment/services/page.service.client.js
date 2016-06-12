@@ -7,7 +7,7 @@
             {'_id': '321', 'name': 'Post 1', 'websiteId': '456'},
             {'_id': '432', 'name': 'Post 2', 'websiteId': '456'},
             {'_id': '543', 'name': 'Post 3', 'websiteId': '456'}
-        ];
+        ]; 
 
         function PageService($http) {
             var api = {
@@ -15,7 +15,11 @@
                 findPageByWebsiteId:findPageByWebsiteId,
                 findPageById:findPageById,
                 updatePage:updatePage,
-                deletePage: deletePage
+                deletePage: deletePage,
+                updateWidgets: updateWidgets,
+                getWidgetOrder: getWidgetOrder,
+                updateWidgetOrder: updateWidgetOrder
+
             };
             return api;
 
@@ -52,6 +56,36 @@
                 return $http.delete('/api/page/' + pageId)
                     .then(function (response) {
                         return response.data;
+                    });
+            }
+
+            function updateWidgets(pageId, widgetId) {
+                return $http.put('/api/page/' + pageId + '/updateWidgets', {widgetId: widgetId})
+                    .then(function (response) {
+                        return response.data;
+                    }, function (error) {
+                        return error.data;
+                    });
+            }
+
+            function getWidgetOrder(pageId) {
+                // var order=  ['575b5412b62918a00399575f','575b6d67b62918a003995760',
+                //     '575b50533ea44a742d051afb','575bb66d57ea897c174874a1'];
+                // return order;
+                return $http.get('/api/page/' + pageId + '/widgetOrder')
+                    .then(function (response) {
+                        return response.data.widgetsOrder;
+                    }, function (error) {
+                        return error.data;
+                    });
+            }
+
+            function updateWidgetOrder(pageId, widgetOrder) {
+                return $http.put('/api/page/' + pageId + '/widgetOrder', widgetOrder)
+                    .then(function (response) {
+                        return response.data;
+                    }, function (error) {
+                        return error.data;
                     });
             }
         }

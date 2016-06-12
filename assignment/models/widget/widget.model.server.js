@@ -24,7 +24,8 @@ module.exports = function () {
 
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        return Widget.create(widget);
+        var newWidget = Widget.create(widget);
+        return newWidget;
     }
 
     function updateWidget(id, widget) {

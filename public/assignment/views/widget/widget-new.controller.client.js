@@ -5,7 +5,7 @@
         .controller('NewWidgetController', NewWidgetController);
 
 
-    function NewWidgetController($scope, $rootScope, $routeParams, $location, WidgetService) {
+    function NewWidgetController($scope, $rootScope, $routeParams, $location, WidgetService, PageService) {
         var vm = this;
         vm.widget = {};
         vm.userId = $routeParams.userId;
@@ -27,11 +27,15 @@
         function createWidget(widget) {
             widget.type = vm.type;
             WidgetService.createWidget(vm.pageId, widget)
-                .then(function () {
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
-                }, function () {
-                    vm.msg = {type: 'error', text: 'Unable to create widget'};
-                });
+                .then(function (widget) {
+                    vm.widgetId = widget._id;
+                    return PageService.updateWidgets(vm.pageId, vm.widgetId);
+                }).then(function () {
+                $location.url('/user/' + vm.userId + '/website/' +
+                    vm.websiteId + '/page/' + vm.pageId + '/widget');
+            }).catch(function (error) {
+                vm.msg = {type: 'error', text: 'Unable to create widget'};
+            });
         }
 
         function onFileChange() {

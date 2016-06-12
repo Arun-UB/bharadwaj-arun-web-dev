@@ -8,6 +8,7 @@ module.exports = function () {
             unique: true
             // validate:{
             //     validator: function (username,callback) {
+
             //         User.count({username:username})
             //     }
             // }

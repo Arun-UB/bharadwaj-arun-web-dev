@@ -8,7 +8,10 @@ module.exports = function () {
         findAllPagesForWebsite: findAllPagesForWebsite,
         findPageById: findPageById,
         updatePage: updatePage,
-        deletePage: deletePage
+        deletePage: deletePage,
+        updateWidgets: updateWidgets,
+        getWidgetOrder: getWidgetOrder,
+        updateWidgetOrder: updateWidgetOrder
     };
     return api;
 
@@ -37,5 +40,29 @@ module.exports = function () {
 
     function deletePage(id) {
         return Page.remove({_id: id});
+    }
+
+    function updateWidgets(id, widgetId) {
+        return Page
+            .update({_id: id}, {
+                $push: {
+                    widgetsOrder: widgetId,
+                    widgets: widgetId
+                }
+            });
+    }
+
+    function getWidgetOrder(id) {
+        return Page
+            .findById({_id: id});
+    }
+
+    function updateWidgetOrder(id, widgetsOrder) {
+        return Page
+            .update({_id: id}, {
+                $set: {
+                    widgetsOrder: widgetsOrder
+                }
+            });
     }
 };
