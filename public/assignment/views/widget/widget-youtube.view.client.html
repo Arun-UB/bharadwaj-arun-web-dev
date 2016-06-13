@@ -1,8 +1,12 @@
 <div class="container">
+    <msg data="$parent.model.msg"></msg>
     <form>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : $parent.model.msg.type === 'error'}">
             <label for="name">Name</label>
             <input ng-model="$parent.model.widget.name" type="text" class="form-control" id="name"  value="{{$parent.model.widget.name}}" required autofocus />
+            <div ng-show="$parent.model.msg.type === 'error'">
+                <div class="help-block">Please enter the widget name</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="htext">Text</label>

@@ -5,7 +5,7 @@
         .controller('EditWidgetController', EditWidgetController);
 
 
-    function EditWidgetController($scope, $routeParams, $location, WidgetService) {
+    function EditWidgetController($scope, $routeParams, $location, $window, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
@@ -29,21 +29,32 @@
         vm.onFileChange = onFileChange;
 
         function updateWidget(widget) {
-            WidgetService.updateWidget(vm.widgetId, widget)
-                .then(function () {
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
-                }, function (err) {
-                    vm.msg = {type: 'error', text: err.body};
-                });
+            if (!widget || !widget.name) {
+                vm.msg = {type: 'error', text: 'Widget name required'};
+            }
+            else {
+                WidgetService.updateWidget(vm.widgetId, widget)
+                    .then(function () {
+                        $location.url('/user/' + vm.userId + '/website/' +
+                            vm.websiteId + '/page/' + vm.pageId + '/widget');
+                    }, function (err) {
+                        vm.msg = {type: 'error', text: err.body};
+                    });
+
+            }
             }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId)
-                .then(function () {
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
-                }, function (err) {
-                    vm.msg = {type: 'error', text: err.body};
-                });
+            var choice = $window.confirm('Are you sure you want to delete?');
+            if (choice) {
+                WidgetService.deleteWidget(vm.widgetId)
+                    .then(function () {
+                        $location.url('/user/' + vm.userId + '/website/' +
+                            vm.websiteId + '/page/' + vm.pageId + '/widget');
+                    }, function (err) {
+                        vm.msg = {type: 'error', text: err.body};
+                    });
+            }
             }
 
         function onFileChange() {

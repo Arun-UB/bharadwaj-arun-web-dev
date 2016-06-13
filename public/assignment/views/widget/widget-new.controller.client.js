@@ -25,17 +25,22 @@
 
         init();
         function createWidget(widget) {
-            widget.type = vm.type;
-            WidgetService.createWidget(vm.pageId, widget)
-                .then(function (widget) {
-                    vm.widgetId = widget._id;
-                    return PageService.updateWidgets(vm.pageId, vm.widgetId);
-                }).then(function () {
-                $location.url('/user/' + vm.userId + '/website/' +
-                    vm.websiteId + '/page/' + vm.pageId + '/widget');
-            }).catch(function (error) {
-                vm.msg = {type: 'error', text: 'Unable to create widget'};
-            });
+            if (!widget || !widget.name) {
+                vm.msg = {type: 'error', text: 'Widget name required'};
+            }
+            else {
+                widget.type = vm.type;
+                WidgetService.createWidget(vm.pageId, widget)
+                    .then(function (widget) {
+                        vm.widgetId = widget._id;
+                        return PageService.updateWidgets(vm.pageId, vm.widgetId);
+                    }).then(function () {
+                    $location.url('/user/' + vm.userId + '/website/' +
+                        vm.websiteId + '/page/' + vm.pageId + '/widget');
+                }).catch(function (error) {
+                    vm.msg = {type: 'error', text: 'Unable to create widget'};
+                });
+            }
         }
 
         function onFileChange() {
