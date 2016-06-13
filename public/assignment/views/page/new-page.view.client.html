@@ -9,14 +9,17 @@
     </div>
 </nav>
 <div class="container">
-
+    <msg data="model.msg"></msg>
     <form>
-        <div class="form-group">
-            <label class="sr-only" for="name">Name</label>
+        <div class="form-group" ng-class="{ 'has-error' : model.msg.type === 'error'}">
+            <label class="name" for="name">Name</label>
             <input ng-model="page.name" type="text" class="form-control" id="name" placeholder="Page Name" required autofocus />
+            <div ng-show="model.msg.type === 'error'">
+                <div class="help-block">Please enter the page name</div>
+            </div>
         </div>
         <div class="form-group">
-            <label class="sr-only" for="title">Title</label>
+            <label class="title" for="title">Title</label>
             <input ng-model="page.description" type="text" class="form-control" id="title" placeholder="Page Title"
                    required>
         </div>
