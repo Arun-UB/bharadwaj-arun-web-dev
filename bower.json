@@ -1,0 +1,14 @@
+{
+  "name": "web_app_maker",
+  "description": "Web App Maker",
+  "main": "server.js",
+  "authors": [
+    "Arun Bharadwaj"
+  ],
+  "license": "ISC",
+  "homepage": "n",
+  "private": true,
+  "dependencies": {
+    "textAngular": "^1.5.1"
+  }
+}
