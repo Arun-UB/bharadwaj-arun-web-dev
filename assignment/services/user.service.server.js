@@ -72,7 +72,12 @@ module.exports = function (app, models) {
         userModel
             .findUserByCredentials(username, password)
             .then(function (user) {
-                return res.json(user);
+                if (!user) {
+                    return res.sendStatus(404);
+                }
+                else {
+                    return res.json(user);
+                }
             }, function () {
                 return res.sendStatus(404);
             });

@@ -30,7 +30,15 @@ module.exports = function () {
     }
 
     function findUserByCredentials(username, password) {
-        return User.findOne({username: username, password: password});
+        return User.findOne({username: username, password: password},
+            function (err, user) {
+                if (!user || err) {
+                    return new Error('User not found');
+                }
+                else {
+                    return user;
+                }
+            });
     }
 
     function findUserById(userId) {

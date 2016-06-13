@@ -9,63 +9,74 @@
     <msg data="model.msg"></msg>
 
 
-    <form name="form" class="sign-in" ng-submit="model.register(model.user,form)" novalidate>
+    <form name="register" class="sign-in" ng-submit="model.register(model.user,register)" novalidate>
         <h3>Register</h3>
-        <div class="form-group">
+        <div class="form-group"
+             ng-class="{ 'has-error' : (register.$submitted || register.username.$touched) && register.username.$error.required }">
             <label class="sr-only" for="username">Username</label>
             <input ng-model="model.user.username" type="text" class="form-control" id="username" name="username"
                    placeholder="Username" required autofocus/>
-            <div class="text-danger" ng-show="form.$submitted || form.username.$touched">
-                <p ng-show="form.username.$error.required">
-                    <span>Username is required</span>
+            <div class="text-danger" ng-show="register.$submitted || register.username.$touched">
+                <div class="help-block" ng-show="register.username.$error.required">
+                    Username is required
+                </div>
             </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group"
+             ng-class="{ 'has-error' : (register.$submitted || register.password.$touched) && register.password.$error.required }">
             <label class="sr-only" for="password">Password</label>
-            <input ng-model="model.user.password" type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-            <div class="text-danger" ng-show="form.$submitted || form.password.$touched">
-                <p ng-show="form.password.$error.required">
-                    <span>Password is required</span>
+            <input ng-model="model.user.password" type="password" class="form-control" name="password" id="password"
+                   placeholder="Password" required>
+            <div class="text-danger" ng-show="register.$submitted || register.password.$touched">
+                <div class="help-block" ng-show="register.password.$error.required">
+                    Password is required
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"
+             ng-class="{ 'has-error' : (register.$submitted || register.confirmPassword.$touched) && register.confirmPassword.$error.required }">
             <label class="sr-only" for="confirmPassword">Confirm Password</label>
-            <input ng-model="model.user.confirmPassword" type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
-            <div class="text-danger" ng-show="form.$submitted || form.confirmPassword.$touched">
-                <p ng-show="form.confirmPassword.$error.required">
-                    <span>Confirm the password</span>
+            <input ng-model="model.user.confirmPassword" type="password" class="form-control" name="confirmPassword"
+                   id="confirmPassword" placeholder="Confirm Password" required>
+            <div class="text-danger" ng-show="register.$submitted || register.confirmPassword.$touched">
+                <div class="help-block" ng-show="register.confirmPassword.$error.required">
+                    Confirm password
+                </div>
+
             </div>
         </div>
 
         <button class="btn btn-success btn-block"
                 type="submit">
-            Register</button>
+            Register
+        </button>
         <a href="#/login" class="btn btn-default btn-block">Cancel</a>
-        <p class="center-block help-block">Have an account? <a href="#/login" >Sign In</a> </p>
+        <p class="center-block help-block">Have an account? <a href="#/login">Sign In</a></p>
     </form>
 
     <!--<form name="registrationForm" novalidate-->
-          <!--ng-submit="model.register(model.user,registrationForm.$valid)">-->
-        <!--<div class="form-group">-->
-            <!--<label>User Name</label>-->
-            <!--<input type="text" name="username" class="form-control" ng-model="model.user.username" required />-->
-            <!--<div ng-messages="registrationForm.username.$error" ng-messages-include="messages.html"></div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Password</label>-->
-            <!--<input type="password" name="password" class="form-control" ng-model="model.user.password" required />-->
-            <!--<div ng-messages="registrationForm.password.$error" ng-messages-include="messages.html"></div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Confirm Password</label>-->
-            <!--<input type="password" name="confirmPassword" class="form-control"-->
-                   <!--ng-model="model.user.confirmPassword"-->
-                   <!--required compare-to="model.user.password" />-->
-            <!--<div ng-messages="registrationForm.confirmPassword.$error" ng-messages-include="messages.html"></div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<button type="submit" class="btn btn-primary">Register!</button>-->
-        <!--</div>-->
+    <!--ng-submit="model.register(model.user,registrationForm.$valid)">-->
+    <!--<div class="form-group">-->
+    <!--<label>User Name</label>-->
+    <!--<input type="text" name="username" class="form-control" ng-model="model.user.username" required />-->
+    <!--<div ng-messages="registrationForm.username.$error" ng-messages-include="messages.html"></div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label>Password</label>-->
+    <!--<input type="password" name="password" class="form-control" ng-model="model.user.password" required />-->
+    <!--<div ng-messages="registrationForm.password.$error" ng-messages-include="messages.html"></div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label>Confirm Password</label>-->
+    <!--<input type="password" name="confirmPassword" class="form-control"-->
+    <!--ng-model="model.user.confirmPassword"-->
+    <!--required compare-to="model.user.password" />-->
+    <!--<div ng-messages="registrationForm.confirmPassword.$error" ng-messages-include="messages.html"></div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<button type="submit" class="btn btn-primary">Register!</button>-->
+    <!--</div>-->
     <!--</form>-->
 
 </div> <!-- /container -->

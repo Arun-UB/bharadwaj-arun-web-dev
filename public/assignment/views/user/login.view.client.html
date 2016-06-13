@@ -9,18 +9,30 @@
 <div class="container">
     <msg data="model.msg"></msg>
 </div>
-    <form class="sign-in">
+<form name="signIn" class="sign-in" novalidate ng-submit="model.login(username,password)">
         <h3>Sign In</h3>
-        <div class="form-group">
+    <div class="form-group"
+         ng-class="{ 'has-error' : (signIn.$submitted || signIn.username.$touched) && signIn.username.$error.required }">
             <label class="sr-only" for="username">Username</label>
-            <input ng-model="username" type="text" class="form-control" id="username" placeholder="Username" required autofocus />
+        <input ng-model="username" autocorrect="off" autocapitalize="off"
+               type="text" class="form-control" id="username"
+               name="username" placeholder="Username"
+               required autofocus/>
+        <div ng-show="signIn.$submitted || signIn.username.$touched">
+            <div class="help-block" ng-show="signIn.username.$error.required">Please enter your username</div>
         </div>
-        <div class="form-group">
+        </div>
+    <div class="form-group"
+         ng-class="{ 'has-error' : (signIn.$submitted || signIn.password.$touched) && signIn.password.$error.required }">
             <label class="sr-only" for="password">Password</label>
-            <input ng-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
+        <input ng-model="password" type="password" class="form-control" name="password" id="password"
+               placeholder="Password" required/>
+        <div ng-show="signIn.$submitted || signIn.password.$touched">
+            <div class="help-block" ng-show="signIn.password.$error.required">Please enter your password</div>
+        </div>
         </div>
 
-        <a ng-click="model.login(username,password)" class="btn btn-primary btn-block">Sign In</button></a>
+    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
         <p class="center-block help-block">New User? <a href="#/register" >Register</a> </p>
     </form>
 
