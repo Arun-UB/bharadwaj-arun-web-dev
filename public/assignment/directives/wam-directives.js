@@ -1,7 +1,7 @@
-(function ($) {
+(function () {
     'use strict';
     angular
-        .module('WebAppMaker')
+        .module('wamDirectives', [])
         .directive('sortable', sortable)
         .directive('draggable', draggable);
 
@@ -47,4 +47,4 @@
             }
         };
     }
-})($);
+})();
