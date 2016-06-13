@@ -3,8 +3,9 @@
     <form>
         <div class="form-group" ng-class="{ 'has-error' : $parent.model.msg.type === 'error'}">
             <label for="text">Text</label>
+            <input ng-model="$parent.model.widget.name" ng-init="$parent.model.widget.name='text'" hidden/>
             <input ng-model="$parent.model.widget.text" type="text" class="form-control" id="text"
-                   value="{{$parent.model.widget.name}}" required autofocus/>
+                   value="{{$parent.model.widget.text}}" required autofocus/>
             <div ng-show="$parent.model.msg.type === 'error'">
                 <div class="help-block">Please enter the widget text</div>
             </div>

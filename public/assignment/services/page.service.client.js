@@ -25,42 +25,42 @@
 
 
             function createPage(websiteId, page) {
-                return $http.post('/api/website/' + websiteId + '/page', page)
+                return $http.post('/assignment/api/website/' + websiteId + '/page', page)
                     .then(function (response) {
                         return response.data;
                     });
             }
 
             function findPageByWebsiteId(websiteId) {
-                return $http.get('/api/website/' + websiteId + '/page/')
+                return $http.get('/assignment/api/website/' + websiteId + '/page/')
                     .then(function (response) {
                         return response.data;
                     });
             }
 
             function findPageById(pageId) {
-                return $http.get('/api/page/' + pageId)
+                return $http.get('/assignment/api/page/' + pageId)
                     .then(function (response) {
                         return response.data;
                     });
             }
 
             function updatePage(pageId,page) {
-                return $http.put('/api/page/' + pageId, page)
+                return $http.put('/assignment/api/page/' + pageId, page)
                     .then(function (response) {
                         return response.data;
                     });
             }
 
             function deletePage(pageId) {
-                return $http.delete('/api/page/' + pageId)
+                return $http.delete('/assignment/api/page/' + pageId)
                     .then(function (response) {
                         return response.data;
                     });
             }
 
             function updateWidgets(pageId, widgetId) {
-                return $http.put('/api/page/' + pageId + '/updateWidgets', {widgetId: widgetId})
+                return $http.put('/assignment/api/page/' + pageId + '/updateWidgets', {widgetId: widgetId})
                     .then(function (response) {
                         return response.data;
                     }, function (error) {
@@ -69,10 +69,7 @@
             }
 
             function getWidgetOrder(pageId) {
-                // var order=  ['575b5412b62918a00399575f','575b6d67b62918a003995760',
-                //     '575b50533ea44a742d051afb','575bb66d57ea897c174874a1'];
-                // return order;
-                return $http.get('/api/page/' + pageId + '/widgetOrder')
+                return $http.get('/assignment/api/page/' + pageId + '/widgetOrder')
                     .then(function (response) {
                         return response.data.widgetsOrder;
                     }, function (error) {
@@ -81,7 +78,7 @@
             }
 
             function updateWidgetOrder(pageId, widgetOrder) {
-                return $http.put('/api/page/' + pageId + '/widgetOrder', widgetOrder)
+                return $http.put('/assignment/api/page/' + pageId + '/widgetOrder', widgetOrder)
                     .then(function (response) {
                         return response.data;
                     }, function (error) {

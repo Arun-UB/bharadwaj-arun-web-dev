@@ -2,11 +2,11 @@ module.exports = function (app, models) {
     'use strict';
     var WebsiteModel = models.websiteModel;
 
-    app.post('/api/user/:userId/website', createWebsite);
-    app.get('/api/user/:userId/website', findAllWebsitesForUser);
-    app.get('/api/user/:userId/website/:websiteId', findWebsiteById);
-    app.put('/api/user/:userId/website/:websiteId', updateWebsite);
-    app.delete('/api/user/:userId/website/:websiteId', deleteWebsite);
+    app.post('/assignment/api/user/:userId/website', createWebsite);
+    app.get('/assignment/api/user/:userId/website', findAllWebsitesForUser);
+    app.get('/assignment/api/user/:userId/website/:websiteId', findWebsiteById);
+    app.put('/assignment/api/user/:userId/website/:websiteId', updateWebsite);
+    app.delete('/assignment/api/user/:userId/website/:websiteId', deleteWebsite);
 
     function createWebsite(req, res) {
         var userId = req.params.userId;

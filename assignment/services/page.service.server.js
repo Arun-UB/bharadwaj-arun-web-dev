@@ -1,14 +1,14 @@
 module.exports = function (app, models) {
 
     var PageModel = models.pageModel;
-    app.post('/api/website/:websiteId/page', createPage);
-    app.get('/api/website/:websiteId/page', findAllPagesForWebsite);
-    app.get('/api/page/:pageId', findPageById);
-    app.put('/api/page/:pageId', updatePage);
-    app.delete('/api/page/:pageId', deletePage);
-    app.put('/api/page/:pageId/updateWidgets', updateWidgets);
-    app.get('/api/page/:pageId/widgetOrder', getWidgetOrder);
-    app.put('/api/page/:pageId/widgetOrder', updateWidgetOrder);
+    app.post('/assignment/api/website/:websiteId/page', createPage);
+    app.get('/assignment/api/website/:websiteId/page', findAllPagesForWebsite);
+    app.get('/assignment/api/page/:pageId', findPageById);
+    app.put('/assignment/api/page/:pageId', updatePage);
+    app.delete('/assignment/api/page/:pageId', deletePage);
+    app.put('/assignment/api/page/:pageId/updateWidgets', updateWidgets);
+    app.get('/assignment/api/page/:pageId/widgetOrder', getWidgetOrder);
+    app.put('/assignment/api/page/:pageId/widgetOrder', updateWidgetOrder);
 
     function createPage(req, res) {
         var websiteId = req.params.websiteId;

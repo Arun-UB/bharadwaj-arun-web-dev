@@ -10,7 +10,7 @@
                 'data': '=',
             },
             restrict: 'E',
-            templateUrl: '../templates/message.html'
+            templateUrl: './templates/message.html'
         };
     }
 })();

@@ -2,11 +2,11 @@ module.exports = function (app, models) {
     'use strict';
     var userModel = models.userModel;
 
-    app.post('/api/user', createUser);
-    app.get('/api/user', getUser);
-    app.get('/api/user/:userId', findUserById);
-    app.put('/api/user/:userId', updateUser);
-    app.delete('/api/user/:userId', deleteUser);
+    app.post('/assignment/api/user', createUser);
+    app.get('/assignment/api/user', getUser);
+    app.get('/assignment/api/user/:userId', findUserById);
+    app.put('/assignment/api/user/:userId', updateUser);
+    app.delete('/assignment/api/user/:userId', deleteUser);
 
     function createUser(req, res) {
         var user = req.body;

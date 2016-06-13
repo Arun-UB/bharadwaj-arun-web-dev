@@ -40,11 +40,10 @@
         }
 
         function updateOrder(order) {
-            console.log(order);
             PageService
                 .updateWidgetOrder(vm.pageId, order)
                 .then(function () {
-                    console.log('Updated');
+                    // console.log('Updated');
                 });
         }
 

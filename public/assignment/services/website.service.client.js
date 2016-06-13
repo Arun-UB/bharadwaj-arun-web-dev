@@ -16,14 +16,14 @@
         return api;
 
         function updateWebsite(websiteId, userId, website) {
-            return $http.put('/api/user/' + userId + '/website/' + websiteId, website)
+            return $http.put('/assignment/api/user/' + userId + '/website/' + websiteId, website)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function deleteWebsite(websiteId, userId) {
-            return $http.delete('/api/user/' + userId + '/website/' + websiteId)
+            return $http.delete('/assignment/api/user/' + userId + '/website/' + websiteId)
                 .then(function (response) {
                     return response.data;
                 });
@@ -31,7 +31,7 @@
         }
 
         function createWebsite(userId, name, description) {
-            return $http.post('/api/user/' + userId + '/website',
+            return $http.post('/assignment/api/user/' + userId + '/website',
                 {name: name, description: description})
                 .then(function (response) {
                     return response.data;
@@ -39,14 +39,14 @@
         }
 
         function findWebsitesForUserId(userId) {
-            return $http.get('/api/user/' + userId + '/website')
+            return $http.get('/assignment/api/user/' + userId + '/website')
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function findWebsiteById(websiteId,userId){
-            return $http.get('/api/user/' + userId + '/website/' + websiteId)
+            return $http.get('/assignment/api/user/' + userId + '/website/' + websiteId)
                 .then(function (response) {
                     return response.data;
                 });

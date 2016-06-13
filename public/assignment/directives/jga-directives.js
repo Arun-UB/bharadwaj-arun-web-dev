@@ -18,9 +18,6 @@
                     var order = $(this).sortable('toArray');
                     end = ui.item.index();
                     scope.callback({order: order});
-                },
-                update: function (event, ui) {
-                    console.log($(element).sortable('serialize'));
                 }
             });
         }
