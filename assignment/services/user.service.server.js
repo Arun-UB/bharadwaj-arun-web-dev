@@ -3,27 +3,44 @@ module.exports = function (app, models) {
     var userModel = models.userModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var bcrypt = require('bcrypt-nodejs');
+
+    // var facebookConfig = {
+    //     clientID : /*process.env. FACEBOOK_APP_ID*/ ,
+    //     clientSecret : /*process.env. FACEBOOK_APP_SECRET*/ ,
+    //     callbackURL :'/assignment/api/auth/facebook/callback' /*process.env. FACEBOOK_CALLBACK_URL*/,
+    //     profileFields: ['id', 'emails', 'name']
+    // };
 
     app.post('/assignment/api/user', createUser);
     app.post('/assignment/api/register', register);
+    app.get('/assignment/api/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
     app.post('/assignment/api/login', passport.authenticate('local'), login);
+    app.get('/assignment/api/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/profile',
+            failureRedirect: '/assignment/#/login'
+        }));
     app.post('/assignment/api/logout', logout);
     app.get('/assignment/api/loggedIn', loggedIn);
+
     app.get('/assignment/api/user', getUser);
     app.get('/assignment/api/user/:userId', findUserById);
     app.put('/assignment/api/user/:userId', updateUser);
     app.delete('/assignment/api/user/:userId', deleteUser);
 
     passport.use(new LocalStrategy(localStrategy));
+    // passport.use(new FacebookStrategy(facebookConfig,facebookStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
     function localStrategy(username, password, done) {
 
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(function (user) {
-                if (user) {
+                if (user && bcrypt.compareSync(password, user.password)) {
                     done(null, user);
                 }
                 else {
@@ -33,6 +50,35 @@ module.exports = function (app, models) {
                 done(err);
             });
     }
+
+    // function facebookStrategy(token,refreshToken,profile,done) {
+    //     userModel
+    //         .findUserByFacebookId(profile.id)
+    //         .then(function (user) {
+    //             if (user) {
+    //                 done(null, user);
+    //             }
+    //             else {
+    //                 var userDetails = {};
+    //                 userDetails.username = profile.emails[0].value;
+    //                 userDetails.facebook = {id : profile.id , token: token};
+    //                 return userModel.createUser(userDetails);
+    //             }
+    //         }, function (err) {
+    //             done(err);
+    //         })
+    //         .then(function (user) {
+    //             req.login(user, function (err) {
+    //                 if (err) {
+    //                     res.status(400).send(err);
+    //                 } else {
+    //                     res.json(user);
+    //                 }
+    //             });
+    //         },function (err) {
+    //             done(err);
+    //         });
+    // }
 
     function serializeUser(user, done) {
         done(null, user);
@@ -49,14 +95,17 @@ module.exports = function (app, models) {
     }
 
     function register(req, res) {
-        var username = req.body.username;
+        var newUser = {};
+        newUser.username = req.body.username;
+        newUser.password = bcrypt.hashSync(req.body.password);
+
         userModel
-            .findUserByUsername(username)
+            .findUserByUsername(newUser.username)
             .then(function (user) {
                 if (user) {
                     return res.status(400).send('Username is taken');
                 } else {
-                    return userModel.createUser(req.body);
+                    return userModel.createUser(newUser);
                 }
             }, function (err) {
                 return res.status(400).send(err);
