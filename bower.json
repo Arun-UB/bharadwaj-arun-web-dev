@@ -9,6 +9,7 @@
   "homepage": "n",
   "private": true,
   "dependencies": {
-    "textAngular": "^1.5.1"
+    "textAngular": "^1.5.1",
+    "PACE": "pace#^1.0.2"
   }
 }
