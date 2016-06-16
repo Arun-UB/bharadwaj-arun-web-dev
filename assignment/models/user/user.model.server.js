@@ -8,6 +8,7 @@ module.exports = function () {
         createUser: createUser,
         findUserById: findUserById,
         findUserByCredentials: findUserByCredentials,
+        findUserByUsername: findUserByUsername,
         updateUser: updateUser,
         deleteUser: deleteUser
     };
@@ -33,7 +34,7 @@ module.exports = function () {
         return User.findOne({username: username, password: password},
             function (err, user) {
                 if (!user || err) {
-                    return new Error('User not found');
+                    return new Error('NoSuchAccountError');
                 }
                 else {
                     return user;
@@ -47,5 +48,9 @@ module.exports = function () {
 
     function createUser(user) {
         return User.create(user);
+    }
+
+    function findUserByUsername(username) {
+        return User.findOne({username: username});
     }
 };

@@ -4,11 +4,15 @@
         .module('WebAppMaker')
         .factory('UserService', UserService);
 
-    function UserService($http){
+    function UserService($http, $location) {
 
         var api ={
             createUser: createUser,
+            register: register,
             findUserByCredentials : findUserByCredentials,
+            login: login,
+            logout: logout,
+            loggedIn: loggedIn,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
@@ -25,13 +29,36 @@
                 });
         }
 
+        function login(username, password) {
+            return $http.post('/assignment/api/login', {username: username, password: password})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            return $http.post('/assignment/api/logout');
+
+        }
+
+        function loggedIn() {
+            return $http.get('/assignment/api/loggedIn');
+        }
+
+        function register(user) {
+            return $http.post('/assignment/api/register', user)
+                .then(function (response) {
+                    return response.data;
+                }, function (err) {
+                    return err.data;
+                });
+        }
         function findUserByCredentials(username,password) {
             return $http.get('/assignment/api/user', {params: {username: username, password: password}})
                 .then(function (response) {
                     return response.data;
                 });
         }
-
         function findUserById(id) {
             return $http.get('/assignment/api/user/' + id)
                 .then(function (response){

@@ -1,13 +1,87 @@
 module.exports = function (app, models) {
     'use strict';
     var userModel = models.userModel;
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local');
 
     app.post('/assignment/api/user', createUser);
+    app.post('/assignment/api/register', register);
+    app.post('/assignment/api/login', passport.authenticate('local'), login);
+    app.post('/assignment/api/logout', logout);
+    app.get('/assignment/api/loggedIn', loggedIn);
     app.get('/assignment/api/user', getUser);
     app.get('/assignment/api/user/:userId', findUserById);
     app.put('/assignment/api/user/:userId', updateUser);
     app.delete('/assignment/api/user/:userId', deleteUser);
 
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+
+        userModel
+            .findUserByCredentials(username, password)
+            .then(function (user) {
+                if (user) {
+                    done(null, user);
+                }
+                else {
+                    done(null, false);
+                }
+            }, function (err) {
+                done(err);
+            });
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(function (user) {
+                done(null, user);
+            }, function (err) {
+                done(err, null);
+            });
+    }
+
+    function register(req, res) {
+        var username = req.body.username;
+        userModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                if (user) {
+                    return res.status(400).send('Username is taken');
+                } else {
+                    return userModel.createUser(req.body);
+                }
+            }, function (err) {
+                return res.status(400).send(err);
+            })
+            .then(function (user) {
+                if (user) {
+                    req.login(user, function (err) {
+                        if (err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
+            });
+    }
+
+    function loggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        }
+        else {
+            res.json(null);
+        }
+    }
     function createUser(req, res) {
         var user = req.body;
         userModel
@@ -22,6 +96,15 @@ module.exports = function (app, models) {
             );
     }
 
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.sendStatus(200);
+    }
     function deleteUser(req, res) {
         var id = req.params.userId;
         userModel
@@ -58,32 +141,6 @@ module.exports = function (app, models) {
 
     function getUser(req, res) {
         var username = req.query['username'];
-        var password = req.query['password'];
-        if(username && password) {
-            findUserByCredentials(username, password, res);
-        } else if(username) {
-            findUserByUsername(username, res);
-        } else {
-            res.json();
-        }
-    }
-
-    function findUserByCredentials(username, password, res) {
-        userModel
-            .findUserByCredentials(username, password)
-            .then(function (user) {
-                if (!user) {
-                    return res.sendStatus(404);
-                }
-                else {
-                    return res.json(user);
-                }
-            }, function () {
-                return res.sendStatus(404);
-            });
-    }
-
-    function findUserByUsername(username, res) {
         userModel
             .findUserByUsername(username)
             .then(function (user) {

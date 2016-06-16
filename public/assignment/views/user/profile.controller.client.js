@@ -14,6 +14,7 @@
             vm.errorMsg = null;
             vm.msg = null;
             vm.updateUser = updateUser;
+            vm.logout = logout;
 
             function init(){
                  UserService.findUserById(id)
@@ -35,6 +36,14 @@
                     },function () {
                         vm.msg = {type: 'error', text: 'Unable to save changes'};
                 });
+            }
+
+            function logout() {
+                UserService.logout()
+                    .then(function () {
+                        $location.url('/login');
+                    });
+                
             }
         }
 

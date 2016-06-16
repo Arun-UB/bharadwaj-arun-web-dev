@@ -24,9 +24,10 @@
                     vm.msg = {type: 'error', text: 'Passwords don\'t match.'};
                 }
                 else {
-                UserService.createUser(user)
-                    .then(function (id) {
-                        $location.url('/profile/' + id);
+                    UserService
+                        .register(user)
+                        .then(function (user) {
+                            $location.url('/profile/' + user._id);
                     }, function (err) {
                         vm.msg = {type: 'error', text: err.data};
                     });
