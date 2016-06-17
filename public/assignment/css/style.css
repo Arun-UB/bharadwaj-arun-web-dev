@@ -186,6 +186,13 @@ a.navbar-brand {
     height: 100%;
 }
 
+.f_icon {
+    width: 25px;
+}
+
+.f_btn {
+    background-color: #3c5a99;
+}
 /*Styles for PACE progress bar*/
 .pace {
     -webkit-pointer-events: none;

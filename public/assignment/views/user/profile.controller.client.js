@@ -5,12 +5,11 @@
             .controller('ProfileController', ProfileController);
 
 
-
-        function ProfileController(UserService,$location,$routeParams) {
+        function ProfileController(UserService, $location, $routeParams, $rootScope) {
 
             //View Model
             var vm =this;
-            var id = $routeParams.id;
+            var id = $rootScope.currentUser._id;
             vm.errorMsg = null;
             vm.msg = null;
             vm.updateUser = updateUser;

@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(session({
     secret: process.env.SESSION_SECRET,   // Replace with env variable
     resave: false,
