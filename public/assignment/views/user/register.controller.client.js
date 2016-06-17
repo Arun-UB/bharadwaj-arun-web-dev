@@ -27,7 +27,7 @@
                     UserService
                         .register(user)
                         .then(function (user) {
-                            $location.url('/profile/' + user._id);
+                            $location.url('/profile/');
                     }, function (err) {
                         vm.msg = {type: 'error', text: err.data};
                     });

@@ -7,9 +7,9 @@ module.exports = function (app, models) {
     var bcrypt = require('bcrypt-nodejs');
 
     var facebookConfig = {
-        clientID: /*process.env. FACEBOOK_APP_ID*/ '263719550660008',
-        clientSecret: /*process.env. FACEBOOK_APP_SECRET*/'bb448ccd344b5e34b8e9bed8baeb7ea4',
-        callbackURL: '/assignment/api/auth/facebook/callback' /*process.env. FACEBOOK_CALLBACK_URL*/,
+        clientID: process.env.FACEBOOK_APP_ID,
+        clientSecret: process.env.FACEBOOK_APP_SECRET,
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL,
         profileFields: ['id', 'emails', 'name']
     };
 
