@@ -6,11 +6,8 @@
 
     function msg() {
         return{
-            scope:{
-                'id': '=',
-            },
             restrict: 'E',
-            templateUrl: '../templates/profile.html'
+            templateUrl: './templates/profile.html'
         };
     }
 })();
