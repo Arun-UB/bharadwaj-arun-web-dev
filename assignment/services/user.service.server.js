@@ -60,7 +60,7 @@ module.exports = function (app, models) {
                 }
                 else {
                     var userDetails = {};
-                    userDetails.username = profile.displayName.replace(/ /g, '');
+                    userDetails.username = profile.name.givenName || 'Anon';
                     userDetails.facebook = {id: profile.id, token: token};
                     return userModel.createUser(userDetails);
                 }

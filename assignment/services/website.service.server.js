@@ -1,5 +1,6 @@
 module.exports = function (app, models) {
     'use strict';
+    var UserModel = models.userModel;
     var WebsiteModel = models.websiteModel;
 
     app.post('/assignment/api/user/:userId/website', createWebsite);
@@ -16,9 +17,24 @@ module.exports = function (app, models) {
         WebsiteModel
             .createWebsite(userId, website)
             .then(function (website) {
-                return res.status(201).send(website);
+                return website;
             }, function (error) {
                 return res.status(400).send(error);
+            })
+            .then(function (website) {
+                if (website) {
+                    UserModel
+                        .findUserById(userId)
+                        .then(function (user) {
+                            user.websites.push(website._id);
+                            return user.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function (user) {
+                return res.sendStatus(201);
             });
     }
 
@@ -60,10 +76,25 @@ module.exports = function (app, models) {
         var id = req.params.websiteId;
         WebsiteModel
             .deleteWebsite(id)
-            .then(function () {
-                return res.sendStatus(204);
+            .then(function (website) {
+                return website;
             }, function (error) {
                 res.sendStatus(404).send(error);
+            })
+            .then(function (website) {
+                if (website.result.n) {
+                    return UserModel
+                        .findUserById(req.user._id)
+                        .then(function (user) {
+                            user.websites.pull(id);
+                            return user.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function (user) {
+                return res.sendStatus(200);
             });
     }
 };
