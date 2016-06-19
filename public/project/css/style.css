@@ -12,3 +12,105 @@ html, body {
     margin: 0px;
     padding: 0px;
 }
+
+body {
+    padding-top: 70px;
+    background-color: #f8f8f8;
+}
+
+.sign-in {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.center-block {
+    display: block;
+    text-align: center;
+}
+
+.top-right {
+    margin-right: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+    /*font-weight: bold;*/
+    float: right;
+    right: 0;
+}
+
+.top-right-wrapper {
+    margin-right: -30px;
+}
+
+a.top-right {
+    text-decoration: none;
+}
+
+.top-left {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 22px;
+    color: gray;
+}
+
+.profile {
+    font-size: 25px;
+    color: gray;
+}
+
+.profile-img {
+    font-size: 80px;
+    color: lightgray;
+}
+
+.top-left {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 22px;
+    color: gray;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.profile-head {
+    width: 50%;
+}
+
+/*Profile view*/
+
+.profile-img {
+    display: block;
+    height: 110px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 100%;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.profile-text {
+    margin-top: -3.5em;
+    padding: 4em 1.5em 1.5em 1.5em;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+}
+
+.profile-name {
+    margin-right: -1em;
+    margin-bottom: .75em;
+    margin-left: -1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+}
+
+.profile-title {
+    color: #ccc;
+}
+
+@media screen and (max-width: 425px) {
+    .profile-head {
+        width: 100%;
+    }
+}

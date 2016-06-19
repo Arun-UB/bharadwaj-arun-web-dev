@@ -1,5 +1,5 @@
 (function () {
     'use strict';
     angular
-        .module('Musix', ['ngRoute', 'ngMaterial']);
+        .module('Musix', ['ngRoute']);
 })();
