@@ -22,7 +22,7 @@ module.exports = function (app, models) {
             successRedirect: '/assignment/#/profile',
             failureRedirect: '/assignment/#/login'
         }));
-    app.post('/assignment/api/logout', logout);
+    app.post('/assignment/api/logout', logout); 
     app.get('/assignment/api/loggedIn', loggedIn);
 
     app.get('/assignment/api/user', getUser);
@@ -60,7 +60,7 @@ module.exports = function (app, models) {
                 }
                 else {
                     var userDetails = {};
-                    userDetails.username = profile.emails[0].value;
+                    userDetails.username = profile.displayName.replace(/ /g, '');
                     userDetails.facebook = {id: profile.id, token: token};
                     return userModel.createUser(userDetails);
                 }
