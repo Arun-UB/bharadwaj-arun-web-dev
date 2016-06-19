@@ -34,3 +34,6 @@ node_modules
 
 # Webstorm files
 .idea
+
+#bower componenets
+bower_components
