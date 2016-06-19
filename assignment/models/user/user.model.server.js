@@ -20,6 +20,7 @@ module.exports = function () {
         return User
             .update({_id: userId}, {
                 $set: {
+                    username: user.username,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email
