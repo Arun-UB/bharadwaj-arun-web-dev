@@ -155,18 +155,12 @@ a.navbar-brand {
     text-transform: capitalize;
 }
 
-/*@media (min-width:768px) {*/
-/*.top-right{*/
-/*position: relative;*/
-/*float: right;*/
-/*}*/
-/*.top-right-wrapper {*/
-/*display: inline-block;*/
-/*position: absolute;*/
-/*float: right;*/
-/*margin-left: auto;*/
-/*}*/
-/*}*/
+@media (min-width: 768px) {
+
+    .top-right-wrapper {
+        margin-right: -20px;
+    }
+}
 
 .navbar-header {
     width: 100%;
