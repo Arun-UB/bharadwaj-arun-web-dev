@@ -3,11 +3,6 @@
         angular
             .module('WebAppMaker')
             .factory('PageService', PageService);
-        var pages =[
-            {'_id': '321', 'name': 'Post 1', 'websiteId': '456'},
-            {'_id': '432', 'name': 'Post 2', 'websiteId': '456'},
-            {'_id': '543', 'name': 'Post 3', 'websiteId': '456'}
-        ]; 
 
         function PageService($http) {
             var api = {
@@ -52,8 +47,14 @@
                     });
             }
 
-            function deletePage(pageId) {
-                return $http.delete('/assignment/api/page/' + pageId)
+            function deletePage(pageId, websiteId) {
+                var config = {
+                    method: 'DELETE',
+                    url: '/assignment/api/page/' + pageId,
+                    headers: {'Content-Type': 'application/json;charset=utf-8'},
+                    data: {websiteId: websiteId}
+                };
+                return $http(config)
                     .then(function (response) {
                         return response.data;
                     });

@@ -1,6 +1,9 @@
 module.exports = function (app, models) {
 
     var PageModel = models.pageModel;
+    var WebsiteModel = models.websiteModel;
+
+
     app.post('/assignment/api/website/:websiteId/page', createPage);
     app.get('/assignment/api/website/:websiteId/page', findAllPagesForWebsite);
     app.get('/assignment/api/page/:pageId', findPageById);
@@ -16,8 +19,26 @@ module.exports = function (app, models) {
         PageModel
             .createPage(websiteId, page)
             .then(function (page) {
-                return res.status(201).send(page);
+                return page;
             }, function (error) {
+                return res.status(400);
+            })
+            .then(function (page) {
+                if (page) {
+                    WebsiteModel
+                        .findWebsiteById(websiteId)
+                        .then(function (website) {
+                            website.pages.push(page._id);
+                            return website.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function () {
+                return res.sendStatus(201);
+            }, function (error) {
+                console.error(error);
                 return res.status(400);
             });
     }
@@ -58,12 +79,31 @@ module.exports = function (app, models) {
 
     function deletePage(req, res) {
         var id = req.params.pageId;
+        var websiteId = req.body.websiteId;
         PageModel
             .deletePage(id)
-            .then(function () {
-                return res.sendStatus(204);
+            .then(function (page) {
+                return page;
             }, function () {
                 return res.status(404).send('Page not found');
+            })
+            .then(function (page) {
+                if (page.result.n) {
+                    WebsiteModel
+                        .findWebsiteById(websiteId)
+                        .then(function (website) {
+                            website.pages.pull(id);
+                            return website.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function () {
+                return res.sendStatus(201);
+            }, function (error) {
+                console.error(error);
+                return res.status(400);
             });
     }
 

@@ -40,7 +40,7 @@
         function deletePage(pageId) {
             var choice = $window.confirm('Are you sure you want to delete?');
             if (choice) {
-                PageService.deletePage(pageId)
+                PageService.deletePage(pageId, vm.websiteId)
                     .then(function () {
                             $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
                         },
