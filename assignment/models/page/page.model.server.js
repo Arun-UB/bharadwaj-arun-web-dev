@@ -46,8 +46,7 @@ module.exports = function () {
         return Page
             .update({_id: id}, {
                 $push: {
-                    widgetsOrder: widgetId,
-                    widgets: widgetId
+                    widgetsOrder: widgetId
                 }
             });
     }

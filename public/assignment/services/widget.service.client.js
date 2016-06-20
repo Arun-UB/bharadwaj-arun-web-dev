@@ -45,9 +45,15 @@
                     return response.data;
                 });
         }
-        
-        function deleteWidget(widgetId){
-            return $http.delete('/assignment/api/widget/' + widgetId)
+
+        function deleteWidget(widgetId, pageId) {
+            var config = {
+                method: 'DELETE',
+                url: '/assignment/api/widget/' + widgetId,
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                data: {pageId: pageId}
+            };
+            return $http(config)
                 .then(function (response) {
                     return response.data;
                 });

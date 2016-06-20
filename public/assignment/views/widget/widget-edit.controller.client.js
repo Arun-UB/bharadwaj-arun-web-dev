@@ -47,7 +47,7 @@
         function deleteWidget() {
             var choice = $window.confirm('Are you sure you want to delete?');
             if (choice) {
-                WidgetService.deleteWidget(vm.widgetId)
+                WidgetService.deleteWidget(vm.widgetId, vm.pageId)
                     .then(function () {
                         $location.url('/user/' + vm.userId + '/website/' +
                             vm.websiteId + '/page/' + vm.pageId + '/widget');

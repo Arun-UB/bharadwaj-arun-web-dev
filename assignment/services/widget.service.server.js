@@ -6,6 +6,7 @@ module.exports = function (app, models) {
     var atob = require('atob');
 
     var WidgetModel = models.widgetModel;
+    var PageModel = models.pageModel;
 
     app.post('/assignment/api/page/:pageId/widget', createWidget);
     app.get('/assignment/api/page/:pageId/widget', findAllWidgetsForPage);
@@ -20,10 +21,28 @@ module.exports = function (app, models) {
         WidgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
-                return res.status(201).send(widget);
+                return widget;
             }, function (error) {
                 console.log(error);
                 return res.sendStatus(400);
+            })
+            .then(function (widget) {
+                if (widget) {
+                    PageModel
+                        .findPageById(pageId)
+                        .then(function (page) {
+                            page.widgets.push(widget._id);
+                            return page.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function () {
+                return res.sendStatus(201);
+            }, function (error) {
+                console.error(error);
+                return res.status(400);
             });
     }
 
@@ -72,7 +91,7 @@ module.exports = function (app, models) {
             if (err) {
                 return res.status(500).send(err);
             }
-            return res.send(req.headers.origin + "/assignment/uploads/" + fName);
+            return res.send(req.headers.origin + '/assignment/uploads/' + fName);
         });
     }
 
@@ -92,12 +111,31 @@ module.exports = function (app, models) {
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
+        var pageId = req.body.pageId;
         WidgetModel
             .deleteWidget(widgetId)
             .then(function (widget) {
-                return res.sendStatus(204);
+                return widget;
             }, function () {
                 return res.status(404).send('Widget not found');
+            })
+            .then(function (widget) {
+                if (widget.result.n) {
+                    PageModel
+                        .findPageById(pageId)
+                        .then(function (page) {
+                            page.widgets.pull(widgetId);
+                            return page.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function () {
+                return res.sendStatus(204);
+            }, function (error) {
+                console.error(error);
+                return res.status(400);
             });
     }
 

@@ -100,7 +100,7 @@ module.exports = function (app, models) {
                 }
             })
             .then(function () {
-                return res.sendStatus(201);
+                return res.sendStatus(204);
             }, function (error) {
                 console.error(error);
                 return res.status(400);
