@@ -109,8 +109,67 @@ a.top-right {
     color: #ccc;
 }
 
+.comment-input {
+    padding: 0 10px 0 10px;
+}
+
+.comment-img {
+    border-radius: 50%;
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+}
+
+.post-fav {
+    padding-top: 10px;
+}
+
+.post-fav:hover {
+    color: red;
+}
+
+.post {
+    padding: 10px 0 10px 0;
+}
+
+.post-time {
+    color: #c7c7c7;
+}
+
+.feed {
+    width: 600px;
+    margin: auto;
+}
+
 @media screen and (max-width: 425px) {
     .profile-head {
         width: 100%;
     }
+
+    .feed {
+        width: 100%;
+    }
+}
+
+.youtubeWidget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtubeWidget > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.comment-user {
+    font-weight: bold;
+}
+
+.comment-list {
+    margin-left: -40px;
+    list-style: none;
 }
