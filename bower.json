@@ -11,6 +11,7 @@
   "dependencies": {
     "textAngular": "^1.5.1",
     "PACE": "pace#^1.0.2",
-    "angular-material": "^1.0.9"
+    "angular-material": "^1.0.9",
+    "angular-youtube-mb": "^1.2.0"
   }
 }

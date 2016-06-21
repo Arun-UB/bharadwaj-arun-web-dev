@@ -1,5 +1,5 @@
 (function () {
     'use strict';
     angular
-        .module('Musix', ['ngRoute']);
+        .module('Musix', ['ngRoute', 'youtube-embed']);
 })();

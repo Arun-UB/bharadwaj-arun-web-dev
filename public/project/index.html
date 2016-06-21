@@ -31,7 +31,7 @@
             <a class="navbar-brand" href="">Musix</a>
             <div class="top-right-wrapper">
                 <profile></profile>
-                <a href="#/user/{{model.userId}}/website/new"> <i
+                <a href="#/playlist"> <i
                         class="material-icons profile top-right">library_music</i></a>
             </div>
 
@@ -44,6 +44,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 <script src="/bower_components/PACE/pace.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
 
 <!-- inject:js -->
 <script src="app.js"></script>
@@ -51,6 +53,7 @@
 <script src="profile.controller.js"></script>
 <script src="directives/back.js"></script>
 <script src="directives/profile.js"></script>
+<script src="player/playlist.controller.js"></script>
 <script src="user/login.controller.js"></script>
 <script src="user/register.controller.js"></script>
 <!--endinject-->

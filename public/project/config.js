@@ -30,6 +30,11 @@
                 templateUrl: 'user/profile.edit.html',
                 // controller: 'ProfileController',
                 controllerAs: 'model'
+            })
+            .when('/playlist/', {
+                templateUrl: 'player/playlist.view.html',
+                controller: 'PlayListController',
+                controllerAs: 'model'
             });
 
     }
