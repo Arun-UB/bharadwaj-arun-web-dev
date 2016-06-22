@@ -28,7 +28,11 @@
 
 
                         </div>
-                        <i class="material-icons fav">favorite</i>
+
+                        <i ng-if="posts.likes[curretUser._id]" ng-click="model.like(post._id,false)"
+                           class="material-icons post-fav">favorite</i>
+                        <i ng-if="!posts.likes[curretUser._id]" ng-click="model.like(post._id,true)"
+                           class="material-icons post-fav">favorite_border</i>
                     </div>
                     <div class="clearfix"></div>
                 </div>

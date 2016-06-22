@@ -9,6 +9,7 @@ module.exports = function () {
         createPost: createPost,
         findPostsForUserId: findPostsForUserId,
         findPostById: findPostById,
+        likePost: likePost
         // updateWebsite: updateWebsite,
         // deleteWebsite: deleteWebsite
     };
@@ -31,6 +32,25 @@ module.exports = function () {
             .findById(id);
     }
 
+    function likePost(userId, postId, value) {
+        if (value) {
+            return Post
+                .update({_id: postId}, {
+                    $push: {
+                        likes: userId
+                    }
+                });
+        }
+        else {
+            return Post
+                .update({_id: postId}, {
+                    $pull: {
+                        likes: userId
+                    }
+                });
+        }
+
+    }
     /*function updateWebsite(id, website) {
      return Website
      .update({_id: id}, {

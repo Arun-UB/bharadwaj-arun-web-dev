@@ -7,7 +7,8 @@
     function PostService($http) {
         var api = {
             createPost: createPost,
-            findPostForUser: findPostForUser
+            findPostForUser: findPostForUser,
+            likePost: likePost
         };
 
         return api;
@@ -23,6 +24,16 @@
 
         function findPostForUser(userId) {
             return $http.get('/project/api/user/' + userId + '/post', userId)
+                .then(function (response) {
+                    return response.data;
+                }, function (err) {
+                    return err.body;
+                });
+        }
+
+
+        function likePost(userId, postId, value) {
+            return $http.put('/project/api/user/' + userId + '/post/' + postId + '/like', {value: value})
                 .then(function (response) {
                     return response.data;
                 }, function (err) {

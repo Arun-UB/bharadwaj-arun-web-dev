@@ -23,6 +23,7 @@
         vm.createPost = createPost;
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;
+        vm.like = like;
 
         function createPost(post) {
             post._user = id;
@@ -32,12 +33,19 @@
 
             PostService.createPost(post)
                 .then(function (post) {
-                    init();
+                    vm.msg = {type: 'success'};
+                    // init();
                 }, function (err) {
                     vm.msg = {type: 'error', text: 'Error creating post,try again'};
                 });
         }
 
+        function like(postId, value) {
+            PostService.likePost(id, postId, value)
+                .then(function (post) {
+                    init();
+                });
+        }
 
         function getSafeUrl(yUrl) {
             var urlParts = yUrl.split('/');

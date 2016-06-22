@@ -5,7 +5,7 @@ module.exports = function (app, models) {
     app.post('/project/api/user/:userId/post', createPost);
     app.get('/project/api/user/:userId/post', findPostsForUser);
     // app.get('/project/api/user/:userId/website/:websiteId', findWebsiteById);
-    // app.put('/project/api/user/:userId/website/:websiteId', updateWebsite);
+    app.put('/project/api/user/:userId/post/:postId/like', likePost);
     // app.delete('/project/api/user/:userId/website/:websiteId', deleteWebsite);
 
     function createPost(req, res) {
@@ -32,6 +32,18 @@ module.exports = function (app, models) {
             });
     }
 
+    function likePost(req, res) {
+        var userId = req.params.userId;
+        var postId = req.params.postId;
+        var value = req.body.value;
+        PostModel
+            .likePost(userId, postId, value)
+            .then(function () {
+                return res.sendStatus(200);
+            }, function () {
+                return res.sendStatus(400);
+            });
+    }
     /*
      function findWebsiteById(req, res) {
      var id = req.params.websiteId;
