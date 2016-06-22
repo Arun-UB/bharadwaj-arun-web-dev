@@ -1,1 +1,44 @@
 <navbar user="$rootScope.currentUser"></navbar>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <textarea ng-model="vm.post.text" class="form-control" rows="3" placeholder="Share new music!"></textarea>
+            <div class="post-add">
+                <button class="btn btn-success pull-right" ng-click="model.createPost(vm.post)">Post</button>
+            </div>
+        </div>
+    </div>
+    <div class="feed">
+        <div ng-repeat="post in model.posts" class="post">
+            <div class="card">
+                <div class="card-header">
+                    <img src="./images/profile.svg" class="comment-img">
+                    &nbsp;<a href="#/profile/{{post._user._id}}">
+                    <strong>{{post._user.username}}</strong></a>
+                    <div class="pull-right post-time">
+                        {{model.getDate(post.dateCreated)}}
+                    </div>
+                </div>
+                <div class="card-block">
+                    <p class="card-text">{{post.text}}</p>
+                    <div class="card-text">
+                        <div class="youtubeWidget">
+                            <iframe width="560" height="315" ng-src="{{model.getSafeUrl(post.link)}}"
+                                    frameborder="0" allowfullscreen></iframe>
+
+
+                        </div>
+                        <i class="material-icons fav">favorite</i>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row comment-input">
+                        <input type="text" class="form-control col-md-12" placeholder="Comment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

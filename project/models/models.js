@@ -13,7 +13,7 @@ module.exports = function () {
 
     var models = {
         userModel: require('./user/user.model')(),
-        // websiteModel: require('./website/website.model.server')(),
+        postModel: require('./post/post.model')(),
         // pageModel: require('./page/page.model.server')(),
         // widgetModel: require('./widget/widget.model.server')()
     };

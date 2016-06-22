@@ -4,7 +4,7 @@ module.exports = function (app) {
 
 
     require('./services/user.service.server.js')(app, models);
-    // require('./services/website.service.server')(app, models);
+    require('./services/post.service.server')(app, models);
     // require('./services/widget.service.server.js')(app, models);
     // require('./services/page.service.server')(app, models);
 

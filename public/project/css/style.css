@@ -245,3 +245,7 @@ a.top-right {
     height: 100%;
     border: 0;
 }
+
+.post-add {
+    padding-top: 20px;
+}
