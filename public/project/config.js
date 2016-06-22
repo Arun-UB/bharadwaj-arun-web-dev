@@ -6,11 +6,15 @@
     function Config($routeProvider) {
 
         $routeProvider
-        // .when('/', {
-        //     templateUrl: 'index.html',
-        //     controller: 'LoginController',
-        //     controllerAs: 'model'
-        // })
+            .when('/', {
+                templateUrl: 'user/home.html',
+                controller: 'HomeController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+
+            })
             .when('/login', {
                 templateUrl: 'user/login.html',
                 controller: 'LoginController',
@@ -21,21 +25,49 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
-            .when('/profile/:name', {
+            .when('/profile/', {
                 templateUrl: 'user/profile.html',
-                // controller: 'ProfileController',
-                controllerAs: 'model'
+                controller: 'ProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
-            .when('/profile/:name/edit', {
+            .when('/profile/edit', {
                 templateUrl: 'user/profile.edit.html',
-                // controller: 'ProfileController',
-                controllerAs: 'model'
+                controller: 'EditProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when('/playlist/', {
                 templateUrl: 'player/playlist.view.html',
                 controller: 'PlayListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             });
+        function checkLoggedIn($location, $rootScope, $q, UserService) {
+            var deferred = $q.defer();
+            UserService
+                .loggedIn()
+                .then(function (response) {
+                    var user = response.data;
+                    if (user) {
+                        $rootScope.currentUser = user;
+                        deferred.resolve();
+                    } else {
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                        $location.url('/login');
+                    }
+                }, function (err) {
+                    $location.url('/login');
+                });
+            return deferred.promise;
 
+        }
     }
 })();

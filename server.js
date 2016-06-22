@@ -23,7 +23,8 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public/'));
 app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));
 
-require('./assignment/app')(app);
+require('./project/app')(app);
+// require('./assignment/app')(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;

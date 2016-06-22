@@ -24,25 +24,14 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="">Musix</a>
-            <div class="top-right-wrapper">
-                <profile></profile>
-                <a href="#/playlist"> <i
-                        class="material-icons profile top-right">library_music</i></a>
-            </div>
-
-        </div>
-    </div>
-</nav>
 <div ng-view>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+
 <script src="/bower_components/PACE/pace.min.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
@@ -50,12 +39,18 @@
 <!-- inject:js -->
 <script src="app.js"></script>
 <script src="config.js"></script>
-<script src="profile.controller.js"></script>
 <script src="directives/back.js"></script>
+<script src="directives/follow.js"></script>
+<script src="directives/navbar.js"></script>
+<script src="directives/profile.card.js"></script>
 <script src="directives/profile.js"></script>
 <script src="player/playlist.controller.js"></script>
+<script src="user/edit.profile.controller.js"></script>
+<script src="user/home.controller.js"></script>
 <script src="user/login.controller.js"></script>
+<script src="user/profile.controller.js"></script>
 <script src="user/register.controller.js"></script>
+<script src="user/user.service.client.js"></script>
 <!--endinject-->
 </body>
 </html>

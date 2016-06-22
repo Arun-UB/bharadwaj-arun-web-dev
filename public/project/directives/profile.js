@@ -2,9 +2,9 @@
     'use strict';
     angular
         .module('Musix')
-        .directive('profile', msg);
+        .directive('profile', profile);
 
-    function msg() {
+    function profile() {
         return {
             restrict: 'E',
             templateUrl: './templates/profile.html'

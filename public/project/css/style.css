@@ -18,6 +18,30 @@ body {
     background-color: #f8f8f8;
 }
 
+/*Styles for PACE progress bar*/
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #29d;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
+}
+
 .sign-in {
     max-width: 330px;
     padding: 15px;
@@ -41,6 +65,18 @@ body {
 .top-right-wrapper {
     margin-right: -30px;
 }
+
+@media (min-width: 768px) {
+
+    .top-right-wrapper {
+        margin-right: -20px;
+    }
+}
+
+.navbar-header {
+    width: 100%;
+}
+
 
 a.top-right {
     text-decoration: none;
@@ -75,7 +111,7 @@ a.top-right {
 }
 
 .profile-head {
-    width: 50%;
+    width: 600px;
 }
 
 /*Profile view*/
@@ -109,6 +145,18 @@ a.top-right {
     color: #ccc;
 }
 
+.profile-options {
+    margin-top: -48px;
+}
+
+#profile-options-dropdown {
+    cursor: pointer;
+}
+
+.profile-follow {
+    margin-top: -40px;
+    margin-right: 10px;
+}
 .comment-input {
     padding: 0 10px 0 10px;
 }
@@ -141,7 +189,7 @@ a.top-right {
     margin: auto;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 600px) {
     .profile-head {
         width: 100%;
     }
