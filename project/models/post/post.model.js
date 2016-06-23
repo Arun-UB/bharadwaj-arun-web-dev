@@ -9,9 +9,8 @@ module.exports = function () {
         createPost: createPost,
         findPostsForUserId: findPostsForUserId,
         findPostById: findPostById,
-        likePost: likePost
-        // updateWebsite: updateWebsite,
-        // deleteWebsite: deleteWebsite
+        likePost: likePost,
+        deletePost: deletePost
     };
     return api;
 
@@ -23,13 +22,15 @@ module.exports = function () {
     function findPostsForUserId(userId) {
         return Post
             .find({_user: userId})
-            .populate('_user', 'username');
+            .populate('_user', 'username')
+            .sort('-dateCreated');
 
     }
 
     function findPostById(id) {
         return Post
-            .findById(id);
+            .findById(id)
+            .populate('_user', 'username');
     }
 
     function likePost(userId, postId, value) {
@@ -51,6 +52,7 @@ module.exports = function () {
         }
 
     }
+
     /*function updateWebsite(id, website) {
      return Website
      .update({_id: id}, {
@@ -60,8 +62,8 @@ module.exports = function () {
      }
      });
      }
-
-     function deleteWebsite(id) {
-     return Website.remove({_id: id});
-     }*/
+     */
+    function deletePost(id) {
+        return Post.remove({_id: id});
+    }
 };

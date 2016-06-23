@@ -8,13 +8,15 @@
         var api = {
             createPost: createPost,
             findPostForUser: findPostForUser,
-            likePost: likePost
+            findPostById: findPostById,
+            likePost: likePost,
+            deletePost: deletePost
         };
 
         return api;
 
-        function createPost(userId, post) {
-            return $http.post('/project/api/user/' + userId + '/post', {post: post})
+        function createPost(userId, newPost) {
+            return $http.post('/project/api/user/' + userId + '/post', {newPost: newPost})
                 .then(function (response) {
                     return response.data;
                 }, function (err) {
@@ -31,7 +33,14 @@
                 });
         }
 
-
+        function findPostById(userId, postId) {
+            return $http.get('/project/api/user/' + userId + '/post/' + postId)
+                .then(function (response) {
+                    return response.data;
+                }, function (err) {
+                    return err.body;
+                });
+        }
         function likePost(userId, postId, value) {
             return $http.put('/project/api/user/' + userId + '/post/' + postId + '/like', {value: value})
                 .then(function (response) {
@@ -39,6 +48,14 @@
                 }, function (err) {
                     return err.body;
                 });
+        }
+
+        function deletePost(postId, userId) {
+            return $http.delete('/project/api/user/' + userId + '/post/' + postId)
+                .then(function (response) {
+                    return response.data;
+                });
+
         }
     }
 })();

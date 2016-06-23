@@ -9,15 +9,23 @@
         </div>
     </div>
     <div class="feed">
-        <div ng-repeat="post in model.posts" class="post">
+        <div ng-repeat="post in model.posts | orderBy:'-dateCreated'" class="post">
             <div class="card">
                 <div class="card-header">
                     <img src="./images/profile.svg" class="comment-img">
                     &nbsp;<a href="#/profile/{{post._user._id}}">
                     <strong>{{post._user.username}}</strong></a>
+                    <div class="dropdown pull-right post-options">
+                        <i class="dropdown-toggle material-icons" id="post-options-dropdown" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="true">more_vert</i>
+                        <ul class="dropdown-menu" aria-labelledby="post-options-dropdown">
+                            <li><a href="" ng-click="model.deletePost(post._id)">Delete</a></li>
+                        </ul>
+                    </div>
                     <div class="pull-right post-time">
                         {{model.getDate(post.dateCreated)}}
                     </div>
+
                 </div>
                 <div class="card-block">
                     <p class="card-text">{{post.text}}</p>
@@ -26,12 +34,11 @@
                             <iframe width="560" height="315" ng-src="{{model.getSafeUrl(post.link)}}"
                                     frameborder="0" allowfullscreen></iframe>
 
-
                         </div>
 
-                        <i ng-if="posts.likes[curretUser._id]" ng-click="model.like(post._id,false)"
+                        <i ng-if="post.likes.indexOf(curretUser._id) >=0" ng-click="model.like(post._id,false)"
                            class="material-icons post-fav">favorite</i>
-                        <i ng-if="!posts.likes[curretUser._id]" ng-click="model.like(post._id,true)"
+                        <i ng-if="post.likes.indexOf(curretUser._id) == -1" ng-click="model.like(post._id,true)"
                            class="material-icons post-fav">favorite_border</i>
                     </div>
                     <div class="clearfix"></div>

@@ -185,6 +185,9 @@ a.top-right {
     color: #c7c7c7;
 }
 
+.post-options {
+    cursor: pointer;
+}
 .feed {
     width: 600px;
     margin: auto;

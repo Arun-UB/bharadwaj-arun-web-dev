@@ -12,6 +12,7 @@
     "textAngular": "^1.5.1",
     "PACE": "pace#^1.0.2",
     "angular-youtube-mb": "^1.2.0",
-    "moment": "^2.13.0"
+    "moment": "^2.13.0",
+    "underscore": "^1.8.3"
   }
 }

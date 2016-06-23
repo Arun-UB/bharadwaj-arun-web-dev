@@ -1,10 +1,9 @@
 (function () {
-    'use strict';
     angular
         .module('Musix')
         .controller('HomeController', HomeController);
 
-    function HomeController(PostService, $rootScope, $sce, $location, $filter, $window) {
+    function HomeController(PostService, $rootScope, $sce, $location, $filter, $window, youtubeEmbedUtils) {
         var vm = this;
         var id = $rootScope.currentUser._id;
 
@@ -24,17 +23,24 @@
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;
         vm.like = like;
+        vm.deletePost = deletePost;
 
         function createPost(post) {
-            post._user = id;
             var link = $filter('parseUrl')(post.text);
             post.link = link ? link[0] : null;
             post.text = $filter('replaceUrl')(post.text);
 
-            PostService.createPost(post)
+            PostService.createPost(id, post)
                 .then(function (post) {
-                    vm.msg = {type: 'success'};
-                    // init();
+                    if (post) {
+                        PostService.findPostById(id, post._id)
+                            .then(function (post) {
+                                vm.posts.push(post);
+
+                            }, function () {
+                                init();
+                            });
+                    }
                 }, function (err) {
                     vm.msg = {type: 'error', text: 'Error creating post,try again'};
                 });
@@ -44,6 +50,13 @@
             PostService.likePost(id, postId, value)
                 .then(function (post) {
                     init();
+                });
+        }
+
+        function deletePost(postId) {
+            PostService.deletePost(postId, id)
+                .then(function (post) {
+                    vm.posts = _.without(vm.posts, _.findWhere(vm.posts, {_id: postId}));
                 });
         }
 
