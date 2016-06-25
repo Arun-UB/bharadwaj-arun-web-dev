@@ -24,6 +24,8 @@
         vm.getDate = getDate;
         vm.like = like;
         vm.deletePost = deletePost;
+        vm.liked = liked;
+
 
         function createPost(post) {
             var link = $filter('parseUrl')(post.text);
@@ -46,16 +48,33 @@
                 });
         }
 
-        function like(postId, value) {
+        function like(post) {
+            var postId = post._id;
+            var value = !vm.liked(post);
             PostService.likePost(id, postId, value)
                 .then(function (post) {
-                    init();
+                    var i = -1;
+                    for (var p in vm.posts) {
+                        if (vm.posts[p]._id === postId) {
+                            i = p;
+                        }
+                    }
+                    if (value) {
+                        vm.posts[i].likes.push(id);
+
+                    }
+                    else {
+                        vm.posts[i].likes = _.without(vm.posts[i].likes, id);
+                    }
                 });
         }
 
+        function liked(post) {
+            return (post.likes.indexOf(id) === -1) ? false : true;
+        }
         function deletePost(postId) {
             PostService.deletePost(postId, id)
-                .then(function (post) {
+                .then(function () {
                     vm.posts = _.without(vm.posts, _.findWhere(vm.posts, {_id: postId}));
                 });
         }

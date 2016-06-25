@@ -36,7 +36,7 @@ module.exports = function () {
     function likePost(userId, postId, value) {
         if (value) {
             return Post
-                .update({_id: postId}, {
+                .findByIdAndUpdate({_id: postId}, {
                     $push: {
                         likes: userId
                     }
@@ -44,11 +44,11 @@ module.exports = function () {
         }
         else {
             return Post
-                .update({_id: postId}, {
+                .findByIdAndUpdate({_id: postId}, {
                     $pull: {
                         likes: userId
                     }
-                });
+                }).exec();
         }
 
     }

@@ -171,22 +171,34 @@ a.top-right {
 .post-fav {
     padding-top: 10px;
     cursor: pointer;
+    color: lightgray;
 }
 
 .post-fav:hover {
-    color: red;
+    color: #e64a19;
+}
+
+.post-fav-true {
+    color: #e64a19;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
 .post {
     padding: 10px 0 10px 0;
 }
 
+.post-new {
+    width: 600px;
+    margin: auto;
+}
 .post-time {
     color: #c7c7c7;
 }
 
 .post-options {
     cursor: pointer;
+    margin-right: -10px;
 }
 .feed {
     width: 600px;
@@ -199,6 +211,10 @@ a.top-right {
     }
 
     .feed {
+        width: 100%;
+    }
+
+    .post-new {
         width: 100%;
     }
 }

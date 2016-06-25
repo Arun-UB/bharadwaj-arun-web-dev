@@ -39,8 +39,8 @@ module.exports = function (app, models) {
         var value = req.body.value;
         PostModel
             .likePost(userId, postId, value)
-            .then(function () {
-                return res.sendStatus(200);
+            .then(function (post) {
+                return res.status(200).send(post);
             }, function () {
                 return res.sendStatus(400);
             });
