@@ -19,6 +19,7 @@
 
         init();
 
+        vm.post = null;
         vm.createPost = createPost;
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;
@@ -38,6 +39,7 @@
                         PostService.findPostById(id, post._id)
                             .then(function (post) {
                                 vm.posts.push(post);
+                                vm.post = null;
 
                             }, function () {
                                 init();
