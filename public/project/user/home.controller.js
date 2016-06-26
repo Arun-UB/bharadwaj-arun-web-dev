@@ -6,8 +6,21 @@
     function HomeController($rootScope, $sce, PostService, CommentService, $filter, $window, youtubeEmbedUtils) {
         var vm = this;
         var id = $rootScope.currentUser._id;
+        vm.post = {};
+        vm.comment = {};
+        vm.createPost = createPost;
+        vm.createComment = createComment;
+        vm.getSafeUrl = getSafeUrl;
+        vm.getDate = getDate;
+        vm.like = like;
+        vm.deletePost = deletePost;
+        vm.liked = liked;
 
         function init() {
+            if ($rootScope.video) {
+                vm.post.text = vm.getSafeUrl($rootScope.video);
+                $rootScope.video = null;
+            }
             PostService
                 .findPostForUser(id)
                 .then(function (posts) {
@@ -19,22 +32,15 @@
 
         init();
 
-        vm.post = {};
-        vm.comment = {};
-        vm.createPost = createPost;
-        vm.createComment = createComment;
-        vm.getSafeUrl = getSafeUrl;
-        vm.getDate = getDate;
-        vm.like = like;
-        vm.deletePost = deletePost;
-        vm.liked = liked;
 
 
         function createPost(post) {
             var link = $filter('parseUrl')(post.text);
-            post.link = link ? link[0] : null;
-            post.text = $filter('replaceUrl')(post.text);
-
+            post.link = link.length ? youtubeEmbedUtils.getIdFromURL(link[0]) : null;
+            post.text = post.text.b ? $filter('replaceUrl')(post.text) : null;
+            if (!post.link && !post.text) {
+                return;
+            }
             PostService.createPost(id, post)
                 .then(function (post) {
                     if (post) {
@@ -70,6 +76,8 @@
                                 vm.comment = {};
                             });
                     });
+
+
             }
         }
         function like(post) {
@@ -104,9 +112,7 @@
         }
 
         function getSafeUrl(yUrl) {
-            var urlParts = yUrl.split('/');
-            var id = urlParts[urlParts.length - 1];
-            var url = 'https://www.youtube.com/embed/' + id;
+            var url = 'https://www.youtube.com/embed/' + yUrl;
             return $sce.trustAsResourceUrl(url);
 
         }

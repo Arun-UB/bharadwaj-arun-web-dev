@@ -10,7 +10,10 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         findUserByFacebookId: findUserByFacebookId,
+        followUser: followUser,
         updateUser: updateUser,
+        updateFollowers: updateFollowers,
+        searchUsers: searchUsers,
         deleteUser: deleteUser
     };
     return api;
@@ -58,5 +61,48 @@ module.exports = function () {
 
     function findUserByFacebookId(facebookId) {
         return User.findOne({'facebook.id': facebookId});
+    }
+
+    function searchUsers(query) {
+        return User.find({username: {'$regex': query}}).select('-password');
+    }
+
+    function followUser(userId, userIdToFollow, value) {
+        if (value) {
+            return User
+                .findByIdAndUpdate({_id: userId}, {
+                    $push: {
+                        following: userIdToFollow
+                    }
+                });
+        }
+        else {
+            return User
+                .findByIdAndUpdate({_id: userId}, {
+                    $pull: {
+                        following: userIdToFollow
+                    }
+                })
+        }
+    }
+
+    function updateFollowers(userId, userIdToFollow, value) {
+        if (value) {
+            return User
+                .findByIdAndUpdate({_id: userIdToFollow}, {
+                    $push: {
+                        followers: userId
+                    }
+                });
+        }
+        else {
+            return User
+                .findByIdAndUpdate({_id: userIdToFollow}, {
+                    $pull: {
+                        followers: userId
+                    }
+                });
+        }
+
     }
 };

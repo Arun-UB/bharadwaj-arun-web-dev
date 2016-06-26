@@ -25,7 +25,7 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
-            .when('/profile/', {
+            .when('/profile/:id', {
                 templateUrl: 'user/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'model',
@@ -33,7 +33,7 @@
                     loggedIn: checkLoggedIn
                 }
             })
-            .when('/profile/edit', {
+            .when('/profile/:id/edit', {
                 templateUrl: 'user/profile.edit.html',
                 controller: 'EditProfileController',
                 controllerAs: 'model',
@@ -41,9 +41,9 @@
                     loggedIn: checkLoggedIn
                 }
             })
-            .when('/playlist/', {
-                templateUrl: 'player/playlist.view.html',
-                controller: 'PlayListController',
+            .when('/search/', {
+                templateUrl: 'search/search.view.html',
+                controller: 'SearchController',
                 controllerAs: 'model',
                 resolve: {
                     loggedIn: checkLoggedIn

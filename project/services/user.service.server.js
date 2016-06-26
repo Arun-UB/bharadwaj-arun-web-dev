@@ -5,6 +5,7 @@ module.exports = function (app, models) {
     var LocalStrategy = require('passport-local');
     var FacebookStrategy = require('passport-facebook').Strategy;
     var bcrypt = require('bcrypt-nodejs');
+    bcrypt.genSaltSync(1);
 
     var facebookConfig = {
         clientID: process.env.FACEBOOK_APP_ID,
@@ -27,7 +28,10 @@ module.exports = function (app, models) {
 
     app.get('/project/api/user', getUser);
     app.get('/project/api/user/:userId', findUserById);
+    app.get('/project/api/user/search/:query', searchUsers);
     app.put('/project/api/user/:userId', updateUser);
+    app.put('/project/api/user/:userId/follow', followUser);
+    app.put('/project/api/user/:userId/updateFollowers', updateFollowers);
     app.delete('/project/api/user/:userId', deleteUser);
 
     passport.use('musix', new LocalStrategy(localStrategy));
@@ -195,5 +199,46 @@ module.exports = function (app, models) {
             }, function () {
                 return res.status(404).send('User with username: ' + username + ' not found');
             });
+    }
+
+    function searchUsers(req, res) {
+        var query = req.params.query;
+        userModel
+            .searchUsers(query)
+            .then(function (users) {
+                return res.json(users);
+            }, function () {
+                return res.sendStatus(200);
+            });
+    }
+
+    function followUser(req, res) {
+        var userId = req.params.userId;
+        var userIdToFollow = req.body.userIdToFollow;
+        var value = req.body.value;
+
+        userModel
+            .followUser(userId, userIdToFollow, value)
+            .then(function (user) {
+                return res.sendStatus(200);
+            }, function () {
+                return res.sendStatus(400);
+            });
+
+    }
+
+    function updateFollowers(req, res) {
+        var userId = req.params.userId;
+        var userIdToFollow = req.body.userIdToFollow;
+        var value = req.body.value;
+
+        userModel
+            .updateFollowers(userId, userIdToFollow, value)
+            .then(function (user) {
+                return res.sendStatus(200);
+            }, function () {
+                return res.sendStatus(400);
+            });
+
     }
 };

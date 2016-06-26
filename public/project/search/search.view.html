@@ -1,0 +1,36 @@
+<navbar></navbar>
+
+<div class="container">
+    <div class="input-group">
+        <div ng-init="model.sType='Youtube '" class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">{{model.sType}}<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="" ng-click="model.sType='Youtube'">Youtube</a></li>
+                <li><a href="" ng-click="model.sType='User'">User</a></li>
+            </ul>
+        </div><!-- /btn-group -->
+        <input type="text" ng-model="model.query" ng-keypress="model.search(model.query,model.sType,$event)"
+               class="form-control" aria-label="...">
+    </div>
+
+    <!--<div class="list-group" >-->
+    <!--<a href="#" class="list-group-item active">-->
+    <!--<h4 class="list-group-item-heading">{{video.snippet.title}}</h4>-->
+    <!--<p class="list-group-item-text">...</p>-->
+    <!--</a>-->
+    <!--</div>-->
+    <ul ng-repeat="video in model.yResults" class="media-list ytResults">
+        <li class="media">
+            <div class="media-left">
+                <a class="yt-share" href="" ng-click="model.share(video)">
+                    <img class="media-object" height="64" ng-src="{{video.snippet.thumbnails.medium.url}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{video.snippet.title}}</h4>
+
+            </div>
+        </li>
+    </ul>
+</div>

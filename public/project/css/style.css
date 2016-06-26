@@ -84,7 +84,7 @@ a.top-right {
 
 .top-left {
     margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 22px;
     color: gray;
 }
@@ -99,12 +99,7 @@ a.top-right {
     color: lightgray;
 }
 
-.top-left {
-    margin-left: 15px;
-    margin-top: 15px;
-    font-size: 22px;
-    color: gray;
-}
+
 
 .navbar-header {
     width: 100%;
@@ -273,4 +268,8 @@ a.top-right {
 
 .post-add {
     padding-top: 20px;
+}
+
+.ytResults {
+    padding-top: 10px;
 }

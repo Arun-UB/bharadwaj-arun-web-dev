@@ -12,13 +12,30 @@ module.exports = function (app, models) {
     function createPost(req, res) {
         var userId = req.params.userId;
         var post = req.body.newPost;
+        var newPost = {};
         post._user = userId;
         PostModel
             .createPost(post)
             .then(function (post) {
-                return res.status(201).send(post);
+                newPost = post;
+                return post;
             }, function (error) {
                 return res.status(400).send(error);
+            })
+            .then(function (post) {
+                if (post) {
+                    UserModel
+                        .findUserById(userId)
+                        .then(function (user) {
+                            user.posts.push(post._id);
+                            return user.save();
+                        }, function (error) {
+                            return res.status(400).send(error);
+                        });
+                }
+            })
+            .then(function () {
+                return res.status(201).send(newPost);
             });
     }
 

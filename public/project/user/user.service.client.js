@@ -16,7 +16,9 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            followUser: followUser,
+            updateFollowers: updateFollowers
         };
 
         return api;
@@ -38,7 +40,6 @@
 
         function logout() {
             return $http.post('/project/api/logout');
-
         }
 
         function loggedIn() {
@@ -89,6 +90,24 @@
                     return response.data;
                 });
         }
+
+        function followUser(userId, userId2, value) {
+            var fol = {userIdToFollow: userId2, value: value};
+            return $http.put('/project/api/user/' + userId + '/follow', fol)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateFollowers(userId, userId2, value) {
+            var fol = {userIdToFollow: userId2, value: value};
+            return $http.put('/project/api/user/' + userId + '/updateFollowers', fol)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
     }
 
 })();

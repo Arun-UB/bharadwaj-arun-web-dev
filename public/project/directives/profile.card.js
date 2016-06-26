@@ -8,6 +8,7 @@
         return {
             scope: {
                 'user': '=',
+                'follow': '&',
                 'logout': '&'
             },
             restrict: 'E',

@@ -1,94 +1,64 @@
 <navbar></navbar>
 <div class="container">
-    <profile-card user="currentU"></profile-card>
+    <profile-card user="model.user" follow="model.follow()"
+                  logout="model.logout()" pFlag="model.pFlag"></profile-card>
     <div class="feed">
-        <div class="post">
+        <div ng-repeat="post in model.posts | orderBy:'-dateCreated'" class="post">
             <div class="card">
                 <div class="card-header">
                     <img src="./images/profile.svg" class="comment-img">
-                    &nbsp;<strong>arun</strong>
-                    <div class="pull-right post-time">
-                        2d
+                    &nbsp;<a href="#/profile/{{post._user._id}}">
+                    <strong>{{post._user.username}}</strong></a>
+                    <div class="dropdown pull-right post-options">
+                        <i class="dropdown-toggle material-icons" id="post-options-dropdown" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="true">more_vert</i>
+                        <ul class="dropdown-menu" aria-labelledby="post-options-dropdown">
+                            <li><a href="" ng-click="model.deletePost(post._id)">Delete</a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="card-block">
-                    <p class="card-text">Cool music</p>
-                    <div class="card-text">
+                    <div class="pull-right post-time">
+                        {{model.getDate(post.dateCreated)}}
+                    </div>
 
-                        <i class="material-icons fav">favorite</i>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="card-footer text-muted">
-                    <div class="row comment-input">
-                        <input type="text" class="form-control col-md-12" placeholder="Comment">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="post">
-            <div class="card">
-                <div class="card-header">
-                    <img src="./images/profile.svg" class="comment-img">
-                    &nbsp;<strong>arun</strong>
-                    <div class="pull-right post-time">
-                        2d
-                    </div>
-                </div>
                 <div class="card-block">
-                    <p class="card-text">Cool music</p>
-                    <div class="card-text">
-
-                        <i class="material-icons fav">favorite</i>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="card-footer text-muted">
-                    <div class="row comment-input">
-                        <input type="text" class="form-control col-md-12" placeholder="Comment">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="post">
-            <div class="card">
-                <div class="card-header">
-                    <img src="./images/profile.svg" class="comment-img">
-                    &nbsp;<strong>arun</strong>
-                    <div class="pull-right post-time">
-                        2d
-                    </div>
-                </div>
-                <div class="card-block">
-                    <p class="card-text">Cool music #indie #rock</p>
+                    <p class="card-text">{{post.text}}</p>
                     <div class="card-text">
                         <div class="youtubeWidget">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/RBumgq5yVrA"
+                            <iframe width="560" height="315" ng-src="{{model.getSafeUrl(post.link)}}"
                                     frameborder="0" allowfullscreen></iframe>
 
                         </div>
-                        <i class="material-icons post-fav">favorite</i>
+                        <i ng-click="model.like(post)"
+                           class="material-icons "
+                           ng-class="{true:'post-fav-true',false:'post-fav'}[model.liked(post)]">favorite</i>
                         <div class="post-comments">
-                            <a href="" class="text-muted">23 Comments</a>
+                            <a href="" class="text-muted">{{post.comments.length}} comments</a>
                             <ul class="comment-list">
-                                <li><span class="comment-user">tony</span> I love it!</li>
-                                <li><span class="comment-user">tony</span> I love it!</li>
-                                <li><span class="comment-user">tony</span> I love it!</li>
-                                <li><span class="comment-user">tony</span> I love it!</li>
-                                <li><span class="comment-user">tony</span> I love it!</li>
+                                <li ng-repeat="comment in post.comments">
+                                    <span class="comment-user">{{comment._user.username}}</span>{{comment.text}}
+                                </li>
                             </ul>
 
                         </div>
-                    </div>
+                        </div>
                     <div class="clearfix"></div>
+
                 </div>
                 <div class="card-footer text-muted">
-                    <div class="row comment-input">
-                        <input type="text" class="form-control col-md-12" placeholder="Comment">
-                    </div>
+                    <div class="row comment-input input-group">
+                        <input type="text" ng-model="model.comment.text"
+                               class="form-control col-md-12" placeholder="Comment">
+                        <span class="input-group-btn">
+                            <button ng-click="model.createComment(post)" class="btn btn-default comment-post"
+                                    type="button">
+                                <i class="material-icons">send</i></button>
+                          </span>
+                        </div>
+
+                </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </div>

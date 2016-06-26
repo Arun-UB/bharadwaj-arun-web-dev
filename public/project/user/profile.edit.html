@@ -8,8 +8,10 @@
     </div>
 </nav>
 <div class="container">
+    <msg data="model.msg"></msg>
 
     <form class="sign-in">
+
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" ng-model="model.user.username" class="form-control" id="username" placeholder="IronMan"
@@ -31,7 +33,6 @@
                    required>
         </div>
 
-        <!--<button type="submit" class="btn btn-success btn-block">Save</button>-->
         <a href="" ng-click="model.updateUser()" class="btn btn-success btn-block">Save</a>
     </form>
 </div> <!-- /container -->
