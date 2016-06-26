@@ -239,9 +239,14 @@ a.top-right {
 
 .comment-list {
     margin-left: -40px;
+    margin-bottom: -20px;
     list-style: none;
 }
 
+.comment-post {
+    color: #2196f3;
+    margin-top: -10px;
+}
 /*Youtube player styles*/
 
 .embed-responsive {

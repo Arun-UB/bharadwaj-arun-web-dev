@@ -39,14 +39,30 @@
                         <i ng-click="model.like(post)"
                            class="material-icons "
                            ng-class="{true:'post-fav-true',false:'post-fav'}[model.liked(post)]">favorite</i>
+                        <div class="post-comments">
+                            <a href="" class="text-muted">{{post.comments.length}} comments</a>
+                            <ul class="comment-list">
+                                <li ng-repeat="comment in post.comments">
+                                    <span class="comment-user">{{comment._user.username}}</span>{{comment.text}}
+                                </li>
+                            </ul>
 
+                        </div>
                     </div>
                     <div class="clearfix"></div>
+
                 </div>
                 <div class="card-footer text-muted">
-                    <div class="row comment-input">
-                        <input type="text" class="form-control col-md-12" placeholder="Comment">
+                    <div class="row comment-input input-group">
+                        <input type="text" ng-model="model.comment.text"
+                               class="form-control col-md-12" placeholder="Comment">
+                        <span class="input-group-btn">
+                            <button ng-click="model.createComment(post)" class="btn btn-default comment-post"
+                                    type="button">
+                                <i class="material-icons">send</i></button>
+                          </span>
                     </div>
+
                 </div>
             </div>
         </div>

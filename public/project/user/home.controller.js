@@ -3,7 +3,7 @@
         .module('Musix')
         .controller('HomeController', HomeController);
 
-    function HomeController(PostService, $rootScope, $sce, $location, $filter, $window, youtubeEmbedUtils) {
+    function HomeController($rootScope, $sce, PostService, CommentService, $filter, $window, youtubeEmbedUtils) {
         var vm = this;
         var id = $rootScope.currentUser._id;
 
@@ -19,8 +19,10 @@
 
         init();
 
-        vm.post = null;
+        vm.post = {};
+        vm.comment = {};
         vm.createPost = createPost;
+        vm.createComment = createComment;
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;
         vm.like = like;
@@ -50,6 +52,26 @@
                 });
         }
 
+        function createComment(post) {
+            if (vm.comment) {
+                CommentService
+                    .createComment(id, post._id, vm.comment)
+                    .then(function (comment) {
+                        CommentService
+                            .findCommentById(id, post._id, comment._id)
+                            .then(function (comment) {
+                                var i;
+                                for (var p in vm.posts) {
+                                    if (vm.posts[p]._id === post._id) {
+                                        i = p;
+                                    }
+                                }
+                                vm.posts[i].comments.push(comment);
+                                vm.comment = {};
+                            });
+                    });
+            }
+        }
         function like(post) {
             var postId = post._id;
             var value = !vm.liked(post);

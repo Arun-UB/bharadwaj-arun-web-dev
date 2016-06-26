@@ -14,6 +14,7 @@
     "find-hashtags": "^1.0.0",
     "gulp": "^3.9.1",
     "mongoose": "^4.4.15",
+    "mongoose-deep-populate": "^3.0.0",
     "multer": "^1.1.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

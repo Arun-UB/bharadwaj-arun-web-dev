@@ -23,6 +23,7 @@ module.exports = function () {
         return Post
             .find({_user: userId})
             .populate('_user', 'username')
+            .deepPopulate('comments._user')
             .sort('-dateCreated');
 
     }
