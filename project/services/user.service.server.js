@@ -3,23 +3,22 @@ module.exports = function (app, models) {
     var userModel = models.userModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
-    var FacebookStrategy = require('passport-facebook').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var bcrypt = require('bcrypt-nodejs');
     bcrypt.genSaltSync(1);
 
-    var facebookConfig = {
-        clientID: process.env.FACEBOOK_APP_ID,
-        clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL,
-        profileFields: ['id', 'emails', 'name']
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL
     };
 
     app.post('/project/api/user', createUser);
     app.post('/project/api/register', register);
-    app.get('/project/api/auth/facebook', passport.authenticate('facebook.musix', {scope: 'email'}));
+    app.get('/project/api/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
     app.post('/project/api/login', passport.authenticate('musix'), login);
-    app.get('/project/api/auth/facebook/callback',
-        passport.authenticate('facebook', {
+    app.get('/project/api/auth/google/oauth2callback',
+        passport.authenticate('google', {
             successRedirect: '/project/#/profile',
             failureRedirect: '/project/#/login'
         }));
@@ -35,7 +34,7 @@ module.exports = function (app, models) {
     app.delete('/project/api/user/:userId', deleteUser);
 
     passport.use('musix', new LocalStrategy(localStrategy));
-    passport.use('facebook.musix', new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -55,18 +54,27 @@ module.exports = function (app, models) {
             });
     }
 
-    function facebookStrategy(token, refreshToken, profile, done) {
+    function googleStrategy(token, refreshToken, profile, done) {
         userModel
-            .findUserByFacebookId(profile.id)
+            .findUserByGoogleId(profile.id)
             .then(function (user) {
                 if (user) {
                     done(null, user);
                 }
                 else {
-                    var userDetails = {};
-                    userDetails.username = profile.name.givenName || 'Anon';
-                    userDetails.facebook = {id: profile.id, token: token};
-                    return userModel.createUser(userDetails);
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split('@');
+                    var newGoogleUser = {
+                        username: emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName: profile.name.familyName,
+                        email: email,
+                        google: {
+                            id: profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
                 }
             }, function (err) {
                 done(err);

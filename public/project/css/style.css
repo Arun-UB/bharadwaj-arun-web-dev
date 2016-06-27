@@ -273,3 +273,10 @@ a.top-right {
 .ytResults {
     padding-top: 10px;
 }
+
+/*Login Buttons*/
+.gBtn {
+    padding-top: 10px;
+    margin-left: -5px;
+    width: 311px;
+}
