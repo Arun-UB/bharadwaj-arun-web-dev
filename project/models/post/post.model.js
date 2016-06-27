@@ -9,7 +9,9 @@ module.exports = function () {
         createPost: createPost,
         findPostsForUserId: findPostsForUserId,
         findPostById: findPostById,
+        getPosts: getPosts,
         likePost: likePost,
+        searchPosts: searchPosts,
         deletePost: deletePost
     };
     return api;
@@ -19,18 +21,28 @@ module.exports = function () {
         return Post.create(post);
     }
 
-    function findPostsForUserId(userId) {
+    function findPostsForUserId(uList) {
         return Post
-            .find({_user: userId})
+            .find({_user: {'$in': uList}}, {})
             .populate('_user', 'username')
             .deepPopulate('comments._user')
             .sort('-dateCreated');
 
     }
 
+    function searchPosts(query) {
+        return Post.find({text: new RegExp(query, 'i')}).populate('_user', 'username');
+    }
+
     function findPostById(id) {
         return Post
             .findById(id)
+            .populate('_user', 'username');
+    }
+
+    function getPosts() {
+        return Post
+            .find()
             .populate('_user', 'username');
     }
 

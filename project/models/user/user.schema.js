@@ -15,6 +15,7 @@ module.exports = function () {
         followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
+        admin: {type: Boolean, default: false},
         google: {
             id: String,
             token: String

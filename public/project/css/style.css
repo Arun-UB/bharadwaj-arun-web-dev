@@ -200,19 +200,7 @@ a.top-right {
     margin: auto;
 }
 
-@media screen and (max-width: 600px) {
-    .profile-head {
-        width: 100%;
-    }
 
-    .feed {
-        width: 100%;
-    }
-
-    .post-new {
-        width: 100%;
-    }
-}
 
 .youtubeWidget {
     position: relative;
@@ -279,4 +267,32 @@ a.top-right {
     padding-top: 10px;
     margin-left: -5px;
     width: 311px;
+}
+
+.userResults {
+    padding-top: 10px;
+    margin: auto;
+}
+
+.searchContainer {
+    width: 600px;
+}
+
+@media screen and (max-width: 600px) {
+    .profile-head {
+        width: 100%;
+    }
+
+    .feed {
+        width: 100%;
+    }
+
+    .post-new {
+        width: 100%;
+    }
+
+    .searchContainer {
+        width: 100%;
+    }
+
 }

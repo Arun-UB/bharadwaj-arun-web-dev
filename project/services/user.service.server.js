@@ -19,13 +19,14 @@ module.exports = function (app, models) {
     app.post('/project/api/login', passport.authenticate('musix'), login);
     app.get('/project/api/auth/google/oauth2callback',
         passport.authenticate('google', {
-            successRedirect: '/project/#/profile',
+            successRedirect: '/project/#/',
             failureRedirect: '/project/#/login'
         }));
     app.post('/project/api/logout', logout);
     app.get('/project/api/loggedIn', loggedIn);
 
     app.get('/project/api/user', getUser);
+    app.get('/project/api/users', getUsers);
     app.get('/project/api/user/:userId', findUserById);
     app.get('/project/api/user/search/:query', searchUsers);
     app.put('/project/api/user/:userId', updateUser);
@@ -206,6 +207,16 @@ module.exports = function (app, models) {
                 return res.json(user);
             }, function () {
                 return res.status(404).send('User with username: ' + username + ' not found');
+            });
+    }
+
+    function getUsers(req, res) {
+        userModel
+            .getUsers()
+            .then(function (user) {
+                return res.json(user);
+            }, function () {
+                return res.status(404);
             });
     }
 

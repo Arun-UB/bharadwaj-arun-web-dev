@@ -7,7 +7,6 @@
         var vm = this;
         var id = $rootScope.currentUser._id;
         vm.post = {};
-        vm.comment = {};
         vm.createPost = createPost;
         vm.createComment = createComment;
         vm.getSafeUrl = getSafeUrl;
@@ -37,7 +36,7 @@
         function createPost(post) {
             var link = $filter('parseUrl')(post.text);
             post.link = link.length ? youtubeEmbedUtils.getIdFromURL(link[0]) : null;
-            post.text = post.text.b ? $filter('replaceUrl')(post.text) : null;
+            post.text = post.text ? $filter('replaceUrl')(post.text) : null;
             if (!post.link && !post.text) {
                 return;
             }

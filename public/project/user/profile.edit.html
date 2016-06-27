@@ -1,10 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="" back=""> <i class="material-icons pull-left top-left">arrow_back</i></a>
-            <a class="navbar-brand" href="">Profile</a>
-            <a href="" ng-click="model.logout()" class="top-right nav-link">SIGN OUT</a>
-        </div>
+            <a href="#/profile/{{currentUser._id}}"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="">&nbsp;Profile</a>
+            <a href="" ng-show="currentUser.admin" ng-click="model.deleteUser(model.user._id)"><i
+                    class="material-icons profile top-right">delete</i></span>
+            </a></div>
     </div>
 </nav>
 <div class="container">

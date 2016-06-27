@@ -10,6 +10,7 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         findUserByGoogleId: findUserByGoogleId,
+        getUsers: getUsers,
         followUser: followUser,
         updateUser: updateUser,
         updateFollowers: updateFollowers,
@@ -51,6 +52,9 @@ module.exports = function () {
         return User.findById(userId);
     }
 
+    function getUsers() {
+        return User.find({});
+    }
     function createUser(user) {
         return User.create(user);
     }
@@ -59,12 +63,13 @@ module.exports = function () {
         return User.findOne({username: username});
     }
 
-    function findUserByGoogleId(facebookId) {
-        return User.findOne({'facebook.id': facebookId});
+    function findUserByGoogleId(googleId) {
+        return User.findOne({'google.id': googleId});
     }
 
     function searchUsers(query) {
-        return User.find({username: {'$regex': query}}).select('-password');
+        return User.find({firstName: new RegExp(query, 'i')})
+            .select('-password');
     }
 
     function followUser(userId, userIdToFollow, value) {
@@ -82,7 +87,7 @@ module.exports = function () {
                     $pull: {
                         following: userIdToFollow
                     }
-                })
+                });
         }
     }
 

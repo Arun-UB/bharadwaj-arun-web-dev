@@ -8,9 +8,9 @@
             <li><a href="" ng-click="logout()">Logout</a></li>
         </ul>
     </div>
-    <div ng-if="!user.pFlag && !model.following()" class="profile-follow pull-right">
-        <button ng-hide="model.following()" ng-click="follow()" class="btn btn-success">Follow</button>
-        <button ng-show="model.following()" ng-click="follow()" class="btn btn-default">Following</button>
+    <div ng-if="!user.pFlag" class="profile-follow pull-right">
+        <button ng-hide="following()" ng-click="follow()" class="btn btn-success">Follow</button>
+        <button ng-show="following()" ng-click="follow()" class="btn btn-default">Following</button>
     </div>
     <div class="profile-text">
 

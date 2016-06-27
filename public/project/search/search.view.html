@@ -1,6 +1,6 @@
 <navbar user="currentUser"></navbar>
 
-<div class="container">
+<div class="container searchContainer">
     <div class="input-group">
         <div ng-init="model.sType='Youtube'" class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -8,14 +8,15 @@
             <ul class="dropdown-menu">
                 <li><a href="" ng-click="model.sType='Youtube'">Youtube</a></li>
                 <li><a href="" ng-click="model.sType='User'">User</a></li>
+                <li><a href="" ng-click="model.sType='Posts'">Posts</a></li>
             </ul>
         </div><!-- /btn-group -->
         <input type="text" ng-model="model.query" ng-keypress="model.search(model.query,model.sType,$event)"
                class="form-control" aria-label="...">
     </div>
 
-    <ul ng-repeat="video in model.yResults" class="media-list ytResults">
-        <li class="media">
+    <ul ng-repeat="video in model.yResults" class="list-group ytResults" ng-show="model.sType === 'Youtube'">
+        <li class="media list-group-item">
             <div class="media-left">
                 <a class="yt-share" href="" ng-click="model.share(video)">
                     <img class="media-object" height="64" ng-src="{{video.snippet.thumbnails.medium.url}}" alt="...">
@@ -27,4 +28,77 @@
             </div>
         </li>
     </ul>
+    <ul class="list-group userResults" ng-repeat="user in model.uResults" ng-show="model.sType==='User'">
+        <li class="list-group-item">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#/profile/{{user._id}}">
+                        <img class="media-object" height="64px" src="./images/profile.svg" alt="{{user.username}}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="#/profile/{{user._id}}">{{user.username}}</a></h4>
+                    <span class="text-muted">{{user.firstName}} {{user.lastName}}</span>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <div class="feed" ng-show="model.sType==='Posts'">
+        <div ng-repeat="post in model.pResults | orderBy:'-dateCreated'" class="post">
+            <div class="card">
+                <div class="card-header">
+                    <img src="./images/profile.svg" class="comment-img">
+                    &nbsp;<a href="#/profile/{{post._user._id}}">
+                    <strong>{{post._user.username}}</strong></a>
+                    <!--<div class="dropdown pull-right post-options">
+                        <i class="dropdown-toggle material-icons" id="post-options-dropdown" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="true">more_vert</i>
+                        <ul class="dropdown-menu" aria-labelledby="post-options-dropdown">
+                            <li><a href="" ng-click="model.deletePost(post._id)">Delete</a></li>
+                        </ul>
+                    </div>-->
+                    <div class="pull-right post-time">
+                        {{model.getDate(post.dateCreated)}}
+                    </div>
+
+                </div>
+                <div class="card-block">
+                    <p class="card-text">{{post.text}}</p>
+                    <div class="card-text">
+                        <div class="youtubeWidget">
+                            <iframe width="560" height="315" ng-src="{{model.getSafeUrl(post.link)}}"
+                                    frameborder="0" allowfullscreen></iframe>
+
+                        </div>
+                        <!--                        <i ng-click="model.like(post)"
+                                                   class="material-icons "
+                                                   ng-class="{true:'post-fav-true',false:'post-fav'}[model.liked(post)]">favorite</i>-->
+                        <div class="post-comments">
+                            <a href="" class="text-muted">{{post.comments.length}} comments</a>
+                            <ul class="comment-list">
+                                <li ng-repeat="comment in post.comments">
+                                    <span class="comment-user">{{comment._user.username}}</span>{{comment.text}}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <!--<div class="card-footer text-muted">
+                    <div class="row comment-input input-group">
+                        <input type="text" ng-model="model.comment.text"
+                               class="form-control col-md-12" placeholder="Comment">
+                        <span class="input-group-btn">
+                            <button ng-click="model.createComment(post)" class="btn btn-default comment-post"
+                                    type="button">
+                                <i class="material-icons">send</i></button>
+                          </span>
+                    </div>
+
+                </div>-->
+            </div>
+        </div>
 </div>

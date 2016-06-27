@@ -9,6 +9,7 @@
             scope: {
                 'user': '=',
                 'follow': '&',
+                'following': '&',
                 'logout': '&'
             },
             restrict: 'E',

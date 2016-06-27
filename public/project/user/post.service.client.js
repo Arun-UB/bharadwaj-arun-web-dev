@@ -9,6 +9,7 @@
             createPost: createPost,
             findPostForUser: findPostForUser,
             findPostById: findPostById,
+            getPosts: getPosts,
             likePost: likePost,
             deletePost: deletePost
         };
@@ -35,6 +36,15 @@
 
         function findPostById(userId, postId) {
             return $http.get('/project/api/user/' + userId + '/post/' + postId)
+                .then(function (response) {
+                    return response.data;
+                }, function (err) {
+                    return err.body;
+                });
+        }
+
+        function getPosts() {
+            return $http.get('/project/api/posts')
                 .then(function (response) {
                     return response.data;
                 }, function (err) {

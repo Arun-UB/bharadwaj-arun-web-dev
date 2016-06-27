@@ -5,7 +5,9 @@ module.exports = function (app, models) {
 
     app.post('/project/api/user/:userId/post', createPost);
     app.get('/project/api/user/:userId/post', findPostsForUser);
+    app.get('/project/api/post/search/:query', searchPosts);
     app.get('/project/api/user/:userId/post/:postId', findPostById);
+    app.get('/project/api/posts', getPosts);
     app.put('/project/api/user/:userId/post/:postId/like', likePost);
     app.delete('/project/api/user/:userId/post/:postId', deletePost);
 
@@ -41,8 +43,10 @@ module.exports = function (app, models) {
 
     function findPostsForUser(req, res) {
         var userId = req.params.userId;
+        var uList = req.user.following;
+        uList.push(userId);
         PostModel
-            .findPostsForUserId(userId)
+            .findPostsForUserId(uList)
             .then(function (posts) {
                 return res.json(posts);
             }, function (error) {
@@ -86,6 +90,28 @@ module.exports = function (app, models) {
      });
      }
      */
+
+    function searchPosts(req, res) {
+        var query = req.params.query;
+        PostModel
+            .searchPosts(query)
+            .then(function (users) {
+                return res.json(users);
+            }, function () {
+                return res.sendStatus(200);
+            });
+    }
+
+    function getPosts(req, res) {
+        PostModel
+            .getPosts()
+            .then(function (posts) {
+                return res.json(posts);
+            }, function () {
+                return res.sendStatus(200);
+            });
+    }
+
     function deletePost(req, res) {
         var id = req.params.postId;
         PostModel

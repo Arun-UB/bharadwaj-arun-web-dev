@@ -15,6 +15,7 @@
             loggedIn: loggedIn,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
+            getUsers: getUsers,
             updateUser: updateUser,
             deleteUser: deleteUser,
             followUser: followUser,
@@ -69,6 +70,12 @@
                 });
         }
 
+        function getUsers() {
+            return $http.get('/project/api/users/')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
         function findUserByUsername(username) {
             return $http.get('/project/api/user', {params: {username: username}})
                 .then(function (response) {

@@ -15,7 +15,13 @@
                     .then(function (user) {
                         var id = user._id;
                         vm.user = user;
-                        $location.url('/');
+                        if (user.admin) {
+                            $location.url('/admin');
+                        }
+                        else {
+                            $location.url('/');
+
+                        }
                     }).catch(function (err) {
                     console.log(err);
                     vm.msg = {type: 'error', text: 'Username and password don\'t match.'};

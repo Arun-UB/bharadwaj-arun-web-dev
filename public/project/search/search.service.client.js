@@ -7,7 +7,8 @@
     function SearchService($http, youtubeFactory) {
         var api = {
             getVideos: getVideos,
-            searchUsers: searchUsers
+            searchUsers: searchUsers,
+            searchPosts: searchPosts
 
         };
 
@@ -24,6 +25,13 @@
 
         function searchUsers(query) {
             return $http.get('/project/api/user/search/' + query)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function searchPosts(query) {
+            return $http.get('/project/api/post/search/' + query)
                 .then(function (response) {
                     return response.data;
                 });

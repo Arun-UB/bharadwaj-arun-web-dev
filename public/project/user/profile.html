@@ -1,6 +1,6 @@
 <navbar user="currentUser"></navbar>
 <div class="container">
-    <profile-card user="model.user" follow="model.follow()"
+    <profile-card user="model.user" follow="model.follow()" following="model.following()"
                   logout="model.logout()" pFlag="model.pFlag"></profile-card>
     <div class="feed">
         <div ng-repeat="post in model.posts | orderBy:'-dateCreated'" class="post">

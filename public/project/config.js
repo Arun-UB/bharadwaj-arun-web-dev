@@ -20,6 +20,14 @@
                 controller: 'LoginController',
                 controllerAs: 'model'
             })
+            .when('/admin', {
+                templateUrl: 'user/admin.view.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+                resolve: {
+                    admin: checkAdmin
+                }
+            })
             .when('/register', {
                 templateUrl: 'user/register.html',
                 controller: 'RegisterController',
@@ -56,6 +64,27 @@
                 .then(function (response) {
                     var user = response.data;
                     if (user) {
+                        $rootScope.currentUser = user;
+                        deferred.resolve();
+                    } else {
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                        $location.url('/login');
+                    }
+                }, function (err) {
+                    $location.url('/login');
+                });
+            return deferred.promise;
+
+        }
+
+        function checkAdmin($location, $rootScope, $q, UserService) {
+            var deferred = $q.defer();
+            UserService
+                .loggedIn()
+                .then(function (response) {
+                    var user = response.data;
+                    if (user && user.admin) {
                         $rootScope.currentUser = user;
                         deferred.resolve();
                     } else {

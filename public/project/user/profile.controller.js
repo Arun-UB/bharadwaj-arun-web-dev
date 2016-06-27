@@ -39,7 +39,7 @@
             }
 
         function following() {
-            return ($rootScope.currentUser.following.indexOf(vm.id) === -1) ? false : true;
+            return (($rootScope.currentUser.following.indexOf(vm.id) === -1) ? false : true);
         }
 
         function follow() {
@@ -50,10 +50,12 @@
                     UserService.updateFollowers($rootScope.currentUser._id, vm.id, value)
                         .then(function () {
                             if (value) {
-                                vm.user.following.push(vm.id);
+                                $rootScope.currentUser.following.push(vm.id);
+                                vm.user.followers.push($rootScope.currentUser._id);
                             }
                             else {
-                                vm.user.following = _.without(vm.user.following, vm.id);
+                                $rootScope.currentUser.following = _.without(vm.user.following, vm.id);
+                                vm.user.followers = _.without(vm.user.following, $rootScope.currentUser._id);
                             }
                         });
 
