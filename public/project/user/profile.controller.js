@@ -4,12 +4,14 @@
             .module('Musix')
             .controller('ProfileController', ProfileController);
 
-    function ProfileController($location, $routeParams, $rootScope, UserService, PostService) {
+    function ProfileController($location, $routeParams, $rootScope, $sce, $window, UserService, PostService) {
             var vm = this;
         vm.id = $routeParams.id;
             vm.logout = logout;
         vm.follow = follow;
         vm.following = following;
+        vm.getSafeUrl = getSafeUrl;
+        vm.getDate = getDate;
         vm.user = {};
 
         function init() {
@@ -61,5 +63,16 @@
 
                 });
             }
+
+        function getSafeUrl(yUrl) {
+            var url = 'https://www.youtube.com/embed/' + yUrl;
+            return $sce.trustAsResourceUrl(url);
+
         }
-    })();
+
+        function getDate(date) {
+            return $window.moment() < $window.moment(date).add(22, 'hours') ? 'today' : $window.moment(date).from($window.moment());
+        }
+        }
+
+})();
