@@ -9,7 +9,7 @@
                     <img src="./images/profile.svg" class="comment-img">
                     &nbsp;<a href="#/profile/{{post._user._id}}">
                     <strong>{{post._user.username}}</strong></a>
-                    <div class="dropdown pull-right post-options">
+                    <div ng-show="currentUser._id === post._user._id" class="dropdown pull-right post-options">
                         <i class="dropdown-toggle material-icons" id="post-options-dropdown" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="true">more_vert</i>
                         <ul class="dropdown-menu" aria-labelledby="post-options-dropdown">
