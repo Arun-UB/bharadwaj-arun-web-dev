@@ -16,7 +16,6 @@
             if (query && event.which === 13 && type === 'YouTube') {
                 SearchService.getVideos(query)
                     .then(function (videos) {
-                        console.log(videos.data.items);
                         vm.yResults = videos.data.items;
 
                     }, function (err) {
@@ -26,7 +25,6 @@
             if (query && event.which === 13 && type === 'Users') {
                 SearchService.searchUsers(query)
                     .then(function (results) {
-                        console.log(results);
                         vm.uResults = results;
                     }, function (err) {
                         console.log(err);
@@ -36,7 +34,6 @@
             if (query && event.which === 13 && type === 'Posts') {
                 SearchService.searchPosts(query)
                     .then(function (results) {
-                        console.log(results);
                         vm.pResults = results;
                     }, function (err) {
                         console.log(err);

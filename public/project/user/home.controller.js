@@ -18,7 +18,7 @@
 
         function init() {
             if ($rootScope.video) {
-                vm.post.text = vm.getSafeUrl($rootScope.video);
+                vm.post.text = vm.getSafeUrl($rootScope.video).toString();
                 $rootScope.video = null;
             }
             PostService
@@ -40,7 +40,7 @@
             var link = $filter('parseUrl')(temp);
             if (link.length) {
                 post.link = youtubeEmbedUtils.getIdFromURL(link[0]);
-                post.text = post.text ? $filter('replaceUrl')(post.text) : null;
+                post.text = post.text.b || post.text ? $filter('replaceUrl')(post.text) : null;
                 if (!post.link && !post.text) {
                     return;
                 }
