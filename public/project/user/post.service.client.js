@@ -12,6 +12,7 @@
             getUserPosts: getUserPosts,
             getPosts: getPosts,
             likePost: likePost,
+            updatePost: updatePost,
             deletePost: deletePost
         };
 
@@ -26,7 +27,7 @@
                 });
         }
 
-        function findPostForUser(userId) {
+        function findPostForUser(userId) {  
             return $http.get('/project/api/user/' + userId + '/post', userId)
                 .then(function (response) {
                     return response.data;
@@ -69,6 +70,13 @@
                 });
         }
 
+        function updatePost(newPost, postId, userId) {
+            return $http.put('/project/api/user/' + userId + '/post/' + postId, newPost)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
         function deletePost(postId, userId) {
             return $http.delete('/project/api/user/' + userId + '/post/' + postId)
                 .then(function (response) {

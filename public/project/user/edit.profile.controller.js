@@ -4,7 +4,7 @@
             .module('Musix')
             .controller('EditProfileController', EditProfileController);
 
-    function EditProfileController($rootScope, $routeParams, $location, UserService) {
+    function EditProfileController($rootScope, $routeParams, $location, $window, UserService) {
             var vm = this;
         var id = $routeParams.id;
             vm.updateUser = updateUser;
@@ -31,10 +31,13 @@
             }
 
         function deleteUser(id) {
-            UserService.deleteUser(id)
-                .then(function () {
-                    $location.url('/admin');
-                });
+            var choice = $window.confirm('Are you sure you want to delete?');
+            if (choice) {
+                UserService.deleteUser(id)
+                    .then(function () {
+                        $location.url('/admin');
+                    });
+            }
         }
         }
     })();

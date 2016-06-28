@@ -65,6 +65,14 @@
                     loggedIn: checkLoggedIn
                 }
             })
+            .when('/post/:id', {
+                templateUrl: 'user/post.edit.html',
+                controller: 'EditPostController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
             .when('/search/', {
                 templateUrl: 'search/search.view.html',
                 controller: 'SearchController',

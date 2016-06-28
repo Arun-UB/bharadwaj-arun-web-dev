@@ -1,14 +1,9 @@
 <navbar user="currentUser"></navbar>
 <div class="container">
     <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-            <input type="radio" name="options" id="option1" ng-model="model.current" value="User" autocomplete="off"
-                   checked>Users
-        </label>
-        <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" ng-model="model.current" value="Post" autocomplete="off">
-            Posts
-        </label>
+
+        <input type="radio" ng-model="model.current" value="User" ng-change="model.loadData()">Users
+        <input type="radio" ng-model="model.current" value="Post" ng-change="model.loadData()">Posts
 
     </div>
     <table class="table table-responsive" ng-show="model.current==='User'">
@@ -36,7 +31,7 @@
         </thead>
         <tbody ng-repeat="post in model.posts">
         <tr>
-            <td><a href="#/profile/{{user._id}}/edit">{{post._id}}</a></td>
+            <td><a href="#/post/{{post._id}}">{{post._id}}</a></td>
             <td>{{post.text}}</td>
             <td>{{post._user.username}}</td>
         </tbody>

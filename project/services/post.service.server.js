@@ -7,6 +7,7 @@ module.exports = function (app, models) {
     app.get('/project/api/user/:userId/post', findPostsForUser);
     app.get('/project/api/post/search/:query', searchPosts);
     app.get('/project/api/user/:userId/post/:postId', findPostById);
+    app.put('/project/api/user/:userId/post/:postId', updatePost);
     app.get('/project/api/user/:userId/posts', getUserPosts);
     app.get('/project/api/posts', getPosts);
     app.put('/project/api/user/:userId/post/:postId/like', likePost);
@@ -65,6 +66,7 @@ module.exports = function (app, models) {
                 return res.status(400).send(error);
             });
     }
+
     function likePost(req, res) {
         var userId = req.params.userId;
         var postId = req.params.postId;
@@ -89,18 +91,19 @@ module.exports = function (app, models) {
             });
     }
 
-    /*function updatepost(req, res) {
-     var id = req.params.postId;
-     var post = req.body;
-     postModel
-     .updatepost(id, post)
-     .then(function (post) {
-     return res.json(post);
-     }, function (error) {
-     return res.status(404).send(error);
-     });
-     }
-     */
+    function updatePost(req, res) {
+        var id = req.params.postId;
+        var post = req.body;
+
+        PostModel
+            .updatePost(id, post)
+            .then(function (post) {
+                return res.json(post);
+            }, function (error) {
+                return res.status(404).send(error);
+            });
+    }
+
 
     function searchPosts(req, res) {
         var query = req.params.query;

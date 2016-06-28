@@ -113,10 +113,13 @@
             return (post.likes.indexOf(id) === -1) ? false : true;
         }
         function deletePost(postId) {
-            PostService.deletePost(postId, id)
-                .then(function () {
-                    vm.posts = _.without(vm.posts, _.findWhere(vm.posts, {_id: postId}));
-                });
+            var choice = $window.confirm('Are you sure you want to delete?');
+            if (choice) {
+                PostService.deletePost(postId, id)
+                    .then(function () {
+                        vm.posts = _.without(vm.posts, _.findWhere(vm.posts, {_id: postId}));
+                    });
+            }
         }
 
         function getSafeUrl(yUrl) {

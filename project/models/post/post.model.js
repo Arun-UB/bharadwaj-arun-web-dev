@@ -12,6 +12,7 @@ module.exports = function () {
         findPostById: findPostById,
         getPosts: getPosts,
         likePost: likePost,
+        updatePost: updatePost,
         searchPosts: searchPosts,
         deletePost: deletePost
     };
@@ -75,16 +76,16 @@ module.exports = function () {
 
     }
 
-    /*function updateWebsite(id, website) {
-     return Website
-     .update({_id: id}, {
-     $set: {
-     name: website.name,
-     description: website.description
-     }
-     });
-     }
-     */
+    function updatePost(id, post) {
+        return Post
+            .update({_id: id}, {
+                $set: {
+                    text: post.text,
+                    link: post.link
+                }
+            });
+    }
+
 
     function deletePost(id) {
         return Post.remove({_id: id});

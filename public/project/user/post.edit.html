@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#/admin"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="">&nbsp;Post</a>
+            <a href="" ng-show="currentUser.admin" ng-click="model.deletePost()"><i
+                    class="material-icons profile top-right">delete</i></span>
+            </a></div>
+    </div>
+</nav>
+<div class="container">
+    <msg data="model.msg"></msg>
+
+    <form class="sign-in">
+
+        <div class="form-group">
+            <label for="ptext">Text</label>
+            <input type="text" ng-model="model.post.text" class="form-control" id="ptext"
+                   autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="link">Link</label>
+            <input type="text" ng-model="model.post.link" class="form-control" id="link"
+                   required>
+        </div>
+
+        <a href="" ng-click="model.updatePost()" class="btn btn-success btn-block">Save</a>
+    </form>
+</div> <!-- /container -->
+

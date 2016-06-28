@@ -28,7 +28,7 @@
             }
             if (vm.current === 'Post') {
                 PostService.getPosts()
-                    .then(function (users) {
+                    .then(function (posts) {
                         vm.posts = posts;
                     });
             }
