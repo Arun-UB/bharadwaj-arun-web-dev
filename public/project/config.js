@@ -41,6 +41,22 @@
                     loggedIn: checkLoggedIn
                 }
             })
+            .when('/profile/:id/followers', {
+                templateUrl: 'user/user.followers.html',
+                controller: 'FollowController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+            .when('/profile/:id/following', {
+                templateUrl: 'user/user.following.html',
+                controller: 'FollowingController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
             .when('/profile/:id/edit', {
                 templateUrl: 'user/profile.edit.html',
                 controller: 'EditProfileController',

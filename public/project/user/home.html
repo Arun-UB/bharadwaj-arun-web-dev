@@ -3,7 +3,10 @@
     <div class="panel panel-default post-new">
         <div class="panel-body">
             <textarea ng-model="model.post.text" class="form-control" rows="3"
-                      placeholder="Share new videos!"></textarea>
+                      placeholder="Share a new YouTube video"></textarea>
+            <div ng-show="model.msg.type==='error'">
+                <div class="text-danger">Please include a Youtube link</div>
+            </div>
             <div class="post-add">
                 <button class="btn btn-success pull-right" ng-click="model.createPost(model.post)">Post</button>
             </div>
@@ -40,7 +43,7 @@
                            class="material-icons "
                            ng-class="{true:'post-fav-true',false:'post-fav'}[model.liked(post)]">favorite</i>
                         <div class="post-comments">
-                            <a href="" class="text-muted">{{post.comments.length}} comments</a>
+                            <span class="text-muted">{{post.comments.length}} comments</span>
                             <ul class="comment-list">
                                 <li ng-repeat="comment in post.comments">
                                     <span class="comment-user">{{comment._user.username}}</span>{{comment.text}}

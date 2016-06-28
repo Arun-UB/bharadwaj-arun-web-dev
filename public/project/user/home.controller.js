@@ -7,6 +7,7 @@
         var vm = this;
         var id = $rootScope.currentUser._id;
         vm.post = {};
+        vm.msg = {}
         vm.createPost = createPost;
         vm.createComment = createComment;
         vm.getSafeUrl = getSafeUrl;
@@ -34,27 +35,35 @@
 
 
         function createPost(post) {
-            var link = $filter('parseUrl')(post.text);
-            post.link = link.length ? youtubeEmbedUtils.getIdFromURL(link[0]) : null;
-            post.text = post.text ? $filter('replaceUrl')(post.text) : null;
-            if (!post.link && !post.text) {
-                return;
-            }
-            PostService.createPost(id, post)
-                .then(function (post) {
-                    if (post) {
-                        PostService.findPostById(id, post._id)
-                            .then(function (post) {
-                                vm.posts.push(post);
-                                vm.post = null;
+            vm.msg = null
+            var temp = post.text;
+            var link = $filter('parseUrl')(temp);
+            if (link.length) {
+                post.link = youtubeEmbedUtils.getIdFromURL(link[0]);
+                post.text = post.text ? $filter('replaceUrl')(post.text) : null;
+                if (!post.link && !post.text) {
+                    return;
+                }
+                PostService.createPost(id, post)
+                    .then(function (post) {
+                        if (post) {
+                            PostService.findPostById(id, post._id)
+                                .then(function (post) {
+                                    vm.posts.push(post);
+                                    vm.post = null;
 
-                            }, function () {
-                                init();
-                            });
-                    }
-                }, function (err) {
-                    vm.msg = {type: 'error', text: 'Error creating post,try again'};
-                });
+                                }, function () {
+                                    init();
+                                });
+                        }
+                    }, function (err) {
+                        vm.msg = {type: 'error', text: 'Error creating post,try again'};
+                    });
+            }
+            else {
+                vm.msg = {type: 'error'};
+            }
+
         }
 
         function createComment(post) {

@@ -28,6 +28,8 @@ module.exports = function (app, models) {
     app.get('/project/api/user', getUser);
     app.get('/project/api/users', getUsers);
     app.get('/project/api/user/:userId', findUserById);
+    app.get('/project/api/user/:userId/users', getUsersFromList);
+
     app.get('/project/api/user/search/:query', searchUsers);
     app.put('/project/api/user/:userId', updateUser);
     app.put('/project/api/user/:userId/follow', followUser);
@@ -213,10 +215,33 @@ module.exports = function (app, models) {
     function getUsers(req, res) {
         userModel
             .getUsers()
-            .then(function (user) {
-                return res.json(user);
+            .then(function (users) {
+                return res.json(users);
             }, function () {
                 return res.status(404);
+            });
+    }
+
+    function getUsersFromList(req, res) {
+        var userId = req.query.id;
+        var type = req.query.type;
+        userModel
+            .findUserById(userId)
+            .then(function (user) {
+                if (type === 'followers') {
+                    return user.followers;
+                } else {
+                    return user.following;
+                }
+            })
+            .then(function (uList) {
+                userModel
+                    .getUsersFromList(uList)
+                    .then(function (users) {
+                        return res.json(users);
+                    }, function () {
+                        return res.status(404);
+                    });
             });
     }
 

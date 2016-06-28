@@ -2,20 +2,20 @@
 
 <div class="container searchContainer">
     <div class="input-group">
-        <div ng-init="model.sType='Youtube'" class="input-group-btn">
+        <div ng-init="model.sType='YouTube'" class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">{{model.sType}}<span class="caret"></span></button>
             <ul class="dropdown-menu">
-                <li><a href="" ng-click="model.sType='Youtube'">Youtube</a></li>
-                <li><a href="" ng-click="model.sType='User'">User</a></li>
+                <li><a href="" ng-click="model.sType='YouTube'">YouTube</a></li>
+                <li><a href="" ng-click="model.sType='Users'">Users</a></li>
                 <li><a href="" ng-click="model.sType='Posts'">Posts</a></li>
             </ul>
         </div><!-- /btn-group -->
-        <input type="text" ng-model="model.query" ng-keypress="model.search(model.query,model.sType,$event)"
-               class="form-control" aria-label="...">
+        <input type="search" ng-model="model.query" ng-keypress="model.search(model.query,model.sType,$event)"
+               class="form-control" placeholder="Search {{model.sType}}" autofocus>
     </div>
 
-    <ul ng-repeat="video in model.yResults" class="list-group ytResults" ng-show="model.sType === 'Youtube'">
+    <ul ng-repeat="video in model.yResults" class="list-group ytResults" ng-show="model.sType === 'YouTube'">
         <li class="media list-group-item">
             <div class="media-left">
                 <a class="yt-share" href="" ng-click="model.share(video)">
@@ -28,7 +28,7 @@
             </div>
         </li>
     </ul>
-    <ul class="list-group userResults" ng-repeat="user in model.uResults" ng-show="model.sType==='User'">
+    <ul class="list-group userResults" ng-repeat="user in model.uResults" ng-show="model.sType==='Users'">
         <li class="list-group-item">
             <div class="media">
                 <div class="media-left">

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#/profile/{{currentUser._id}}"> <i class="material-icons pull-left top-left">arrow_back</i></a>
+            <a class="navbar-brand" href="">&nbsp;&nbsp;Following</a>
+            <div class="top-right-wrapper">
+                <a href="#/search">
+                    <i class="material-icons profile top-right">explore</i></a>
+                <a href="#/">
+                    <i class="material-icons profile top-right">home</i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <input type="text" class="form-control" ng-model="model.query" placeholder="Filter Users">
+    <br>
+    <ul class="list-group userResults" ng-repeat="user in model.users| filter:model.query">
+        <li class="list-group-item">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#/profile/{{user._id}}">
+                        <img class="media-object" height="64px" src="./images/profile.svg" alt="{{user.username}}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="#/profile/{{user._id}}">{{user.username}}</a></h4>
+                    <span class="text-muted">{{user.firstName}} {{user.lastName}}</span>
+                </div>
+
+            </div>
+        </li>
+
+    </ul>
+</div>

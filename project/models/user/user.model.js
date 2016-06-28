@@ -11,6 +11,7 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserByGoogleId: findUserByGoogleId,
         getUsers: getUsers,
+        getUsersFromList: getUsersFromList,
         followUser: followUser,
         updateUser: updateUser,
         updateFollowers: updateFollowers,
@@ -54,6 +55,10 @@ module.exports = function () {
 
     function getUsers() {
         return User.find({});
+    }
+
+    function getUsersFromList(uList) {
+        return User.find({_id: {'$in': uList}}, {});
     }
     function createUser(user) {
         return User.create(user);

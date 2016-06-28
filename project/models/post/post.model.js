@@ -8,6 +8,7 @@ module.exports = function () {
     var api = {
         createPost: createPost,
         findPostsForUserId: findPostsForUserId,
+        getUserPosts: getUserPosts,
         findPostById: findPostById,
         getPosts: getPosts,
         likePost: likePost,
@@ -28,6 +29,14 @@ module.exports = function () {
             .deepPopulate('comments._user')
             .sort('-dateCreated');
 
+    }
+
+    function getUserPosts(userId) {
+        return Post
+            .find({_user: userId})
+            .populate('_user', 'username')
+            .deepPopulate('comments._user')
+            .sort('-dateCreated');
     }
 
     function searchPosts(query) {
@@ -76,6 +85,7 @@ module.exports = function () {
      });
      }
      */
+
     function deletePost(id) {
         return Post.remove({_id: id});
     }

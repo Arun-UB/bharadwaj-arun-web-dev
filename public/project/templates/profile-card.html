@@ -18,6 +18,7 @@
             <span class="text-primary">{{user.username}}</span>
             <p>{{user.firstName}} {{user.lastName}}</p></div>
         <span class="profile-title">{{user.posts.length}} Posts
-            &nbsp;{{user.followers.length}} Followers &nbsp; {{user.following.length}} Following</span>
+            &nbsp; <a href="#/profile/{{user._id}}/followers">{{user.followers.length}} Followers</a> &nbsp; <a
+                    href="#/profile/{{user._id}}/following">{{user.following.length}} Following</a></span>
     </div>
 </div>

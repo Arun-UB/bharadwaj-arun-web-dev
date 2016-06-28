@@ -16,6 +16,7 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             getUsers: getUsers,
+            getUsersFromList: getUsersFromList,
             updateUser: updateUser,
             deleteUser: deleteUser,
             followUser: followUser,
@@ -72,6 +73,13 @@
 
         function getUsers() {
             return $http.get('/project/api/users/')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getUsersFromList(userId, uList) {
+            return $http.get('/project/api/user/' + userId + '/users', {params: {id: userId, type: 'followers'}})
                 .then(function (response) {
                     return response.data;
                 });

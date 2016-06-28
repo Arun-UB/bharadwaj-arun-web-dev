@@ -7,6 +7,7 @@ module.exports = function (app, models) {
     app.get('/project/api/user/:userId/post', findPostsForUser);
     app.get('/project/api/post/search/:query', searchPosts);
     app.get('/project/api/user/:userId/post/:postId', findPostById);
+    app.get('/project/api/user/:userId/posts', getUserPosts);
     app.get('/project/api/posts', getPosts);
     app.put('/project/api/user/:userId/post/:postId/like', likePost);
     app.delete('/project/api/user/:userId/post/:postId', deletePost);
@@ -54,6 +55,16 @@ module.exports = function (app, models) {
             });
     }
 
+    function getUserPosts(req, res) {
+        var userId = req.params.userId;
+        PostModel
+            .findPostsForUserId(userId)
+            .then(function (posts) {
+                return res.json(posts);
+            }, function (error) {
+                return res.status(400).send(error);
+            });
+    }
     function likePost(req, res) {
         var userId = req.params.userId;
         var postId = req.params.postId;

@@ -13,7 +13,7 @@
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;
         function search(query, type, event) {
-            if (query && event.which === 13 && type === 'Youtube') {
+            if (query && event.which === 13 && type === 'YouTube') {
                 SearchService.getVideos(query)
                     .then(function (videos) {
                         console.log(videos.data.items);
@@ -23,7 +23,7 @@
                         console.log(err);
                     });
             }
-            if (query && event.which === 13 && type === 'User') {
+            if (query && event.which === 13 && type === 'Users') {
                 SearchService.searchUsers(query)
                     .then(function (results) {
                         console.log(results);
