@@ -8,7 +8,7 @@
 
         var vm = this;
         vm.search = search;
-        vm.yResults = {}
+        vm.yResults = {};
         vm.share = share;
         vm.getSafeUrl = getSafeUrl;
         vm.getDate = getDate;

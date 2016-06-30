@@ -12,7 +12,7 @@
             </ul>
         </div><!-- /btn-group -->
         <input type="search" ng-model="model.query" ng-keypress="model.search(model.query,model.sType,$event)"
-               class="form-control" placeholder="Search {{model.sType}}" autofocus>
+               class="form-control search" placeholder="Search {{model.sType}}" autofocus>
     </div>
 
     <ul ng-repeat="video in model.yResults" class="list-group ytResults" ng-show="model.sType === 'YouTube'">

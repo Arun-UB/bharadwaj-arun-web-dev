@@ -21,13 +21,19 @@
             init();
 
             function updateUser() {
-                UserService.updateUser(id, vm.user)
-                    .then(function () {
-                        vm.msg = {type: 'success', text: 'Profile saved'};
+                if (!vm.user.username) {
+                    vm.msg = {type: 'error', text: 'Username required'};
+                }
+                else {
+                    UserService.updateUser(id, vm.user)
+                        .then(function () {
+                            vm.msg = {type: 'success', text: 'Profile saved'};
 
-                    }, function () {
-                        vm.msg = {type: 'error', text: 'Unable to save changes'};
-                    });
+                        }, function () {
+                            vm.msg = {type: 'error', text: 'Unable to save changes'};
+                        });
+                }
+
             }
 
         function deleteUser(id) {

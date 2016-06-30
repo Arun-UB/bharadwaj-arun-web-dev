@@ -278,6 +278,10 @@ a.top-right {
     width: 600px;
 }
 
+.search {
+    padding-left: 10px !important;
+}
+
 @media screen and (max-width: 600px) {
     .profile-head {
         width: 100%;
