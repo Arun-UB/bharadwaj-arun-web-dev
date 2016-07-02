@@ -33,6 +33,14 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
+            .when('/addUser', {
+                templateUrl: 'user/new.user.view.html',
+                controller: 'AddUserController',
+                controllerAs: 'model',
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
             .when('/profile/:id', {
                 templateUrl: 'user/profile.html',
                 controller: 'ProfileController',

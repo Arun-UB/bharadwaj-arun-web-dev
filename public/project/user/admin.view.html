@@ -1,12 +1,15 @@
 <navbar user="currentUser"></navbar>
 <div class="container">
-    <div class="btn-group" data-toggle="buttons">
+    <div class="btn-group " data-toggle="buttons">
 
         <input type="radio" ng-model="model.current" value="User" ng-change="model.loadData()">Users
         <input type="radio" ng-model="model.current" value="Post" ng-change="model.loadData()">Posts
 
     </div>
-    <table class="table table-responsive" ng-show="model.current==='User'">
+    <a href="#/addUser" class="btn btn-default pull-right" ng-show="model.current==='User'">Add User</a>
+
+    <table class="table table-responsive user-table" ng-show="model.current==='User'">
+
         <thead>
         <tr>
             <th>First Name</th>

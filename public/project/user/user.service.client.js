@@ -30,6 +30,8 @@
             return $http.post('/project/api/user/', user)
                 .then(function (response) {
                     return response.data;
+                }, function (err) {
+                    return err.reject();
                 });
         }
 
@@ -53,7 +55,7 @@
                 .then(function (response) {
                     return response.data;
                 }, function (err) {
-                    return err.data;
+                    return err.reject();
                 });
         }
 

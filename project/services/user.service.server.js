@@ -157,6 +157,20 @@ module.exports = function (app, models) {
             );
     }
 
+    function createUser(req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user)
+            .then(
+                function (user) {
+                    return res.status(201).send(user._id);
+                },
+                function (error) {
+                    return res.status(400).send('Username ' + user.username + ' already in use');
+                }
+            );
+    }
+
     function login(req, res) {
         var user = req.user;
         res.json(user);

@@ -2,20 +2,18 @@
     'use strict';
     angular
         .module('Musix')
-        .controller('RegisterController', RegisterController);
+        .controller('AddUserController', AddUserController);
 
 
-    function RegisterController(UserService, $rootScope, $location) {
+    function AddUserController(UserService, $location) {
         //View Model
         var vm = this;
-
-
-        vm.register = register;
+        vm.addUser = addUser;
         function checkPwd(p1, p2) {
             return p1 === p2;
         }
 
-        function register(user, form) {
+        function addUser(user, form) {
 
             if (form.$invalid) {
                 vm.msg = {type: 'error', text: 'Please correct the errors'};
@@ -25,15 +23,13 @@
             }
             else {
                 UserService
-                    .register(user)
+                    .createUser(user)
                     .then(function (user) {
-                        if ($rootScope.currentUser.admin) {
+                        if (user) {
                             $location.url('/admin');
-                        } else {
-                            $location.url('/');
                         }
+
                     }, function (err) {
-                        console.log(err)
                         vm.msg = {type: 'error', text: 'Username taken'};
                     });
             }
